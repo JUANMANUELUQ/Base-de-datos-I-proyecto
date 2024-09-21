@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="141.0" layoutY="309.0" mnemonicParsing="false" onAction="#aprobar" text="Aprobar" />
+      <Button layoutX="544.0" layoutY="309.0" mnemonicParsing="false" onAction="#rechazar" text="Rechazar" />
+      <TableView fx:id="tablePrestamos" layoutX="40.0" layoutY="81.0" prefHeight="200.0" prefWidth="628.0">
+        <columns>
+          <TableColumn fx:id="columnCorreo" prefWidth="167.0" text="Correo del solicitante" />
+          <TableColumn fx:id="columnFechaSolicitud" minWidth="0.0" prefWidth="155.0" text="Fecha de solicitud" />
+            <TableColumn fx:id="columnMonto" prefWidth="137.0" text="Monto" />
+            <TableColumn fx:id="columnPeriodoMeses" prefWidth="168.0" text="Periodo de meses" />
+        </columns>
+      </TableView>
+      <Button layoutX="269.0" layoutY="309.0" mnemonicParsing="false" onAction="#verInformacionSolicitante" text="Ver informacion del solicitante" />
+   </children>
+</AnchorPane>
