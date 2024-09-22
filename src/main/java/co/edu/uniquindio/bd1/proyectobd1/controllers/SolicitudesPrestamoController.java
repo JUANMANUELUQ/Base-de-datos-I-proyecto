@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class SolcitudesPrestamoController {
+public class SolicitudesPrestamoController {
 	
     @FXML
     private TableView<?> tablePrestamos;

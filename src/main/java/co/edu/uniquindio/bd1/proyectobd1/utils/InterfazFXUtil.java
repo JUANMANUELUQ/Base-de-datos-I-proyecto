@@ -1,18 +1,18 @@
 package co.edu.uniquindio.bd1.proyectobd1.utils;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.Optional;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
+import co.edu.uniquindio.bd1.proyectobd1.controllers.EmpleadoController;
+import co.edu.uniquindio.bd1.proyectobd1.controllers.VentanaTabuladora;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class InterfazFXUtil {
@@ -31,7 +31,7 @@ public class InterfazFXUtil {
         alert.setTitle(titulo);
         alert.setHeaderText(encabezado);
         alert.setContentText(texto);
-        applyAlertStyle(alert);
+        //applyAlertStyle(alert);
         alert.showAndWait();
     }
 
@@ -46,7 +46,7 @@ public class InterfazFXUtil {
         alert.setTitle(titulo);
         alert.setHeaderText(titulo);
         alert.setContentText(texto);
-        applyAlertStyle(alert);
+        //applyAlertStyle(alert);
         alert.showAndWait();
     }
 
@@ -60,7 +60,7 @@ public class InterfazFXUtil {
         alert.setTitle(titulo);
         alert.setHeaderText(titulo);
         alert.setContentText(texto);
-        applyAlertStyle(alert);
+        //applyAlertStyle(alert);
         alert.showAndWait();
     }
 
@@ -73,7 +73,7 @@ public class InterfazFXUtil {
         alert.setTitle("");
         alert.setHeaderText("");
         alert.setContentText(texto);
-        applyAlertStyle(alert);
+        //applyAlertStyle(alert);
         alert.showAndWait();
     }
 
@@ -156,9 +156,31 @@ public class InterfazFXUtil {
 	    alert.setTitle(titulo);
 	    alert.setHeaderText(titulo);
 	    alert.setContentText(texto);
-	    applyAlertStyle(alert);
+	    //applyAlertStyle(alert);
 	    Optional<ButtonType> resultado = alert.showAndWait();
 
 	    return resultado.isPresent() && resultado.get() == ButtonType.OK;
 	}
+
+	/**
+	 * Carga una nueva ventana en el panel principal.
+	 *
+	 * @param ruta   la ruta del archivo FXML que se va a cargar
+	 * @param aClass
+	 */
+	public static void cargarVentana(String ruta, AnchorPane panel, Class<? extends VentanaTabuladora> aClass) {
+
+		try {
+			// Cargar el archivo FXML
+			FXMLLoader loader = new FXMLLoader(aClass.getResource(ruta));
+			Parent nuevoContenido = loader.load();
+
+			// Agregar el nuevo contenido al AnchorPane
+			panel.getChildren().setAll(nuevoContenido);
+		} catch (IOException e) {
+			e.printStackTrace();
+			// Manejar la excepción adecuadamente
+		}
+	}
+
 }

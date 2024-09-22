@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.TesoreriaController">
+   <children>
+      <AnchorPane fx:id="panel" layoutX="34.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="41.0" layoutY="27.0" mnemonicParsing="false" onAction="#solicitudes" text="Solicitudes" />
+      <Button layoutX="165.0" layoutY="27.0" mnemonicParsing="false" onAction="#pagosTotales" text="Pagos totales" />
+      <Button layoutX="292.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
+   </children>
+</AnchorPane>
