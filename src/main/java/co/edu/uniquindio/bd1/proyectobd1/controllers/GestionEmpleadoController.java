@@ -1,15 +1,18 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+
 
 public class GestionEmpleadoController {
 	
 	@FXML
-	private TableView<?> tableEmpleados; 
+	private TableView<?> tableEmpleados;
 	
 	@FXML
 	private TableColumn<?, String> columnDeuda;
@@ -74,6 +77,23 @@ public class GestionEmpleadoController {
 	@FXML
 	void eliminar() {
 
+	}
+
+	public boolean verificarDatos() {
+		boolean sonValidos=true;
+		String msj="";
+		/*
+		msj+=InterfazFXUtil;
+		msj+=InterfazFXUtil;
+		msj+=InterfazFXUtil;
+		msj+=InterfazFXUtil;
+		msj+=InterfazFXUtil;
+		*/
+		if (!msj.equals("")) {
+			sonValidos=false;
+			InterfazFXUtil.mostrarMensaje("Entradas no validas", msj, AlertType.ERROR);
+		}
+		return sonValidos;
 	}
 
 }

@@ -1,4 +1,3 @@
-/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.Loan;
@@ -59,4 +58,3 @@ public class LoanServiceImp implements LoanService {
 
     }
 }
-*/

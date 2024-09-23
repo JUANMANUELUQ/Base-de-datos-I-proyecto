@@ -1,12 +1,13 @@
-package co.edu.uniquindio.bd1.proyectobd1.repository;
+/*package co.edu.uniquindio.bd1.proyectobd1.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ReportRepository {
+public interface ReportRepository extends JpaRepository<Object, Long> {
    // @Query("SELECT e.municipality, SUM(l.amount) FROM Loan l JOIN l.employee e GROUP BY e.municipality")
    // List<Object[]> generateTotalLoansByMunicipality();
 
@@ -19,3 +20,5 @@ public interface ReportRepository {
 
 
 }
+
+*/

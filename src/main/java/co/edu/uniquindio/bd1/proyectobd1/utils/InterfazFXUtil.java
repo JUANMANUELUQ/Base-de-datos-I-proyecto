@@ -3,6 +3,7 @@ package co.edu.uniquindio.bd1.proyectobd1.utils;
 import java.io.IOException;
 import java.util.Optional;
 
+import aj.org.objectweb.asm.commons.TryCatchBlockSorter;
 import co.edu.uniquindio.bd1.proyectobd1.controllers.EmpleadoController;
 import co.edu.uniquindio.bd1.proyectobd1.controllers.VentanaTabuladora;
 import javafx.fxml.FXMLLoader;
@@ -102,6 +103,58 @@ public class InterfazFXUtil {
 	 */
 	public static boolean estaCampoVacio(ComboBox campo) {
 		return campo.getValue() == null || ((String) campo.getValue()).trim().equals("");
+	}
+
+	public String verificarDato(ComboBox campo,String patron,String nombreCampo) {
+		String mensajeError="";
+		if (estaCampoVacio(campo)) {
+			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
+		}
+		return mensajeError;
+	}
+
+	public String verificarDato(TextField campo,String patron,String nombreCampo) {
+		String mensajeError="";
+		if (estaCampoVacio(campo)) {
+			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
+		} else if(patron.equals("") && !campo.getText().trim().matches(patron)){
+			mensajeError="El valor del campo "+nombreCampo+" es invalido";
+		}
+		return mensajeError;
+	}
+
+	public String verificarDatoNumericoReal(TextField campo,String nombreCampo,boolean positivo) {
+		String mensajeError="";
+		if (estaCampoVacio(campo)) {
+			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
+		} else {
+			try {
+				double numero=Double.parseDouble(campo.getText());
+				if (positivo && numero<0) {
+					mensajeError=mensajeError+" debe ser mayor que 0";
+				}
+			} catch (Exception e) {
+				mensajeError=mensajeError+" debe ser un numero";
+			}
+		}
+		return mensajeError;
+	}
+
+	public String verificarDatoNumericoEntero(TextField campo,String nombreCampo,boolean positivo) {
+		String mensajeError="";
+		if (estaCampoVacio(campo)) {
+			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
+		} else {
+			try {
+				int numero=Integer.parseInt(campo.getText());
+				if (positivo && numero<0) {
+					mensajeError=mensajeError+" debe ser mayor que 0";
+				}
+			} catch (Exception e) {
+				mensajeError=mensajeError+" debe ser un numero entero";
+			}
+		}
+		return mensajeError;
 	}
 	
     /**

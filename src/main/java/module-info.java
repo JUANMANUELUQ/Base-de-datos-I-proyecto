@@ -14,6 +14,7 @@ module co.edu.uniquindio.bd1.proyectobd1 {
     requires spring.core;
     requires static lombok;
     requires spring.data.commons;
+    requires org.aspectj.weaver;
 
     // Abre paquetes a Spring y Hibernate para la reflexión
     opens co.edu.uniquindio.bd1.proyectobd1.model to spring.core, spring.beans, spring.data.jpa, org.hibernate.orm.core;
@@ -32,4 +33,6 @@ module co.edu.uniquindio.bd1.proyectobd1 {
 
     // Abre modelo para Spring
     opens co.edu.uniquindio.bd1.proyectobd1 to spring.beans, spring.core, javafx.fxml;
+    exports co.edu.uniquindio.bd1.proyectobd1.service.implementations;
+    opens co.edu.uniquindio.bd1.proyectobd1.service.implementations to spring.beans, spring.core;
 }

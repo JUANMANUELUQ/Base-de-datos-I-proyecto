@@ -1,4 +1,3 @@
-/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.Payment;
@@ -64,4 +63,3 @@ public class PaymentServiceImp implements PaymentService {
         return List.of();
     }
 }
-*/

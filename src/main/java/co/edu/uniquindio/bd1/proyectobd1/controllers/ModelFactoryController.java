@@ -1,33 +1,23 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeDTO;
 import co.edu.uniquindio.bd1.proyectobd1.model.MiEntidad;
+import co.edu.uniquindio.bd1.proyectobd1.model.entities.Employee;
 import co.edu.uniquindio.bd1.proyectobd1.service.MiEntidadService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.stereotype.Component;
+import co.edu.uniquindio.bd1.proyectobd1.service.implementations.EmployeeServiceImp;
+import lombok.Setter;
 
+import java.util.List;
+
+@Setter
 public class ModelFactoryController {
 
+    //Repositorio de prueba
     private MiEntidadService miEntidadService;
+
+    private EmployeeServiceImp empleayeeService;
+
     private String usuarioSesion="";
-
-    public MiEntidadService getMiEntidadService() {
-        return miEntidadService;
-    }
-
-    public void setMiEntidadService(MiEntidadService miEntidadService) {
-        this.miEntidadService = miEntidadService;
-    }
-
-    public String getUsuarioSesion() {
-        return usuarioSesion;
-    }
-
-    public void setUsuarioSesion(String usuarioSesion) {
-        this.usuarioSesion = usuarioSesion;
-    }
 
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de
@@ -47,6 +37,26 @@ public class ModelFactoryController {
     }
 
     public ModelFactoryController() {
+
+    }
+
+    public void organizarDatos() {
+        if (estaBaseDatosIncompleta()) {
+            quemarDatos();
+        }
+    }
+
+    public boolean estaBaseDatosIncompleta() {
+        boolean incompleta=false;
+        List<Employee> l =empleayeeService.findAll();
+        System.out.println(l.size());
+        if (empleayeeService.findAll().isEmpty()) {
+            incompleta=true;
+        }
+        return incompleta;
+    }
+
+    public void quemarDatos() {
 
     }
 
