@@ -11,7 +11,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <spring-boot.version>3.2.6</spring-boot.version>
+        <spring-boot.version>3.3.2</spring-boot.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -88,12 +88,21 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>11.2.0.jre17</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <repositories>
         <repository>
             <id>central</id>
             <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
+            <id>spring-repo</id>
+            <url>https://repo.spring.io/release</url>
         </repository>
     </repositories>
 
