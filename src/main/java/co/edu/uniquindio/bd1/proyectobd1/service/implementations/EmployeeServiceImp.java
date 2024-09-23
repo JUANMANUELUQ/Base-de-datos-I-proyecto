@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.Branch;
@@ -14,6 +15,8 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepo;
+
+    public EmployeeServiceImp(){}
 
     @Override
     public Employee findById(Long id) {
@@ -55,3 +58,4 @@ public class EmployeeServiceImp implements EmployeeService {
         return List.of();
     }
 }
+*/

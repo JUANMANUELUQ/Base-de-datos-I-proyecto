@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.Loan;
@@ -13,6 +14,10 @@ public class LoanServiceImp implements LoanService {
 
     @Autowired
     private LoanRepository loanRepo;
+
+    public LoanServiceImp() {
+
+    }
 
     @Override
     public Loan findById(Long id) {
@@ -54,3 +59,4 @@ public class LoanServiceImp implements LoanService {
 
     }
 }
+*/

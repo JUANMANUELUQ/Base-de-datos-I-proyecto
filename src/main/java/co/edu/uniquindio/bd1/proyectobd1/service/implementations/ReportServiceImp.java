@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.repository.ReportRepository;
@@ -10,6 +11,10 @@ public class ReportServiceImp implements ReportService {
 
     @Autowired
     private ReportRepository reportRepo;
+
+    public ReportServiceImp(){
+
+    }
 
     @Override
     public byte[] generateDefaulterReport() {
@@ -36,3 +41,4 @@ public class ReportServiceImp implements ReportService {
         return new byte[0];
     }
 }
+*/

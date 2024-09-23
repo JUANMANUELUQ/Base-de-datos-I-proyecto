@@ -1,7 +1,9 @@
 module co.edu.uniquindio.bd1.proyectobd1 {
+    // Requiere de JavaFX
     requires javafx.controls;
     requires javafx.fxml;
 
+    // Requiere de Spring y Hibernate
     requires spring.beans;
     requires spring.context;
     requires spring.boot;
@@ -10,17 +12,24 @@ module co.edu.uniquindio.bd1.proyectobd1 {
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
     requires spring.core;
+    requires static lombok;
+    requires spring.data.commons;
 
-    // Abrir el paquete donde están tus entidades para Hibernate
+    // Abre paquetes a Spring y Hibernate para la reflexión
     opens co.edu.uniquindio.bd1.proyectobd1.model to spring.core, spring.beans, spring.data.jpa, org.hibernate.orm.core;
+    opens co.edu.uniquindio.bd1.proyectobd1.model.entities to org.hibernate.orm.core, spring.core, spring.beans;
     opens co.edu.uniquindio.bd1.proyectobd1.service to spring.core, spring.beans;
-    opens co.edu.uniquindio.bd1.proyectobd1.application to spring.core, spring.beans,javafx.fxml; // Agrega este paquete si es necesario para la reflexión
+    opens co.edu.uniquindio.bd1.proyectobd1.application to spring.core, spring.beans, javafx.fxml;
 
-    // Exportar los paquetes necesarios para Spring
+    // Exporta paquetes necesarios para otros módulos y JavaFX
+    exports co.edu.uniquindio.bd1.proyectobd1;
     exports co.edu.uniquindio.bd1.proyectobd1.service;
     exports co.edu.uniquindio.bd1.proyectobd1.application;
-    exports co.edu.uniquindio.bd1.proyectobd1;
-    opens co.edu.uniquindio.bd1.proyectobd1 to javafx.fxml, spring.beans, spring.core;
     exports co.edu.uniquindio.bd1.proyectobd1.controllers to javafx.fxml;
+
+    // Abre controladores para JavaFX
     opens co.edu.uniquindio.bd1.proyectobd1.controllers to javafx.fxml;
+
+    // Abre modelo para Spring
+    opens co.edu.uniquindio.bd1.proyectobd1 to spring.beans, spring.core, javafx.fxml;
 }

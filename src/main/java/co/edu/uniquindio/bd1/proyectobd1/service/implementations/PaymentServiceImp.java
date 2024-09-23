@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.Payment;
@@ -13,6 +14,10 @@ public class PaymentServiceImp implements PaymentService {
 
     @Autowired
     private PaymentRepository paymentRepo;
+
+    public PaymentServiceImp(){
+
+    }
 
     @Override
     public Payment findById(Long id) {
@@ -59,3 +64,4 @@ public class PaymentServiceImp implements PaymentService {
         return List.of();
     }
 }
+*/

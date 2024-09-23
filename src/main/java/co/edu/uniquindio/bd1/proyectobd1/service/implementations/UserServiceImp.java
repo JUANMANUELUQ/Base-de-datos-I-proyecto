@@ -1,3 +1,4 @@
+/*
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.User;
@@ -13,6 +14,10 @@ public class UserServiceImp implements UserService {
 
     @Autowired
     private UserRepository userRepo;
+
+    public UserServiceImp() {
+
+    }
 
     @Override
     public User findById(Long id) {
@@ -54,3 +59,4 @@ public class UserServiceImp implements UserService {
 
     }
 }
+*/

@@ -14,7 +14,7 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "user")
+@Table(name = "[user]")
 public class User {
 
     @EqualsAndHashCode.Include
