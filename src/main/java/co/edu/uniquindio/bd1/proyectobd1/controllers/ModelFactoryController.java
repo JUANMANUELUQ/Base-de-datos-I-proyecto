@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 public class ModelFactoryController {
 
     private MiEntidadService miEntidadService;
+    private String usuarioSesion="";
 
     public MiEntidadService getMiEntidadService() {
         return miEntidadService;
@@ -18,6 +19,14 @@ public class ModelFactoryController {
 
     public void setMiEntidadService(MiEntidadService miEntidadService) {
         this.miEntidadService = miEntidadService;
+    }
+
+    public String getUsuarioSesion() {
+        return usuarioSesion;
+    }
+
+    public void setUsuarioSesion(String usuarioSesion) {
+        this.usuarioSesion = usuarioSesion;
     }
 
     /**
