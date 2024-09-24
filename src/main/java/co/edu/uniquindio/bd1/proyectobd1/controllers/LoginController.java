@@ -62,4 +62,16 @@ public class LoginController {
 		mfm.setUsuarioSesion(usuario);
 		aplicacion.mostrarEmpleado();
 	}
+
+	public boolean verificarDatos() {
+		boolean sonValidos=true;
+		String msj="";
+		msj+=InterfazFXUtil.verificarDato(txtCorreo,"","correo")+"\n";
+		msj+=InterfazFXUtil.verificarDato(txtContrasenia,"","contrase\u00F1a");
+		if (!msj.equals("")) {
+			sonValidos=false;
+			InterfazFXUtil.mostrarMensaje("Entradas no validas", msj, Alert.AlertType.ERROR);
+		}
+		return sonValidos;
+	}
 }

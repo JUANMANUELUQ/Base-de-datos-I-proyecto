@@ -4,20 +4,20 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="710.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.GestionEmpleadoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.GestionEmpleadoController">
    <children>
-      <Label layoutX="53.0" layoutY="31.0" text="Correo:" />
-      <TextField fx:id="txtCorreo" layoutX="169.0" layoutY="26.0" />
-      <Label layoutX="52.0" layoutY="82.0" text="Contrasena:" />
-      <TextField fx:id="txtContrasena" layoutX="177.0" layoutY="77.0" />
-      <Label layoutX="52.0" layoutY="154.0" text="Cargo:" />
-      <ComboBox fx:id="comboCargo" layoutX="195.0" layoutY="149.0" prefWidth="150.0" />
-      <Label layoutX="62.0" layoutY="217.0" text="Sucursal:" />
-      <TextField fx:id="txtSucursal" layoutX="195.0" layoutY="212.0" />
-      <Label layoutX="70.0" layoutY="266.0" text="Municipio:" />
-      <TextField fx:id="txtMunicipio" layoutX="195.0" layoutY="272.0" />
-      <Button layoutX="178.0" layoutY="329.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
-      <TableView fx:id="tableEmpleados" layoutX="53.0" layoutY="442.0" prefHeight="200.0" prefWidth="519.0">
+      <Label layoutX="131.0" layoutY="31.0" text="Correo:" />
+      <TextField fx:id="txtCorreo" layoutX="247.0" layoutY="26.0" />
+      <Label layoutX="131.0" layoutY="72.0" text="Contrasena:" />
+      <TextField fx:id="txtContrasena" layoutX="247.0" layoutY="67.0" />
+      <Label layoutX="131.0" layoutY="114.0" text="Cargo:" />
+      <ComboBox fx:id="comboCargo" layoutX="247.0" layoutY="109.0" prefHeight="31.0" prefWidth="187.0" />
+      <Label layoutX="131.0" layoutY="155.0" text="Sucursal:" />
+      <TextField fx:id="txtSucursal" layoutX="247.0" layoutY="150.0" />
+      <Label layoutX="131.0" layoutY="196.0" text="Municipio:" />
+      <TextField fx:id="txtMunicipio" layoutX="247.0" layoutY="191.0" />
+      <Button layoutX="201.0" layoutY="253.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <TableView fx:id="tableEmpleados" layoutX="25.0" layoutY="305.0" onMouseClicked="#ponerDatos" prefHeight="200.0" prefWidth="519.0">
         <columns>
           <TableColumn fx:id="columnCorreo" prefWidth="75.0" text="Correo" />
             <TableColumn fx:id="columnCargo" prefWidth="75.0" text="Cargo" />
@@ -27,8 +27,8 @@
             <TableColumn fx:id="columnDeuda" prefWidth="98.0" text="Deuda" />
         </columns>
       </TableView>
-      <Button layoutX="268.0" layoutY="329.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
-      <Button layoutX="88.0" layoutY="329.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
-      <Button layoutX="364.0" layoutY="329.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+      <Button layoutX="294.0" layoutY="253.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
+      <Button layoutX="106.0" layoutY="253.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+      <Button layoutX="390.0" layoutY="253.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
    </children>
 </AnchorPane>

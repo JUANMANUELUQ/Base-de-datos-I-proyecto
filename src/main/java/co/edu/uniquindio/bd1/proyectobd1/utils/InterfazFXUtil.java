@@ -105,7 +105,7 @@ public class InterfazFXUtil {
 		return campo.getValue() == null || ((String) campo.getValue()).trim().equals("");
 	}
 
-	public String verificarDato(ComboBox campo,String patron,String nombreCampo) {
+	public static String verificarDato(ComboBox campo,String nombreCampo) {
 		String mensajeError="";
 		if (estaCampoVacio(campo)) {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
@@ -113,7 +113,7 @@ public class InterfazFXUtil {
 		return mensajeError;
 	}
 
-	public String verificarDato(TextField campo,String patron,String nombreCampo) {
+	public static String verificarDato(TextField campo,String patron,String nombreCampo) {
 		String mensajeError="";
 		if (estaCampoVacio(campo)) {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
@@ -123,7 +123,7 @@ public class InterfazFXUtil {
 		return mensajeError;
 	}
 
-	public String verificarDatoNumericoReal(TextField campo,String nombreCampo,boolean positivo) {
+	public static String verificarDatoNumericoReal(TextField campo,String nombreCampo,boolean positivo) {
 		String mensajeError="";
 		if (estaCampoVacio(campo)) {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
@@ -140,7 +140,7 @@ public class InterfazFXUtil {
 		return mensajeError;
 	}
 
-	public String verificarDatoNumericoEntero(TextField campo,String nombreCampo,boolean positivo) {
+	public static String verificarDatoNumericoEntero(TextField campo,String nombreCampo,boolean positivo) {
 		String mensajeError="";
 		if (estaCampoVacio(campo)) {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
@@ -161,7 +161,7 @@ public class InterfazFXUtil {
      * Bloquea la entrada de texto en un campo de texto y establece el estilo de fondo como gris.
      * @param texto El campo de texto a bloquear.
      */
-	public void bloquearEntrada(TextField texto) {
+	public static void bloquearEntrada(TextField texto) {
 		texto.setEditable(false);
 		texto.setStyle("-fx-background-color: #aaaaaa;");
 		texto.setText("N/A");
@@ -171,7 +171,7 @@ public class InterfazFXUtil {
      * Desbloquea la entrada de texto en un campo de texto y restablece el estilo de fondo predeterminado.
      * @param texto El campo de texto a desbloquear.
      */
-	public void desbloquearEntrada(TextField texto) {
+	public static void desbloquearEntrada(TextField texto) {
 		texto.setEditable(true);
 		texto.setStyle(null);
 		texto.setText("");
@@ -193,7 +193,7 @@ public class InterfazFXUtil {
      * Desbloquea la selección y la entrada de texto en un ComboBox restableciendo el valor predeterminado.
      * @param comboBox El ComboBox a desbloquear.
      */
-	public void desbloquearEntrada(ComboBox comboBox) {
+	public static void desbloquearEntrada(ComboBox comboBox) {
 		comboBox.setValue("");
 		comboBox.setDisable(false);	
 	}

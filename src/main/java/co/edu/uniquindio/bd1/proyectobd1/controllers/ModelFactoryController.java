@@ -7,6 +7,7 @@ import co.edu.uniquindio.bd1.proyectobd1.service.MiEntidadService;
 import co.edu.uniquindio.bd1.proyectobd1.service.implementations.EmployeeServiceImp;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -18,6 +19,19 @@ public class ModelFactoryController {
     private EmployeeServiceImp empleayeeService;
 
     private String usuarioSesion="";
+
+    //TODO Realizar estos tres metodos y devuelvan listas de DTO con los datos necesarios
+    public List<Object> obtenerEmpleados() {
+        return new ArrayList<Object>();
+    }
+
+    public List<Object> obtenerPagosEmpleado() {
+        return new ArrayList<Object>();
+    }
+
+    public List<Object> obtenerPagosTotales() {
+        return new ArrayList<Object>();
+    }
 
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de
