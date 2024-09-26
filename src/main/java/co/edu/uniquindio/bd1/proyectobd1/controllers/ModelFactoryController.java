@@ -7,6 +7,7 @@ import co.edu.uniquindio.bd1.proyectobd1.service.MiEntidadService;
 import co.edu.uniquindio.bd1.proyectobd1.service.implementations.EmployeeServiceImp;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class ModelFactoryController {
 
     public List<Object> obtenerPagosTotales() {
         return new ArrayList<Object>();
+    }
+
+    public void registrarInicioSesion(String correo, LocalDate fecha) {
+
     }
 
     /**

@@ -13,7 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "employee")
-public class Employee {
+public class Employee extends User{
 
     @EqualsAndHashCode.Include
     @Id

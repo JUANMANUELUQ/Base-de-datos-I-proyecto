@@ -117,7 +117,7 @@ public class InterfazFXUtil {
 		String mensajeError="";
 		if (estaCampoVacio(campo)) {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
-		} else if(patron.equals("") && !campo.getText().trim().matches(patron)){
+		} else if (!patron.equals("") && !campo.getText().trim().matches(patron)){
 			mensajeError="El valor del campo "+nombreCampo+" es invalido";
 		}
 		return mensajeError;

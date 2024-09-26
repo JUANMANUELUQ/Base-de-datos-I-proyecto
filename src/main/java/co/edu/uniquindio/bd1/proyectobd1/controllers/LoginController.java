@@ -7,6 +7,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.time.LocalDate;
+
 public class LoginController {
 
 	private Stage ventana;
@@ -24,6 +26,8 @@ public class LoginController {
 		int opcion;
 		try {
 			opcion=Integer.parseInt(txtCorreo.getText());
+			LocalDate fecha= LocalDate.now();
+			mfm.registrarInicioSesion(txtCorreo.getText(),fecha);
 			switch(opcion) {
 				case 1: iniciarSesionAdministrador("");break;
 				case 2: iniciarSesionTesoreria("") ;break;
