@@ -68,7 +68,7 @@ public class ModelFactoryController {
     public boolean estaBaseDatosIncompleta() {
         boolean incompleta=false;
         List<Employee> l =empleayeeService.findAll();
-        System.out.println(l.size());
+        System.out.println(l.size()+" (ModelFactory)");
         if (empleayeeService.findAll().isEmpty()) {
             incompleta=true;
         }

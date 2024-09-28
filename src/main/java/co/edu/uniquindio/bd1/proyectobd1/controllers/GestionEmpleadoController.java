@@ -17,6 +17,21 @@ public class GestionEmpleadoController {
 	ModelFactoryController mfm=ModelFactoryController.getInstance();
 
 	@FXML
+	private TextField txtLogin;
+
+	@FXML
+	private TextField txtNombre;
+
+	@FXML
+	private TextField txtCodigo;
+
+	@FXML
+	private ComboBox comboSucursal;
+
+	@FXML
+	private ComboBox comboMunicipio;
+
+	@FXML
 	private TableView<Object> tableEmpleados;
 	
 	@FXML
@@ -80,8 +95,13 @@ public class GestionEmpleadoController {
 
 	@FXML
 	void limpiar() {
-		txtCorreo.setText("");
+		txtLogin.setText("");
 		txtContrasena.setText("");
+		txtNombre.setText("");
+		txtCodigo.setText("");
+		txtCorreo.setText("");
+		comboSucursal.setValue("");
+		comboMunicipio.setValue("");
 		comboCargo.setValue("");
 		txtMunicipio.setText("");
 		txtSucursal.setText("");

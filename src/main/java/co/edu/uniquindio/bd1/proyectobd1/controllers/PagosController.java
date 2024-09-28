@@ -7,15 +7,32 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
+import java.util.ArrayList;
+
 public class PagosController {
 
     ModelFactoryController mfm=ModelFactoryController.getInstance();
 
     @FXML
-    private TableView<Object> tablePagos;
+    private TableView<Object> tablePrestamo;
 
     @FXML
-    private TableColumn<Object, String> columnPrestamo;
+    private TableColumn<Object, String> columnNumeroPrestamoP;
+
+    @FXML
+    private TableColumn<Object, String> columnFechaSolicitud;
+
+    @FXML
+    private TableColumn<Object, String> columnMonto;
+
+    @FXML
+    private TableColumn<Object, String> columnPeriodoMeses;
+
+    @FXML
+    private TableColumn<Object, String> columnTasaInteres;
+
+    @FXML
+    private TableView<Object> tablePagos;
 
     @FXML
     private TableColumn<Object, String> columnNumeroCoutas;
@@ -24,21 +41,44 @@ public class PagosController {
     private TableColumn<Object, String> columnFechaPago;
 
     @FXML
+    private TableColumn<Object, String> columnNumeroPrestamoC;
+
+    @FXML
     private TableColumn<Object, String> columnValor;
+
+    @FXML
+    void ponerDatosCuotas() {
+        Object objetoDTO=tablePrestamo.getSelectionModel().getSelectedItem();
+        if (objetoDTO != null) {
+            actualizarTablaCuotasPago(new ArrayList<Object>());
+        }
+    }
 
     /**
      * Metodo que inicializa la clase controlador
      */
     @FXML
     private void initialize() {
-        actualizarTabla();
+        actualizarTablaPresamos();
     }
 
-    private void actualizarTabla() {
+    private void actualizarTablaPresamos() {
+        tablePrestamo.getItems().clear();
+        ObservableList<Object> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerPagosEmpleado());
+        tablePrestamo.setItems(listaPrestamosProperty);
+        columnNumeroPrestamoP.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnFechaSolicitud.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnMonto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnPeriodoMeses.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnValor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnTasaInteres.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+    }
+
+    private void actualizarTablaCuotasPago(ArrayList<Object> listaDTOPrestamos) {
         tablePagos.getItems().clear();
-        ObservableList<Object> listaPagosProperty= FXCollections.observableList(mfm.obtenerPagosEmpleado());
+        ObservableList<Object> listaPagosProperty= FXCollections.observableList(listaDTOPrestamos);
         tablePagos.setItems(listaPagosProperty);
-        columnPrestamo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnNumeroPrestamoC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
         columnValor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
         columnNumeroCoutas.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
         columnFechaPago.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
