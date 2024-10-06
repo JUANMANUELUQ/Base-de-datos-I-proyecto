@@ -1,12 +1,8 @@
 package co.edu.uniquindio.bd1.proyectobd1.model.entities;
 
 
-import co.edu.uniquindio.bd1.proyectobd1.model.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.List;
-
 
 @Setter
 @Getter
@@ -14,37 +10,29 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "[user]")
+@Table(name = "User")
 public class User {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    private UserRole role;
-
-    @Column(name = "username")
-    private String username;
-    @Column(name = "email")
-    private String email;
+    @Column(name = "login")
+    private String login;
     @Column(name = "password")
     private String password;
-    @Column(name = "is_active")
-    private boolean isActive;
+    @Column(name = "creationDate")
+    private String creationDate;
+    @ManyToOne
+    @JoinColumn(name = "userType", nullable = false)
+    private UserType userType;
 
-    @OneToMany(mappedBy = "user")
-    private List<LoginAudit> auditLog;
 
     @Builder
-    public User(String username, String password, UserRole role, boolean isActive, List<LoginAudit> auditLog) {
-        this.username = username;
+    public User(String login, String password, String creationDate, UserType userType) {
+        this.login = login;
         this.password = password;
-        this.role = role;
-        this.isActive = isActive;
-        this.auditLog = auditLog;
+        this.creationDate = creationDate;
+        this.userType = userType;
     }
-
-
 }

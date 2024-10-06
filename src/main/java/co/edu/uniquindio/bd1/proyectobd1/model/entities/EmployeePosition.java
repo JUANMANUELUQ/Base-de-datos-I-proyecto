@@ -3,31 +3,30 @@ package co.edu.uniquindio.bd1.proyectobd1.model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Setter
 @Getter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "branch")
-public class Branch {
+@Table(name = "EmployeePosition")
+public class EmployeePosition {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codeBranch;
+    private Long code;
     @Column(name = "name")
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "municipality", nullable = false)
-    private Municipality municipality;
+    @Column(name = "salary")
+    private float salary;
+    @Column(name = "cap")
+    private float cap;
 
     @Builder
-    public Branch(String name, Municipality municipality) {
+    public EmployeePosition(String name, float salary, float cap) {
         this.name = name;
-        this.municipality = municipality;
+        this.salary = salary;
+        this.cap = cap;
     }
-
 }

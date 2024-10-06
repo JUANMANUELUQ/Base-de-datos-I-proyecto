@@ -18,32 +18,31 @@ public class Employee{
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    private Long code;
     @Column(name = "name")
     private String name;
-    @Column(name = "position")
-    private String position; // Operario, Administrativo, Ejecutivo, Otros
-    @Column(name = "salary")
-    private Double salary;
-
+    @Column(name = "email")
+    private String email; // Operario, Administrativo, Ejecutivo, Otros
+    @Column(name = "arrears")
+    private boolean arrears;
+    @OneToOne
+    @JoinColumn(name = "user")
+    private User user;
     @ManyToOne
-    @JoinColumn(name = "branch_id")
+    @JoinColumn(name = "branch")
     private Branch branch;
-
-    @OneToMany(mappedBy = "employee")
-    private List<LoanRequest> loanRequests;
-
+    @ManyToOne
+    @JoinColumn(name = "employeePosition")
+    private EmployeePosition employeePosition;
 
     @Builder
-    public Employee(String name, String position, Double salary, Branch branch, List<LoanRequest> loanRequests) {
+    public Employee(String name, String email, boolean arrears, User user, Branch branch,
+                    EmployeePosition employeePosition) {
         this.name = name;
-        this.position = position;
-        this.salary = salary;
+        this.email = email;
+        this.arrears = arrears;
+        this.user = user;
         this.branch = branch;
-        this.loanRequests = loanRequests;
+        this.employeePosition = employeePosition;
     }
-
-
-
 }
