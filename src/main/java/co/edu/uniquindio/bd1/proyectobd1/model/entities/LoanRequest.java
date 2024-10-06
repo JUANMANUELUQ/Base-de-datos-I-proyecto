@@ -1,6 +1,5 @@
 package co.edu.uniquindio.bd1.proyectobd1.model.entities;
 
-import co.edu.uniquindio.bd1.proyectobd1.model.enums.LoanStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,16 +30,16 @@ public class LoanRequest {
     @Column(name = "request_date")
     private LocalDate requestDate;
 
-    @Enumerated(EnumType.STRING)
-    private LoanStatus status;
+    //@Enumerated(EnumType.STRING)
+    //private LoanStatus status;
 
     @Builder
-    public LoanRequest(Employee employee, Double amount, Integer term, LocalDate requestDate, LoanStatus status) {
+    public LoanRequest(Employee employee, Double amount, Integer term, LocalDate requestDate) {
         this.employee = employee;
         this.amount = amount;
         this.term = term;
         this.requestDate = requestDate;
-        this.status = status;
+        //this.status = status;
     }
 
 }

@@ -1,9 +1,6 @@
 package co.edu.uniquindio.bd1.proyectobd1.application;
 
-import co.edu.uniquindio.bd1.proyectobd1.controllers.AdministradorController;
-import co.edu.uniquindio.bd1.proyectobd1.controllers.EmpleadoController;
-import co.edu.uniquindio.bd1.proyectobd1.controllers.LoginController;
-import co.edu.uniquindio.bd1.proyectobd1.controllers.TesoreriaController;
+import co.edu.uniquindio.bd1.proyectobd1.controllers.*;
 import javafx.application.Application;
 
 import javafx.application.Platform;
@@ -24,7 +21,7 @@ public class App extends Application {
     private Stage primaryStage;
     private AnchorPane rootLayout;
 
-
+    ModelFactoryController mfm=ModelFactoryController.getInstance();
 
     public static void main(String[] args) {
         launch(args);
@@ -37,6 +34,7 @@ public class App extends Application {
             Platform.exit();
             System.exit(0);  // Esto cerrará todos los hilos de la JVM
         });
+        mfm.quemarDatos();
         mostrarLogin();
     }
 

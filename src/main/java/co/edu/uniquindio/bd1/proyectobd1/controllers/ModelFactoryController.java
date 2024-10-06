@@ -1,23 +1,31 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
-import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.*;
 import co.edu.uniquindio.bd1.proyectobd1.model.MiEntidad;
-import co.edu.uniquindio.bd1.proyectobd1.model.entities.Employee;
+import co.edu.uniquindio.bd1.proyectobd1.model.entities.*;
 import co.edu.uniquindio.bd1.proyectobd1.service.MiEntidadService;
-import co.edu.uniquindio.bd1.proyectobd1.service.implementations.EmployeeServiceImp;
+import co.edu.uniquindio.bd1.proyectobd1.service.implementations.*;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Setter
 public class ModelFactoryController {
 
     //Repositorio de prueba
     private MiEntidadService miEntidadService;
 
-    private EmployeeServiceImp empleayeeService;
+    private AuditServiceImp auditService;
+    private BranchServiceImp branchService;
+    private EmployeePositionServiceImp employeePositionService;
+    private EmployeeServiceImp employeeService;
+    private MunicipalityServiceImp municipalityService;
+    private UserServiceImp userService;
+    private UserTypeServiceImp userTypeService;
 
     private String usuarioSesion="";
 
@@ -59,24 +67,27 @@ public class ModelFactoryController {
 
     }
 
-    public void organizarDatos() {
-        if (estaBaseDatosIncompleta()) {
-            quemarDatos();
-        }
-    }
-
     public boolean estaBaseDatosIncompleta() {
         boolean incompleta=false;
-        List<Employee> l =empleayeeService.findAll();
+        List<Employee> l =employeeService.findAll();
         System.out.println(l.size()+" (ModelFactory)");
-        if (empleayeeService.findAll().isEmpty()) {
+        if (employeeService.findAll().isEmpty()) {
             incompleta=true;
         }
         return incompleta;
     }
 
     public void quemarDatos() {
+        quemarDatosMunicipios();
+    }
 
+    public void quemarDatosMunicipios() {
+        Municipality municipio1= new Municipality("Montenegro");
+        municipio1.setCode((long)1);
+        Municipality municipio2= new Municipality("Armenia");
+        municipio2.setCode((long)2);
+        municipalityService.save(municipio1);
+        municipalityService.save(municipio2);
     }
 
     public void guardarEntidad(String nombre) {

@@ -26,7 +26,7 @@ public class Employee{
     @Column(name = "arrears")
     private boolean arrears;
     @OneToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
     @JoinColumn(name = "branch")

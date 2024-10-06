@@ -10,7 +10,7 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "User")
+@Table(name = "UserEntity")
 public class User {
 
     @EqualsAndHashCode.Include
