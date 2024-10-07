@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class BranchServiceImp implements BranchService {
@@ -28,4 +30,7 @@ public class BranchServiceImp implements BranchService {
         return branchRepo.findByMunicipalityName(code);
     }
 
+    public Optional<Branch> finByName(String name) {
+        return branchRepo.findByName(name);
+    }
 }

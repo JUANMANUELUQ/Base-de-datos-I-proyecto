@@ -11,6 +11,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -30,8 +31,8 @@ public class ModelFactoryController {
     private String usuarioSesion="";
 
     //TODO Realizar estos tres metodos y devuelvan listas de DTO con los datos necesarios
-    public List<Object> obtenerEmpleados() {
-        return new ArrayList<Object>();
+    public List<EmployeeRegisterDTO> obtenerEmpleados() {
+        return new ArrayList<EmployeeRegisterDTO>();
     }
 
     public List<Object> obtenerPagosEmpleado() {
@@ -65,8 +66,22 @@ public class ModelFactoryController {
         return nombresSucursales;
     }
 
-    public void guardarUsuario(EmployeeRegisterDTO empleado) {
-
+    public void guardarUsuario(EmployeeRegisterDTO empleado) throws Exception {
+        if (userService.findByLogin(empleado.login()).isPresent()) {
+            throw new Exception("Ya existe un usuario con ese nombre");
+        }
+        if (employeeService.findByCode(empleado.code()).isPresent()) {
+            throw new Exception("Ya existe un empleado con ese codigo");
+        }
+        EmployeePosition cargoEmpleado=employeePositionService.findByName(empleado.position()).get();
+        UserType tipoUsuario=userTypeService.findByEmployeePositionName(cargoEmpleado.getName()).get();
+        Branch sucursal=branchService.finByName(empleado.branch()).get();
+        User usuario=new User(empleado.login(),empleado.password(),LocalDate.now(),tipoUsuario);
+        userService.save(usuario);
+        Employee empleadoRegistrar=new Employee(empleado.name(),empleado.email(),
+                false,usuario,sucursal,cargoEmpleado);
+        empleadoRegistrar.setCode(empleado.code());
+        employeeService.save(empleadoRegistrar);
     }
 
     public List<String> obtenerCargosEmpleados() {
@@ -76,6 +91,38 @@ public class ModelFactoryController {
             cargosEmpleadosNombres.add(cargo.getName());
         }
         return cargosEmpleadosNombres;
+    }
+
+    public void actualizarUsuario(EmployeeUpdateDTO empleado) throws Exception {
+        if (!empleado.oldLogin().equals(empleado.login()) && userService.findByLogin(empleado.login()).isPresent()) {
+            throw new Exception("Ya existe un usuario con ese nombre");
+        }
+        if (!Objects.equals(empleado.oldCode(), empleado.code()) && employeeService.findByCode(empleado.code()).isPresent()) {
+            throw new Exception("Ya existe un empleado con ese codigo");
+        }
+        EmployeePosition cargoEmpleado=employeePositionService.findByName(empleado.position()).get();
+        UserType tipoUsuario=userTypeService.findByEmployeePositionName(cargoEmpleado.getName()).get();
+        Branch sucursal=branchService.finByName(empleado.branch()).get();
+        User usuario=userService.findByLogin(empleado.oldLogin()).get();
+        usuario.setLogin(empleado.login());
+        usuario.setPassword(empleado.password());
+        usuario.setUserType(tipoUsuario);
+        userService.save(usuario);
+        Employee empleadoRegistrar=employeeService.findByCode(empleado.oldCode()).get();
+        employeeService.deleteEmployee(empleadoRegistrar);
+        empleadoRegistrar.setCode(empleado.code());
+        empleadoRegistrar.setName(empleado.name());
+        empleadoRegistrar.setEmail(empleado.email());
+        empleadoRegistrar.setBranch(sucursal);
+        empleadoRegistrar.setEmployeePosition(cargoEmpleado);
+        employeeService.save(empleadoRegistrar);
+    }
+
+    public void borrarUsuario(EmployeeDeleteDTO empleado) {
+        User usuario=userService.findByLogin(empleado.login()).get();
+        Employee empleadoRegistrar=employeeService.findByCode(empleado.code()).get();
+        employeeService.deleteEmployee(empleadoRegistrar);
+        userService.delete(usuario);
     }
 
     /**

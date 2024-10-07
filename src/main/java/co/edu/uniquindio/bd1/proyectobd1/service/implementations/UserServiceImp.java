@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImp implements UserService {
@@ -56,5 +57,17 @@ public class UserServiceImp implements UserService {
     @Override
     public void changePassword(Long id, String newPassword) {
 
+    }
+
+    public void save(User user) {
+        userRepo.save(user);
+    }
+
+    public Optional<User> findByLogin(String login) {
+        return userRepo.findByLogin(login);
+    }
+
+    public void delete(User user) {
+        userRepo.delete(user);
     }
 }

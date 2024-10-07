@@ -6,9 +6,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BranchRepository extends JpaRepository<Branch, Long> {
 
+    @Query("SELECT b FROM Branch b WHERE b.name=:name")
+    Optional<Branch> findByName(@Param("name") String name);
+
     @Query("SELECT b FROM Branch b WHERE b.municipality.code=:municipalityCode")
-    public List<Branch> findByMunicipalityName(@Param("municipalityCode") Long municipalityCode);
+    List<Branch> findByMunicipalityName(@Param("municipalityCode") Long municipalityCode);
+
+
+
 }

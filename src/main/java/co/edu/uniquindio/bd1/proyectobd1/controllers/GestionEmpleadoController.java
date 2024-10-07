@@ -1,6 +1,8 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeDeleteDTO;
 import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeRegisterDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeUpdateDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -35,22 +37,22 @@ public class GestionEmpleadoController {
 	private ComboBox<String> comboMunicipio;
 
 	@FXML
-	private TableView<Object> tableEmpleados;
+	private TableView<EmployeeRegisterDTO> tableEmpleados;
 	
 	@FXML
-	private TableColumn<Object, String> columnDeuda;
+	private TableColumn<EmployeeRegisterDTO, String> columnDeuda;
 
 	@FXML
-	private TableColumn<Object, String> columnMora;
+	private TableColumn<EmployeeRegisterDTO, String> columnMora;
 
 	@FXML
-	private TableColumn<Object, String> columnCargo;
+	private TableColumn<EmployeeRegisterDTO, String> columnCargo;
 
 	@FXML
-	private TableColumn<Object, String> columnCorreo;
+	private TableColumn<EmployeeRegisterDTO, String> columnCorreo;
 
 	@FXML
-	private TableColumn<Object, String> columnSucursal;
+	private TableColumn<EmployeeRegisterDTO, String> columnSucursal;
 
 	@FXML
 	private TableColumn<Object, String> columnMunicipio;
@@ -88,19 +90,39 @@ public class GestionEmpleadoController {
 	
 	private void actualizarTabla() {
 		tableEmpleados.getItems().clear();
-		ObservableList<Object> listaEmpleadosProperty= FXCollections.observableList(mfm.obtenerEmpleados());
+		ObservableList<EmployeeRegisterDTO> listaEmpleadosProperty= FXCollections.observableList(mfm.obtenerEmpleados());
 		tableEmpleados.setItems(listaEmpleadosProperty);
-		columnCorreo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+		columnCorreo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().email()));
 		columnDeuda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
 		columnMora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-		columnCargo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-		columnSucursal.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+		columnCargo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().position()));
+		columnSucursal.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().branch()));
 	}
 
 	@FXML
 	void editar() {
-		if(verificarDatos()) {
-
+		EmployeeRegisterDTO employeeRegisterDTO=tableEmpleados.getSelectionModel().getSelectedItem();
+		if (employeeRegisterDTO != null) {
+			if (verificarDatos()) {
+				EmployeeUpdateDTO empleado = new EmployeeUpdateDTO(
+						txtLogin.getText().trim(),
+						txtContrasena.getText().trim(),
+						Long.parseLong(txtCodigo.getText()),
+						txtNombre.getText().trim(),
+						txtCorreo.getText().trim(),
+						comboCargo.getValue().trim(),
+						comboMunicipio.getValue().trim(),
+						comboSucursal.getValue().trim(),
+						employeeRegisterDTO.login(),
+						employeeRegisterDTO.code(),
+						employeeRegisterDTO.email()
+						);
+                try {
+                    mfm.actualizarUsuario(empleado);
+                } catch (Exception e) {
+					InterfazFXUtil.mostrarMensaje("Error al actualizar el usuario",e.getMessage(),AlertType.WARNING);
+                }
+            }
 		}
 	}
 
@@ -124,20 +146,30 @@ public class GestionEmpleadoController {
 			EmployeeRegisterDTO empleado=new EmployeeRegisterDTO(
 					txtLogin.getText().trim(),
 					txtContrasena.getText().trim(),
-					txtCodigo.getText().trim(),
+					Long.parseLong(txtCodigo.getText()),
 					txtNombre.getText().trim(),
 					txtCorreo.getText().trim(),
 					comboCargo.getValue().trim(),
 					comboMunicipio.getValue().trim(),
 					comboSucursal.getValue().trim()
 			);
-			mfm.guardarUsuario(empleado);
-		}
+            try {
+                mfm.guardarUsuario(empleado);
+            } catch (Exception e) {
+                InterfazFXUtil.mostrarMensaje("Error al guardar el usuario",e.getMessage(),AlertType.WARNING);
+            }
+        }
 	}
 
 	@FXML
 	void eliminar() {
-
+		EmployeeRegisterDTO employeeRegisterDTO=tableEmpleados.getSelectionModel().getSelectedItem();
+		if (employeeRegisterDTO != null) {
+			mfm.borrarUsuario(new EmployeeDeleteDTO(
+					employeeRegisterDTO.login(),
+					employeeRegisterDTO.code()
+			));
+		}
 	}
 
 	public boolean verificarDatos() {
@@ -157,13 +189,16 @@ public class GestionEmpleadoController {
 
 	@FXML
 	public void ponerDatos() {
-		Object objetoDTO=tableEmpleados.getSelectionModel().getSelectedItem();
-		if (objetoDTO != null) {
-			txtCorreo.setText(""+objetoDTO);
-			txtContrasena.setText(""+objetoDTO);
-			comboCargo.setValue(""+objetoDTO);
-			txtMunicipio.setText(""+objetoDTO);
-			txtSucursal.setText(""+objetoDTO);
+		EmployeeRegisterDTO employeeRegisterDTO=tableEmpleados.getSelectionModel().getSelectedItem();
+		if (employeeRegisterDTO != null) {
+			txtLogin.setText(employeeRegisterDTO.login());
+			txtContrasena.setText(employeeRegisterDTO.password());
+			txtCodigo.setText(employeeRegisterDTO.code().toString());
+			txtNombre.setText(employeeRegisterDTO.name());
+			txtCorreo.setText(employeeRegisterDTO.email());
+			comboCargo.setValue(employeeRegisterDTO.position());
+			comboMunicipio.setValue(employeeRegisterDTO.municipality());
+			comboSucursal.setValue(employeeRegisterDTO.branch());
 		}
 	}
 
