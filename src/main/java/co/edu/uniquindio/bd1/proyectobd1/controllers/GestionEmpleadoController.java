@@ -1,5 +1,6 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeRegisterDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -10,6 +11,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+
+import java.util.List;
 
 
 public class GestionEmpleadoController {
@@ -26,10 +29,10 @@ public class GestionEmpleadoController {
 	private TextField txtCodigo;
 
 	@FXML
-	private ComboBox comboSucursal;
+	private ComboBox<String> comboSucursal;
 
 	@FXML
-	private ComboBox comboMunicipio;
+	private ComboBox<String> comboMunicipio;
 
 	@FXML
 	private TableView<Object> tableEmpleados;
@@ -59,7 +62,7 @@ public class GestionEmpleadoController {
 	private TextField txtCorreo;
 	
 	@FXML
-	private ComboBox comboCargo;
+	private ComboBox<String> comboCargo;
 
 	@FXML
 	private TextField txtContrasena;
@@ -72,6 +75,14 @@ public class GestionEmpleadoController {
 	 */
 	@FXML
 	private void initialize() {
+		List<String> municipios=mfm.obtenerMunicipios();
+		for (String municipio:municipios) {
+			comboMunicipio.getItems().add(municipio);
+		}
+		List<String> cargosEmpleados=mfm.obtenerCargosEmpleados();
+		for (String cargo:cargosEmpleados) {
+			comboCargo.getItems().add(cargo);
+		}
 		actualizarTabla();
 	}
 	
@@ -110,7 +121,17 @@ public class GestionEmpleadoController {
 	@FXML
 	void guardar() {
 		if(verificarDatos()) {
-
+			EmployeeRegisterDTO empleado=new EmployeeRegisterDTO(
+					txtLogin.getText().trim(),
+					txtContrasena.getText().trim(),
+					txtCodigo.getText().trim(),
+					txtNombre.getText().trim(),
+					txtCorreo.getText().trim(),
+					comboCargo.getValue().trim(),
+					comboMunicipio.getValue().trim(),
+					comboSucursal.getValue().trim()
+			);
+			mfm.guardarUsuario(empleado);
 		}
 	}
 
@@ -143,6 +164,16 @@ public class GestionEmpleadoController {
 			comboCargo.setValue(""+objetoDTO);
 			txtMunicipio.setText(""+objetoDTO);
 			txtSucursal.setText(""+objetoDTO);
+		}
+	}
+
+
+	@FXML
+	void obtenerSucursales() {
+		comboSucursal.getItems().clear();
+		List<String> sucursales=mfm.obtenerSucursales(comboMunicipio.getValue());
+		for (String sucursal:sucursales) {
+			comboSucursal.getItems().add(sucursal);
 		}
 	}
 

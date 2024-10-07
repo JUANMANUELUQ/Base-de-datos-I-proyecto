@@ -26,7 +26,7 @@
       <Button layoutX="297.0" layoutY="372.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
       <Button layoutX="109.0" layoutY="372.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
       <Button layoutX="393.0" layoutY="372.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
-      <ComboBox fx:id="comboMunicipio" layoutX="250.0" layoutY="269.0" prefHeight="31.0" prefWidth="187.0" />
+      <ComboBox fx:id="comboMunicipio" layoutX="250.0" layoutY="269.0" onAction="#obtenerSucursales" prefHeight="31.0" prefWidth="187.0" />
       <ComboBox fx:id="comboSucursal" layoutX="250.0" layoutY="310.0" prefHeight="31.0" prefWidth="187.0" />
       <TextField fx:id="txtNombre" layoutX="250.0" layoutY="150.0" />
       <Label layoutX="134.0" layoutY="155.0" text="Nombre:" />
