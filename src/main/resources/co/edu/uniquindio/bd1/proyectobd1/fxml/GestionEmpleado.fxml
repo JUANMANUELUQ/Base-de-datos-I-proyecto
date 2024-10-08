@@ -15,12 +15,10 @@
       <Button layoutX="204.0" layoutY="372.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
       <TableView fx:id="tableEmpleados" layoutX="28.0" layoutY="424.0" onMouseClicked="#ponerDatos" prefHeight="264.0" prefWidth="519.0">
         <columns>
-          <TableColumn fx:id="columnCorreo" prefWidth="75.0" text="Correo" />
-            <TableColumn fx:id="columnCargo" prefWidth="75.0" text="Cargo" />
-          <TableColumn fx:id="columnSucursal" prefWidth="75.0" text="Sucursal" />
-            <TableColumn fx:id="columnMunicipio" prefWidth="125.0" text="Municipio" />
-            <TableColumn fx:id="columnMora" prefWidth="70.0" text="Mora" />
-            <TableColumn fx:id="columnDeuda" prefWidth="98.0" text="Deuda" />
+          <TableColumn fx:id="columnCorreo" prefWidth="138.0" text="Correo" />
+            <TableColumn fx:id="columnCargo" prefWidth="117.0" text="Cargo" />
+          <TableColumn fx:id="columnSucursal" prefWidth="116.0" text="Sucursal" />
+            <TableColumn fx:id="columnMunicipio" prefWidth="147.0" text="Municipio" />
         </columns>
       </TableView>
       <Button layoutX="297.0" layoutY="372.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />

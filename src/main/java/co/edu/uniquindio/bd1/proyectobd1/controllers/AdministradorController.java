@@ -4,6 +4,7 @@ import co.edu.uniquindio.bd1.proyectobd1.application.App;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class AdministradorController implements VentanaTabuladora {
 
@@ -56,7 +57,8 @@ public class AdministradorController implements VentanaTabuladora {
     @FXML
     void cerrarSesion() {
         aplicacion.mostrarLogin();
-        mfm.setUsuarioSesion(null);
+        mfm.setEmpleadoSesion(null);
     }
+
 
 }

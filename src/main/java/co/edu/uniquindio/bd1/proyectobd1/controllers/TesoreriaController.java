@@ -41,7 +41,7 @@ public class TesoreriaController implements VentanaTabuladora {
     @FXML
     void cerrarSesion() {
         aplicacion.mostrarLogin();
-        mfm.setUsuarioSesion(null);
+        mfm.setEmpleadoSesion(null);
     }
 
 }

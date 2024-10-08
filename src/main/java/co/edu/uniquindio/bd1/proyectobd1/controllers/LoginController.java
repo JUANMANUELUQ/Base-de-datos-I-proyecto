@@ -23,47 +23,39 @@ public class LoginController {
 
 	@FXML
 	void iniciarSesion() {
-		int opcion;
-		try {
-			opcion=Integer.parseInt(txtCorreo.getText());
-			LocalDate fecha= LocalDate.now();
-			mfm.registrarInicioSesion(txtCorreo.getText(),fecha);
-			switch(opcion) {
-				case 1: iniciarSesionAdministrador("");break;
-				case 2: iniciarSesionTesoreria("") ;break;
-				case 3: iniciarSesionEmpleado("") ;break;
+		String nivelUsuario = mfm.iniciarSesion(txtCorreo.getText().trim(), txtContrasenia.getText().trim());
+		if (nivelUsuario.equals("")) {
+			InterfazFXUtil.mostrarMensaje("Usuario no encontrado","No se encontro n usuario con los datos ingresados");
+		} else {
+			mfm.registrarInicioSesion(txtCorreo.getText(), LocalDate.now());
+			switch (nivelUsuario) {
+				case "Administrador":
+					iniciarSesionAdministrador(txtCorreo.getText());
+					break;
+				case "Param\u00E9trico":
+					iniciarSesionTesoreria(txtCorreo.getText());
+					break;
+				case "Espor\u00E1dicos":
+					iniciarSesionEmpleado(txtCorreo.getText());
+					break;
 			}
-		} catch (Exception e) {
-			InterfazFXUtil.mostrarMensaje("Funcion en construccion",
-					"Solo poner en correo:\n\n 1 (Administrador)\n" +
-							"2 (Tesoreria)\n3 (Otro empleado)\n\n" +
-							"Esto es de prueba", Alert.AlertType.INFORMATION);
 		}
+
 	}
 
-	public void setAplicacion(App aplicacion) {
-		this.aplicacion = aplicacion;
-	}
-
-    public void setVentana(Stage primaryStage) {
-		ventana=primaryStage;
-    }
 
 	public void iniciarSesionAdministrador(String usuario) {
 		ventana.close();
-		mfm.setUsuarioSesion(usuario);
 		aplicacion.mostrarAdministrador();
 	}
 
 	public void iniciarSesionTesoreria(String usuario) {
 		ventana.close();
-		mfm.setUsuarioSesion(usuario);
 		aplicacion.mostrarTesoreria();
 	}
 
 	public void iniciarSesionEmpleado(String usuario) {
 		ventana.close();
-		mfm.setUsuarioSesion(usuario);
 		aplicacion.mostrarEmpleado();
 	}
 
@@ -78,4 +70,13 @@ public class LoginController {
 		}
 		return sonValidos;
 	}
+
+	public void setAplicacion(App aplicacion) {
+		this.aplicacion = aplicacion;
+	}
+
+	public void setVentana(Stage ventana) {
+		this.ventana = ventana;
+	}
+
 }

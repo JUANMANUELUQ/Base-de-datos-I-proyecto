@@ -10,11 +10,14 @@ import java.util.Optional;
 
 public interface BranchRepository extends JpaRepository<Branch, Long> {
 
+    @Query("SELECT b FROM Branch b WHERE b.codeBranch=:codeBranch")
+    Optional<Branch> findByCodeBranch(@Param("codeBranch") Long codeBranch);
+
     @Query("SELECT b FROM Branch b WHERE b.name=:name")
     Optional<Branch> findByName(@Param("name") String name);
 
     @Query("SELECT b FROM Branch b WHERE b.municipality.code=:municipalityCode")
-    List<Branch> findByMunicipalityName(@Param("municipalityCode") Long municipalityCode);
+    List<Branch> findByMunicipalityCode(@Param("municipalityCode") Long municipalityCode);
 
 
 

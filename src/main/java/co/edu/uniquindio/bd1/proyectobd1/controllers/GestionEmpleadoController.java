@@ -43,9 +43,6 @@ public class GestionEmpleadoController {
 	private TableColumn<EmployeeRegisterDTO, String> columnDeuda;
 
 	@FXML
-	private TableColumn<EmployeeRegisterDTO, String> columnMora;
-
-	@FXML
 	private TableColumn<EmployeeRegisterDTO, String> columnCargo;
 
 	@FXML
@@ -87,8 +84,6 @@ public class GestionEmpleadoController {
 		ObservableList<EmployeeRegisterDTO> listaEmpleadosProperty= FXCollections.observableList(mfm.obtenerEmpleados());
 		tableEmpleados.setItems(listaEmpleadosProperty);
 		columnCorreo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().email()));
-		columnDeuda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-		columnMora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
 		columnCargo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().position()));
 		columnMunicipio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().municipality()));
 		columnSucursal.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().branch()));

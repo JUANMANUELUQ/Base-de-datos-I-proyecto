@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -28,7 +29,7 @@ public class ModelFactoryController {
     private UserServiceImp userService;
     private UserTypeServiceImp userTypeService;
 
-    private String usuarioSesion = "";
+    private Employee empleadoSesion = null;
 
     //TODO Realizar estos tres metodos y devuelvan listas de DTO con los datos necesarios
     public List<EmployeeRegisterDTO> obtenerEmpleados() {
@@ -155,6 +156,21 @@ public class ModelFactoryController {
         userService.delete(usuario);
     }
 
+    public String iniciarSesion(String correo, String contrasenia) {
+        Optional<Employee> empleado=employeeService.findByEmail(correo);
+        User usuario;
+        if (empleado.isEmpty()) {
+            return "";
+        }
+        usuario=empleado.get().getUser();
+        if (usuario.getPassword().equals(contrasenia)) {
+            setEmpleadoSesion(empleado.get());
+            return usuario.getUserType().getLevel();
+        } else {
+            return "";
+        }
+    }
+
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de
      * instancias de ModelFactoryController.
@@ -182,6 +198,7 @@ public class ModelFactoryController {
         quemarSucursales();
         quemarCargoEmpleado();
         quemarTipoUsuario();
+        quemarUsuariosEmpleados();
     }
 
     public void quemarDatosMunicipios() {
@@ -238,6 +255,39 @@ public class ModelFactoryController {
         userTypeService.save(tipoUsuario1);
         userTypeService.save(tipoUsuario2);
         userTypeService.save(tipoUsuario3);
+    }
+
+    public void quemarUsuariosEmpleados() {
+        UserType administrador=userTypeService.finByLevel("Administrador").get();
+        UserType parametrico=userTypeService.finByLevel("Param\u00E9trico").get();
+        UserType esporadico=userTypeService.finByLevel("Espor\u00E1dicos").get();
+        User usuario1=new User("JUANMA","1234",
+                LocalDate.of(2004,5,11),administrador);
+        User usuario2=new User("MIGUEL","1234",
+                LocalDate.of(2005,5,15),parametrico);
+        User usuario3=new User("SANTIAGO","1234",
+                LocalDate.of(2004,8,13),esporadico);
+        userService.save(usuario1);
+        userService.save(usuario2);
+        userService.save(usuario3);
+        Branch sucursal1=branchService.findByCode((long)1).get();
+        Branch sucursal2=branchService.findByCode((long)2).get();
+        Branch sucursal3=branchService.findByCode((long)2).get();
+        EmployeePosition cargo1=employeePositionService.findByName("Administrador").get();
+        EmployeePosition cargo2=employeePositionService.findByName("Tesoreria").get();
+        EmployeePosition cargo3=employeePositionService.findByName("Operario").get();
+        Employee empleado1=new Employee("Juan Manuel","1",
+                false,usuario1,sucursal1,cargo1);
+        empleado1.setCode((long)1090272239);
+        Employee empleado2=new Employee("Miguel Angel","2",
+                false,usuario2,sucursal2,cargo2);
+        empleado2.setCode((long)1095550864);
+        Employee empleado3=new Employee("Santiago","3",
+                false,usuario3,sucursal3,cargo3);
+        empleado3.setCode((long)1091884520);
+        employeeService.save(empleado1);
+        employeeService.save(empleado2);
+        employeeService.save(empleado3);
     }
 
     public void guardarEntidad(String nombre) {
