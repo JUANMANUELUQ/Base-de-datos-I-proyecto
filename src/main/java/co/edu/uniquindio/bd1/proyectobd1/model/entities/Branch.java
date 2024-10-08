@@ -18,7 +18,7 @@ public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codeBranch;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
     @ManyToOne
     @JoinColumn(name = "municipality", nullable = false)

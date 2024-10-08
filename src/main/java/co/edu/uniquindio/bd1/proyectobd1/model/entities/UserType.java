@@ -16,7 +16,7 @@ public class UserType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
-    @Column(name = "level")
+    @Column(name = "level", nullable = false, unique = true)
     private String level;
 
     @Builder

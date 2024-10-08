@@ -110,6 +110,9 @@ public class InterfazFXUtil {
 		if (estaCampoVacio(campo)) {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
 		}
+		if (!mensajeError.equals("")) {
+			mensajeError+="\n";
+		}
 		return mensajeError;
 	}
 
@@ -119,6 +122,9 @@ public class InterfazFXUtil {
 			mensajeError="El campo de "+nombreCampo+" no puede estar vacio";
 		} else if (!patron.equals("") && !campo.getText().trim().matches(patron)){
 			mensajeError="El valor del campo "+nombreCampo+" es invalido";
+		}
+		if (!mensajeError.equals("")) {
+			mensajeError+="\n";
 		}
 		return mensajeError;
 	}

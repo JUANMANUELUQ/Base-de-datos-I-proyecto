@@ -17,9 +17,9 @@ public class User {
 
     @EqualsAndHashCode.Include
     @Id
-    @Column(name = "login")
+    @Column(name = "login", nullable = false, unique = true)
     private String login;
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "creationDate")
     private LocalDate creationDate;

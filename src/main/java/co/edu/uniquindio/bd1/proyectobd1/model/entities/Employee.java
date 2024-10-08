@@ -18,20 +18,20 @@ public class Employee{
     @EqualsAndHashCode.Include
     @Id
     private Long code;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String email; // Operario, Administrativo, Ejecutivo, Otros
     @Column(name = "arrears")
     private boolean arrears;
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
     @JoinColumn(name = "branch")
     private Branch branch;
     @ManyToOne
-    @JoinColumn(name = "employeePosition")
+    @JoinColumn(name = "employeePosition", nullable = false)
     private EmployeePosition employeePosition;
 
     @Builder

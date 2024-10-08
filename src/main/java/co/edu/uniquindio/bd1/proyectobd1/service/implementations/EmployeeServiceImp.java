@@ -27,7 +27,7 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public List<Employee> findAll() {
-        return List.of();
+        return employeeRepo.findAll();
     }
 
     @Override
@@ -70,5 +70,9 @@ public class EmployeeServiceImp implements EmployeeService {
 
     public void save(Employee employee) {
         employeeRepo.save(employee);
+    }
+
+    public Optional<Employee> findByEmail(String email) {
+        return employeeRepo.findByEmail(email);
     }
 }

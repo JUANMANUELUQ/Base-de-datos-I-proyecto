@@ -55,10 +55,7 @@ public class GestionEmpleadoController {
 	private TableColumn<EmployeeRegisterDTO, String> columnSucursal;
 
 	@FXML
-	private TableColumn<Object, String> columnMunicipio;
-	
-	@FXML
-	private TextField txtSucursal;
+	private TableColumn<EmployeeRegisterDTO, String> columnMunicipio;
 	
 	@FXML
 	private TextField txtCorreo;
@@ -68,9 +65,6 @@ public class GestionEmpleadoController {
 
 	@FXML
 	private TextField txtContrasena;
-
-	@FXML
-	private TextField txtMunicipio;
 	
 	/**
 	 * Metodo que inicializa la clase controlador
@@ -96,6 +90,7 @@ public class GestionEmpleadoController {
 		columnDeuda.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
 		columnMora.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
 		columnCargo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().position()));
+		columnMunicipio.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().municipality()));
 		columnSucursal.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().branch()));
 	}
 
@@ -119,8 +114,10 @@ public class GestionEmpleadoController {
 						);
                 try {
                     mfm.actualizarUsuario(empleado);
+					actualizarTabla();
                 } catch (Exception e) {
 					InterfazFXUtil.mostrarMensaje("Error al actualizar el usuario",e.getMessage(),AlertType.WARNING);
+					e.printStackTrace();
                 }
             }
 		}
@@ -128,16 +125,15 @@ public class GestionEmpleadoController {
 
 	@FXML
 	void limpiar() {
+
 		txtLogin.setText("");
 		txtContrasena.setText("");
-		txtNombre.setText("");
 		txtCodigo.setText("");
+		txtNombre.setText("");
 		txtCorreo.setText("");
-		comboSucursal.setValue("");
-		comboMunicipio.setValue("");
 		comboCargo.setValue("");
-		txtMunicipio.setText("");
-		txtSucursal.setText("");
+		comboMunicipio.setValue("");
+		comboSucursal.setValue("");
 	}
 
 	@FXML
@@ -155,6 +151,7 @@ public class GestionEmpleadoController {
 			);
             try {
                 mfm.guardarUsuario(empleado);
+				actualizarTabla();
             } catch (Exception e) {
                 InterfazFXUtil.mostrarMensaje("Error al guardar el usuario",e.getMessage(),AlertType.WARNING);
             }
@@ -175,11 +172,14 @@ public class GestionEmpleadoController {
 	public boolean verificarDatos() {
 		boolean sonValidos=true;
 		String msj="";
-		msj+=InterfazFXUtil.verificarDato(txtCorreo,"","correo")+"\n";
-		msj+=InterfazFXUtil.verificarDato(txtContrasena,"","contrasena")+"\n";
-		msj+=InterfazFXUtil.verificarDato(comboCargo,"cargo")+"\n";
-		msj+=InterfazFXUtil.verificarDato(txtMunicipio,"","municipio")+"\n";
-		msj+=InterfazFXUtil.verificarDato(txtSucursal,"","sucursal");
+		msj+=InterfazFXUtil.verificarDato(txtLogin,"","login");
+		msj+=InterfazFXUtil.verificarDato(txtContrasena,"","contrasena");
+		msj+=InterfazFXUtil.verificarDato(txtCodigo,"","codigo");
+		msj+=InterfazFXUtil.verificarDato(txtNombre,"","nombre");
+		msj+=InterfazFXUtil.verificarDato(txtCorreo,"","correo");
+		msj+=InterfazFXUtil.verificarDato(comboCargo,"cargo");
+		msj+=InterfazFXUtil.verificarDato(comboMunicipio,"municipio");
+		msj+=InterfazFXUtil.verificarDato(comboSucursal,"sucursal");
 		if (!msj.equals("")) {
 			sonValidos=false;
 			InterfazFXUtil.mostrarMensaje("Entradas no validas", msj, AlertType.ERROR);

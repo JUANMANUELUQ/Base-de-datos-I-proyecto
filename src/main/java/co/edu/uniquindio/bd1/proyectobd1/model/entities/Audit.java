@@ -19,9 +19,9 @@ public class Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long entryNumber;
-    @Column(name = "entryDate")
+    @Column(name = "entryDate", nullable = false)
     private LocalDate entryDate;
-    @Column(name = "entryTime")
+    @Column(name = "entryTime", nullable = false)
     private LocalTime entryTime;
     @Column(name = "outputDate")
     private LocalDate outputDate;
