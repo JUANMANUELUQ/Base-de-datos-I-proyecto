@@ -1,5 +1,6 @@
 package co.edu.uniquindio.bd1.proyectobd1.service.implementations;
 
+import co.edu.uniquindio.bd1.proyectobd1.model.entities.Audit;
 import co.edu.uniquindio.bd1.proyectobd1.repository.AuditRepository;
 import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.AuditService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,4 +16,7 @@ public class AuditServiceImp implements AuditService {
 
     }
 
+    public void save(Audit audit) {
+        auditRepo.save(audit);
+    }
 }

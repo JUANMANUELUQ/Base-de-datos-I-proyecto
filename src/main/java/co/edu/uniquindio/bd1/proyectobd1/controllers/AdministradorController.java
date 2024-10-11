@@ -57,7 +57,7 @@ public class AdministradorController implements VentanaTabuladora {
     @FXML
     void cerrarSesion() {
         aplicacion.mostrarLogin();
-        mfm.setEmpleadoSesion(null);
+        mfm.cerrarSesion();
     }
 
 

@@ -27,7 +27,6 @@ public class LoginController {
 		if (nivelUsuario.equals("")) {
 			InterfazFXUtil.mostrarMensaje("Usuario no encontrado","No se encontro n usuario con los datos ingresados");
 		} else {
-			mfm.registrarInicioSesion(txtCorreo.getText(), LocalDate.now());
 			switch (nivelUsuario) {
 				case "Administrador":
 					iniciarSesionAdministrador(txtCorreo.getText());
@@ -47,6 +46,7 @@ public class LoginController {
 	public void iniciarSesionAdministrador(String usuario) {
 		ventana.close();
 		aplicacion.mostrarAdministrador();
+
 	}
 
 	public void iniciarSesionTesoreria(String usuario) {

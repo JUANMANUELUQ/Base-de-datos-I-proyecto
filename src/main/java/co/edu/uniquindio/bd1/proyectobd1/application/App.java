@@ -32,6 +32,7 @@ public class App extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setOnCloseRequest(event -> {
             Platform.exit();
+            mfm.generarAuditoriaSalida();
             System.exit(0);  // Esto cerrará todos los hilos de la JVM
         });
         mfm.quemarDatos();

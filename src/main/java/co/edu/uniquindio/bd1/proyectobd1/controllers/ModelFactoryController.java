@@ -1,14 +1,14 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
 import co.edu.uniquindio.bd1.proyectobd1.dto.*;
-import co.edu.uniquindio.bd1.proyectobd1.model.MiEntidad;
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.*;
-import co.edu.uniquindio.bd1.proyectobd1.service.MiEntidadService;
 import co.edu.uniquindio.bd1.proyectobd1.service.implementations.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -19,7 +19,6 @@ import java.util.Optional;
 public class ModelFactoryController {
 
     //Repositorio de prueba
-    private MiEntidadService miEntidadService;
 
     private AuditServiceImp auditService;
     private BranchServiceImp branchService;
@@ -30,6 +29,7 @@ public class ModelFactoryController {
     private UserTypeServiceImp userTypeService;
 
     private Employee empleadoSesion = null;
+    private Audit auditoriaEmpleado = null;
 
     //TODO Realizar estos tres metodos y devuelvan listas de DTO con los datos necesarios
     public List<EmployeeRegisterDTO> obtenerEmpleados() {
@@ -56,10 +56,6 @@ public class ModelFactoryController {
 
     public List<Object> obtenerPagosTotales() {
         return new ArrayList<Object>();
-    }
-
-    public void registrarInicioSesion(String correo, LocalDate fecha) {
-
     }
 
     public List<String> obtenerMunicipios() {
@@ -165,10 +161,35 @@ public class ModelFactoryController {
         usuario=empleado.get().getUser();
         if (usuario.getPassword().equals(contrasenia)) {
             setEmpleadoSesion(empleado.get());
+            generarAuditoriaEntrada();
             return usuario.getUserType().getLevel();
         } else {
             return "";
         }
+    }
+
+    public void generarAuditoriaEntrada() {
+        Audit auditoria = new Audit();
+        auditoria.setLogin(empleadoSesion.getUser());
+        LocalDateTime now = LocalDateTime.now();
+        auditoria.setEntryDate(now.toLocalDate());
+        auditoria.setEntryTime(now.toLocalTime());
+        this.auditoriaEmpleado = auditoria;
+        System.out.println(auditoriaEmpleado);
+    }
+
+    public void generarAuditoriaSalida() {
+        if (this.auditoriaEmpleado != null) {
+            auditoriaEmpleado.setOutputDate(LocalDate.now());
+            auditoriaEmpleado.setOutputTime(LocalTime.now());
+            auditService.save(auditoriaEmpleado);
+        }
+    }
+
+    public void cerrarSesion() {
+        generarAuditoriaSalida();
+        setEmpleadoSesion(null);
+        setAuditoriaEmpleado(null);
     }
 
     /**
@@ -288,12 +309,6 @@ public class ModelFactoryController {
         employeeService.save(empleado1);
         employeeService.save(empleado2);
         employeeService.save(empleado3);
-    }
-
-    public void guardarEntidad(String nombre) {
-        MiEntidad miEntidad = new MiEntidad();
-        miEntidad.setNombre(nombre);
-        miEntidadService.saveEntity(miEntidad);
     }
 
 }
