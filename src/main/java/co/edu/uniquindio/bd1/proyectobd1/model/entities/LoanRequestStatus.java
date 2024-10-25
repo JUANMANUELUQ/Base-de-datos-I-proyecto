@@ -9,18 +9,18 @@ import lombok.*;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "LoanStatus")
-public class LoanStatus {
+@Table(name = "LoanRequestStatus")
+public class LoanRequestStatus {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Builder
-    public LoanStatus(String name) {
+    public LoanRequestStatus(String name) {
         this.name = name;
     }
 

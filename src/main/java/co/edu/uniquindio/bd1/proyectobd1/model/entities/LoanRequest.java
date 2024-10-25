@@ -27,13 +27,13 @@ public class LoanRequest {
     private Employee employee;
     @ManyToOne
     @JoinColumn(name = "loanStatus")
-    private LoanStatus loanStatus;
+    private LoanRequestStatus loanStatus;
     @ManyToOne
     @JoinColumn(name = "period")
     private Period period;
 
     @Builder
-    public LoanRequest(LocalDate requestDate, float requestedAmount, Employee employee, LoanStatus loanStatus, Period period) {
+    public LoanRequest(LocalDate requestDate, float requestedAmount, Employee employee, LoanRequestStatus loanStatus, Period period) {
         this.requestDate = requestDate;
         this.requestedAmount = requestedAmount;
         this.employee = employee;

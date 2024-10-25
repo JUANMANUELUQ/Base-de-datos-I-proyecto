@@ -29,7 +29,7 @@ public class ModelFactoryController {
     private UserTypeServiceImp userTypeService;
     private LoanServiceImp loanService;
     private LoanRequestServiceImp loanRequestService;
-    private LoanStatusServiceImp loanStatusService;
+    private LoanRequestStatusServiceImp loanRequestStatusService;
     private PeriodServiceImp periodService;
 
     private Employee empleadoSesion = null;
@@ -196,6 +196,69 @@ public class ModelFactoryController {
         setAuditoriaEmpleado(null);
     }
 
+    public List<Integer> obtenerPeriodosNombres() {
+        List<Period> periodos=periodService.findAll();
+        List<Integer> periodosMeses=new ArrayList<>();
+        for (Period periodo : periodos) {
+            periodosMeses.add(periodo.getPeriodMonths());
+        }
+        return periodosMeses;
+    }
+
+    public void crearSolicitudPrestamo(CreateLoanRequestDTO createLoanRequest) {
+        Period periodo=periodService.findByPeriodMonths(createLoanRequest.period()).get();
+        LoanRequestStatus estadoPrestamo=loanRequestStatusService.findByName("pendiente").get();
+        LoanRequest loanRequest=new LoanRequest();
+        loanRequest.setEmployee(this.empleadoSesion);
+        loanRequest.setPeriod(periodo);
+        loanRequest.setLoanStatus(estadoPrestamo);
+        loanRequest.setRequestDate(LocalDate.now());
+        loanRequest.setRequestedAmount(createLoanRequest.amount());
+        loanRequestService.save(loanRequest);
+    }
+
+    public List<LoanRequestInfoDTO> obtenerSolicitudesPrestamo() {
+        List<LoanRequest> solicitudesPrestamo=loanRequestService.findAll();
+        List<LoanRequestInfoDTO> solicitudesPrestamoInfo=new ArrayList<>();
+        for (LoanRequest loanRequest : solicitudesPrestamo) {
+            solicitudesPrestamoInfo.add(new LoanRequestInfoDTO(
+                    loanRequest.getLoanNumber(),
+                    loanRequest.getEmployee().getEmail(),
+                    loanRequest.getRequestDate(),
+                    loanRequest.getRequestedAmount(),
+                    loanRequest.getPeriod().getPeriodMonths(),
+                    loanRequest.getLoanStatus().getName()
+            ));
+        }
+        return solicitudesPrestamoInfo;
+    }
+
+    public void cambiarEstadoSolicitud(ChangeLoanRequestStateDTO changeLoanRequestStateDTO) {
+        LoanRequest solicitudPrestamo=loanRequestService.findByLoanNumber(changeLoanRequestStateDTO.loanNumber()).get();
+        LoanRequestStatus estadoPrestamo=loanRequestStatusService.findByName(changeLoanRequestStateDTO.state()).get();
+        solicitudPrestamo.setLoanStatus(estadoPrestamo);
+        loanRequestService.save(solicitudPrestamo);
+        if (changeLoanRequestStateDTO.state().equals("aprobada")) {
+            Loan prestamo=new Loan(LocalDate.now(),solicitudPrestamo);
+            loanService.save(prestamo);
+        }
+    }
+
+    public EmployeeDTO obtenerEmpleadoCorreo(String correo) {
+        Employee empleado=employeeService.findByEmail(correo).get();
+        return new EmployeeDTO(
+                empleado.getUser().getLogin(),
+                empleado.getUser().getCreationDate(),
+                empleado.getName(),
+                empleado.getEmail(),
+                empleado.isArrears(),
+                empleado.getEmployeePosition().getName(),
+                empleado.getEmployeePosition().getSalary(),
+                empleado.getBranch().getName(),
+                empleado.getBranch().getMunicipality().getName()
+        );
+    }
+
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de
      * instancias de ModelFactoryController.
@@ -222,8 +285,10 @@ public class ModelFactoryController {
         quemarDatosMunicipios();
         quemarSucursales();
         quemarCargoEmpleado();
-        quemarTipoUsuario();
+        quemarTiposUsuario();
         quemarUsuariosEmpleados();
+        quemarPeriodos();
+        quemarEstadosSolicitud();
     }
 
     public void quemarDatosMunicipios() {
@@ -270,7 +335,7 @@ public class ModelFactoryController {
         employeePositionService.save(cargoEmpleado5);
     }
 
-    public void quemarTipoUsuario() {
+    public void quemarTiposUsuario() {
         UserType tipoUsuario1 = new UserType("Administrador");
         tipoUsuario1.setCode((long) 1);
         UserType tipoUsuario2 = new UserType("Param\u00E9trico");
@@ -313,6 +378,39 @@ public class ModelFactoryController {
         employeeService.save(empleado1);
         employeeService.save(empleado2);
         employeeService.save(empleado3);
+    }
+
+    public void quemarPeriodos() {
+        Period periodo1=new Period((float)0.07,24);
+        periodo1.setCode((long) 1);
+        Period periodo2=new Period((float)0.075,36);
+        periodo2.setCode((long) 2);
+        Period periodo3=new Period((float)0.08,48);
+        periodo3.setCode((long) 3);
+        Period periodo4=new Period((float)0.083,60);
+        periodo4.setCode((long) 4);
+        Period periodo5=new Period((float)0.086,72);
+        periodo5.setCode((long) 5);
+        periodService.save(periodo1);
+        periodService.save(periodo2);
+        periodService.save(periodo3);
+        periodService.save(periodo4);
+        periodService.save(periodo5);
+    }
+
+    public void quemarEstadosSolicitud() {
+        LoanRequestStatus estadoSolicitud1=new LoanRequestStatus("pendiente");
+        estadoSolicitud1.setCode((long) 1);
+        LoanRequestStatus estadoSolicitud2=new LoanRequestStatus("en estudio");
+        estadoSolicitud2.setCode((long) 2);
+        LoanRequestStatus estadoSolicitud3=new LoanRequestStatus("aprobada");
+        estadoSolicitud3.setCode((long) 3);
+        LoanRequestStatus estadoSolicitud4=new LoanRequestStatus("reprobada");
+        estadoSolicitud4.setCode((long) 4);
+        loanRequestStatusService.save(estadoSolicitud1);
+        loanRequestStatusService.save(estadoSolicitud2);
+        loanRequestStatusService.save(estadoSolicitud3);
+        loanRequestStatusService.save(estadoSolicitud4);
     }
 
 }

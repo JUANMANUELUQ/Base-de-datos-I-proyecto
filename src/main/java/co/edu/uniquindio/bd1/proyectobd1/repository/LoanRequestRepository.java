@@ -11,7 +11,12 @@ import java.util.List;
 @Repository
 public interface LoanRequestRepository extends JpaRepository<LoanRequest, Long> {
 
+
+    @Query("SELECT lr FROM LoanRequest lr WHERE lr.loanNumber = :loanNumber")
+    List<LoanRequest> findByLoanNumber(@Param("loanNumber") Long loanNumber);
+
     /*
+
     @Query("SELECT lr FROM LoanRequest lr WHERE lr.status = :status")
     List<LoanRequest> findByStatus(@Param("status") String status);
 

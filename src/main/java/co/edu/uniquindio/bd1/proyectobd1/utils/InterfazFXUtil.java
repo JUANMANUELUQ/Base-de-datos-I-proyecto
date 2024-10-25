@@ -143,6 +143,9 @@ public class InterfazFXUtil {
 				mensajeError=mensajeError+" debe ser un numero";
 			}
 		}
+		if (!mensajeError.equals("")) {
+			mensajeError+="\n";
+		}
 		return mensajeError;
 	}
 
@@ -159,6 +162,9 @@ public class InterfazFXUtil {
 			} catch (Exception e) {
 				mensajeError=mensajeError+" debe ser un numero entero";
 			}
+		}
+		if (!mensajeError.equals("")) {
+			mensajeError+="\n";
 		}
 		return mensajeError;
 	}

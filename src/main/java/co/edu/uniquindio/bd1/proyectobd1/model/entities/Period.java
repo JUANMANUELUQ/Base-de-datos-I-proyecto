@@ -18,7 +18,7 @@ public class Period {
     private Long code;
     @Column(name = "interestRate")
     private float interestRate;
-    @Column(name = "periodMonths")
+    @Column(name = "periodMonths", nullable = false, unique = true)
     private int periodMonths;
 
     @Builder

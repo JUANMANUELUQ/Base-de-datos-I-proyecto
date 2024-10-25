@@ -1,10 +1,16 @@
 package co.edu.uniquindio.bd1.proyectobd1.dto;
 
+import java.time.LocalDate;
+
 public record EmployeeDTO(
-        String id,
+        String login,
+        LocalDate creationDate,
         String name,
-        Double salary,
+        String email,
+        boolean arrears,
+        String position,
+        float salary,
         String branch,
-        String position
+        String municipality
 ) {
 }

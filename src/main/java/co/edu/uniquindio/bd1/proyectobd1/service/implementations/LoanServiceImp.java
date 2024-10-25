@@ -57,4 +57,8 @@ public class LoanServiceImp implements LoanService {
     public void disburseLoan(Loan loan) {
 
     }
+
+    public void save(Loan loan) {
+        loanRepo.save(loan);
+    }
 }

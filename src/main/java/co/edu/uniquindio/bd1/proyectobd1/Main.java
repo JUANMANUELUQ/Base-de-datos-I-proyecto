@@ -3,9 +3,6 @@ package co.edu.uniquindio.bd1.proyectobd1;
 import co.edu.uniquindio.bd1.proyectobd1.application.App;
 import co.edu.uniquindio.bd1.proyectobd1.controllers.ModelFactoryController;
 import co.edu.uniquindio.bd1.proyectobd1.service.implementations.*;
-import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.EmployeeService;
-import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.MunicipalityService;
-import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -34,7 +31,7 @@ public class Main implements CommandLineRunner {
     @Autowired
     private LoanRequestServiceImp loanRequestService;
     @Autowired
-    private LoanStatusServiceImp loanStatusService;
+    private LoanRequestStatusServiceImp loanRequestStatusService;
     @Autowired
     private PeriodServiceImp periodService;
 
@@ -54,7 +51,7 @@ public class Main implements CommandLineRunner {
         mfm.setUserTypeService(userTypeService);
         mfm.setLoanService(loanService);
         mfm.setLoanRequestService(loanRequestService);
-        mfm.setLoanStatusService(loanStatusService);
+        mfm.setLoanRequestStatusService(loanRequestStatusService);
         mfm.setPeriodService(periodService);
         Application.launch(App.class, args);
     }

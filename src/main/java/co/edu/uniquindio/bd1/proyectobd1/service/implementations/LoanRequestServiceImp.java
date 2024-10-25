@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoanRequestServiceImp implements LoanRequestService {
@@ -41,7 +42,7 @@ public class LoanRequestServiceImp implements LoanRequestService {
 
     @Override
     public List<LoanRequest> findAll() {
-        return List.of();
+        return loanRequestRepo.findAll();
     }
 
     @Override
@@ -62,5 +63,13 @@ public class LoanRequestServiceImp implements LoanRequestService {
     @Override
     public boolean rejectLoanRequest(LoanRequest loanRequest) {
         return false;
+    }
+
+    public void save(LoanRequest loanRequest) {
+        loanRequestRepo.save(loanRequest);
+    }
+
+    public Optional<LoanRequest> findByLoanNumber(Long loanNumber) {
+        return loanRequestRepo.findById(loanNumber);
     }
 }
