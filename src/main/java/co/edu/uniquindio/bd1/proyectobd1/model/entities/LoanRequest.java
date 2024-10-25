@@ -11,35 +11,33 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "loan_request")
+@Table(name = "loanRequest")
 public class LoanRequest {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
-    @Column(name = "amount")
-    private Double amount;
-    @Column(name = "term")
-    private Integer term;   // Plazo en meses (24, 36, 48, 60, 72)
-    @Column(name = "request_date")
+    private Long loanNumber;
+    @Column(name = "requestDate")
     private LocalDate requestDate;
-
-    //@Enumerated(EnumType.STRING)
-    //private LoanStatus status;
+    @Column(name = "requestedAmount")
+    private float requestedAmount;
+    @ManyToOne
+    @JoinColumn(name = "employee")
+    private Employee employee;
+    @ManyToOne
+    @JoinColumn(name = "loanStatus")
+    private LoanStatus loanStatus;
+    @ManyToOne
+    @JoinColumn(name = "period")
+    private Period period;
 
     @Builder
-    public LoanRequest(Employee employee, Double amount, Integer term, LocalDate requestDate) {
-        this.employee = employee;
-        this.amount = amount;
-        this.term = term;
+    public LoanRequest(LocalDate requestDate, float requestedAmount, Employee employee, LoanStatus loanStatus, Period period) {
         this.requestDate = requestDate;
-        //this.status = status;
+        this.requestedAmount = requestedAmount;
+        this.employee = employee;
+        this.loanStatus = loanStatus;
+        this.period = period;
     }
-
 }

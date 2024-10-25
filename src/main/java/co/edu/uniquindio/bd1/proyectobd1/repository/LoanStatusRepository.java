@@ -1,0 +1,9 @@
+package co.edu.uniquindio.bd1.proyectobd1.repository;
+
+import co.edu.uniquindio.bd1.proyectobd1.model.entities.LoanStatus;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface LoanStatusRepository extends JpaRepository<LoanStatus, Long>  {
+}

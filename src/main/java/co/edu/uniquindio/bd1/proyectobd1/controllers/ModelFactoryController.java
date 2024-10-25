@@ -27,6 +27,10 @@ public class ModelFactoryController {
     private MunicipalityServiceImp municipalityService;
     private UserServiceImp userService;
     private UserTypeServiceImp userTypeService;
+    private LoanServiceImp loanService;
+    private LoanRequestServiceImp loanRequestService;
+    private LoanStatusServiceImp loanStatusService;
+    private PeriodServiceImp periodService;
 
     private Employee empleadoSesion = null;
     private Audit auditoriaEmpleado = null;

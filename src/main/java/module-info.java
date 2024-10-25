@@ -17,14 +17,13 @@ module co.edu.uniquindio.bd1.proyectobd1 {
     requires org.aspectj.weaver;
 
     // Abre paquetes a Spring y Hibernate para la reflexión
-    opens co.edu.uniquindio.bd1.proyectobd1.model to spring.core, spring.beans, spring.data.jpa, org.hibernate.orm.core;
-    opens co.edu.uniquindio.bd1.proyectobd1.model.entities to org.hibernate.orm.core, spring.core, spring.beans;
-    opens co.edu.uniquindio.bd1.proyectobd1.service to spring.core, spring.beans;
+    opens co.edu.uniquindio.bd1.proyectobd1.model.entities to org.hibernate.orm.core, spring.core, spring.beans,spring.data.jpa;
     opens co.edu.uniquindio.bd1.proyectobd1.application to spring.core, spring.beans, javafx.fxml;
 
     // Exporta paquetes necesarios para otros módulos y JavaFX
     exports co.edu.uniquindio.bd1.proyectobd1;
-    exports co.edu.uniquindio.bd1.proyectobd1.service;
+    exports co.edu.uniquindio.bd1.proyectobd1.service.interfaces;
+    exports co.edu.uniquindio.bd1.proyectobd1.service.implementations;
     exports co.edu.uniquindio.bd1.proyectobd1.application;
     exports co.edu.uniquindio.bd1.proyectobd1.controllers to javafx.fxml;
 
@@ -33,6 +32,6 @@ module co.edu.uniquindio.bd1.proyectobd1 {
 
     // Abre modelo para Spring
     opens co.edu.uniquindio.bd1.proyectobd1 to spring.beans, spring.core, javafx.fxml;
-    exports co.edu.uniquindio.bd1.proyectobd1.service.implementations;
+    opens co.edu.uniquindio.bd1.proyectobd1.service.interfaces to spring.beans, spring.core;
     opens co.edu.uniquindio.bd1.proyectobd1.service.implementations to spring.beans, spring.core;
 }

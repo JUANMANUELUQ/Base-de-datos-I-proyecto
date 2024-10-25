@@ -29,6 +29,14 @@ public class Main implements CommandLineRunner {
     private UserServiceImp userService;
     @Autowired
     private UserTypeServiceImp userTypeService;
+    @Autowired
+    private LoanServiceImp loanService;
+    @Autowired
+    private LoanRequestServiceImp loanRequestService;
+    @Autowired
+    private LoanStatusServiceImp loanStatusService;
+    @Autowired
+    private PeriodServiceImp periodService;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
@@ -44,6 +52,10 @@ public class Main implements CommandLineRunner {
         mfm.setMunicipalityService(municipalityService);
         mfm.setUserService(userService);
         mfm.setUserTypeService(userTypeService);
+        mfm.setLoanService(loanService);
+        mfm.setLoanRequestService(loanRequestService);
+        mfm.setLoanStatusService(loanStatusService);
+        mfm.setPeriodService(periodService);
         Application.launch(App.class, args);
     }
 

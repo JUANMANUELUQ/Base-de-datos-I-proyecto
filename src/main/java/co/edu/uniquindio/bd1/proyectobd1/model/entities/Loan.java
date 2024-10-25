@@ -12,35 +12,22 @@ import java.util.List;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "loan")
+@Table(name = "Loan")
 public class Loan {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
-
-    @Column(name = "amount")
-    private Double amount;
-    @Column(name = "interest_rate")
-    private Double interestRate;
-    @Column(name = "disbursement_date")
-    private LocalDate disbursementDate;
-
-    @OneToMany(mappedBy = "loan")
-    private List<Payment> payments;
+    private Long code;
+    @Column(name = "creationDate")
+    private LocalDate creationDate;
+    @OneToOne
+    @JoinColumn(name = "request")
+    private LoanRequest request;
 
     @Builder
-    public Loan(Employee employee, Double amount, Double interestRate, LocalDate disbursementDate, List<Payment> payments) {
-        this.employee = employee;
-        this.amount = amount;
-        this.interestRate = interestRate;
-        this.disbursementDate = disbursementDate;
-        this.payments = payments;
+    public Loan(LocalDate creationDate, LoanRequest request) {
+        this.creationDate = creationDate;
+        this.request = request;
     }
-
 }
