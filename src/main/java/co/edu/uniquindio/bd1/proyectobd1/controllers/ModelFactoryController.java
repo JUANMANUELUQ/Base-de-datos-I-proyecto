@@ -31,6 +31,7 @@ public class ModelFactoryController {
     private LoanRequestServiceImp loanRequestService;
     private LoanRequestStatusServiceImp loanRequestStatusService;
     private PeriodServiceImp periodService;
+    private LoanPaymentServiceImp loanPaymentService;
 
     private Employee empleadoSesion = null;
     private Audit auditoriaEmpleado = null;
@@ -54,12 +55,36 @@ public class ModelFactoryController {
         return empleados;
     }
 
-    public List<Object> obtenerPagosEmpleado() {
-        return new ArrayList<Object>();
+    public List<LoanDTO> obtenerPagosEmpleadoSesion() {
+        List<Loan> prestamos=loanService.findByEmployee(this.empleadoSesion.getCode());
+        List<LoanDTO> prestamosInfo=new ArrayList<LoanDTO>();
+        for (Loan loan : prestamos) {
+            prestamosInfo.add(new LoanDTO(
+                    loan.getCode(),
+                    loan.getCreationDate(),
+                    loan.getAmount(),
+                    loan.getPeriod().getPeriodMonths(),
+                    loan.getPeriod().getInterestRate(),
+                    this.empleadoSesion.getCode()
+            ));
+        }
+        return prestamosInfo;
     }
 
-    public List<Object> obtenerPagosTotales() {
-        return new ArrayList<Object>();
+    public List<LoanDTO> obtenerPagosTotales() {
+        List<Loan> prestamos=loanService.findAll();
+        List<LoanDTO> prestamosInfo=new ArrayList<LoanDTO>();
+        for (Loan loan : prestamos) {
+            prestamosInfo.add(new LoanDTO(
+                    loan.getCode(),
+                    loan.getCreationDate(),
+                    loan.getAmount(),
+                    loan.getPeriod().getPeriodMonths(),
+                    loan.getPeriod().getInterestRate(),
+                    loan.getEmployee().getCode()
+            ));
+        }
+        return prestamosInfo;
     }
 
     public List<String> obtenerMunicipios() {
@@ -239,9 +264,30 @@ public class ModelFactoryController {
         solicitudPrestamo.setLoanStatus(estadoPrestamo);
         loanRequestService.save(solicitudPrestamo);
         if (changeLoanRequestStateDTO.state().equals("aprobada")) {
-            Loan prestamo=new Loan(LocalDate.now(),solicitudPrestamo);
+            Loan prestamo=new Loan(
+                    solicitudPrestamo.getRequestedAmount(),
+                    LocalDate.now(),
+                    solicitudPrestamo,
+                    solicitudPrestamo.getPeriod(),
+                    solicitudPrestamo.getEmployee()
+            );
             loanService.save(prestamo);
         }
+    }
+
+    public EmployeeDTO obtenerEmpleadoCodigo(Long codigo) {
+        Employee empleado=employeeService.findByCode(codigo).get();
+        return new EmployeeDTO(
+                empleado.getUser().getLogin(),
+                empleado.getUser().getCreationDate(),
+                empleado.getName(),
+                empleado.getEmail(),
+                empleado.isArrears(),
+                empleado.getEmployeePosition().getName(),
+                empleado.getEmployeePosition().getSalary(),
+                empleado.getBranch().getName(),
+                empleado.getBranch().getMunicipality().getName()
+        );
     }
 
     public EmployeeDTO obtenerEmpleadoCorreo(String correo) {
@@ -257,6 +303,65 @@ public class ModelFactoryController {
                 empleado.getBranch().getName(),
                 empleado.getBranch().getMunicipality().getName()
         );
+    }
+
+    public float obtenerTopeEmpleadoSesion() {
+        return this.empleadoSesion.getEmployeePosition().getCap();
+    }
+
+    public void registrarPago(CreateLoanPayment createPayment) {
+        Loan prestamo=loanService.findByCode(createPayment.loanNumber()).get();
+        LoanPayment pago=new LoanPayment(
+                createPayment.paymentNumber(),
+                createPayment.paymentDate(),
+                createPayment.value(),
+                prestamo
+        );
+        loanPaymentService.save(pago);
+        List<LoanPayment> pagosPrestamos=loanPaymentService.findByLoanCode(prestamo.getCode());
+        boolean mora=estaEnMora(prestamo,pagosPrestamos);
+        if (mora && !this.empleadoSesion.isArrears()) {
+            this.empleadoSesion.setArrears(true);
+            employeeService.save(this.empleadoSesion);
+        }
+    }
+
+    public boolean estaEnMora(Loan prestamo,List<LoanPayment> pagosPrestamos) {
+        boolean estaEnMora=true;
+        int pagos=pagosPrestamos.size();
+        LocalDate fechaInicioPlazo=prestamo.getCreationDate().plusMonths(pagos-1);
+        LocalDate siguienteMes=fechaInicioPlazo.plusMonths(1);
+        LocalDate fechaFinalPlazo=LocalDate.of(siguienteMes.getYear(),siguienteMes.getMonth(),10);
+        if (fechaFinalPlazo.plusDays(1).isBefore(LocalDate.now())) {
+            estaEnMora=false;
+        }
+        return estaEnMora;
+    }
+
+
+
+    public List<PaymentDTO> obtenerPrestamosEmpleado(SearchPaymentDTO datosPago) {
+        List<LoanPayment> pagosPrestamos=
+                loanPaymentService.findByEmployeeAndLoan(datosPago.codeEmployee(),datosPago.codeLoan());
+        List<PaymentDTO> pagosPrestamosInfo=new ArrayList<>();
+        for (LoanPayment pago : pagosPrestamos) {
+            pagosPrestamosInfo.add(new PaymentDTO(
+                    pago.getPaymentNumber(),
+                    pago.getPaymentDate(),
+                    pago.getValue()
+            ));
+        }
+        return pagosPrestamosInfo;
+    }
+
+    public boolean existePrestamoUsuarioSesion(Long numeroPrestmo) {
+        Optional<Loan> prestamo=loanService.findByCode(numeroPrestmo);
+        System.out.println(prestamo);
+        if (prestamo.isPresent() &&
+                prestamo.get().getEmployee().getCode().equals(this.empleadoSesion.getCode())) {
+            return true;
+        }
+        return false;
     }
 
     /**

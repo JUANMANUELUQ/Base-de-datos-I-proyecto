@@ -48,7 +48,7 @@ public class SolicitudesPrestamoController {
         tablePrestamos.setItems(listaSolicitudesProperty);
         columnCorreo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().emailEmployee()));
         columnFechaSolicitud.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().requestDate()));
-        columnMonto.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().amount()));
+        columnMonto.setCellValueFactory(cellData -> new SimpleStringProperty(String.format("%.0f",cellData.getValue().amount())));
         columnPeriodoMeses.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().periodMonths()));
         columnEstado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().status()));
 	}

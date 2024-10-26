@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoanServiceImp implements LoanService {
@@ -40,12 +41,12 @@ public class LoanServiceImp implements LoanService {
 
     @Override
     public List<Loan> findAll() {
-        return List.of();
+        return loanRepo.findAll();
     }
 
     @Override
-    public List<Loan> findByEmployee(Long id) {
-        return List.of();
+    public List<Loan> findByEmployee(Long code) {
+        return loanRepo.findByEmployee(code);
     }
 
     @Override
@@ -60,5 +61,9 @@ public class LoanServiceImp implements LoanService {
 
     public void save(Loan loan) {
         loanRepo.save(loan);
+    }
+
+    public Optional<Loan> findByCode(Long code) {
+        return loanRepo.findByCode(code);
     }
 }

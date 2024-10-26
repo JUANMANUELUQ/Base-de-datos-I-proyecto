@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.EmpleadoController">
    <children>
       <AnchorPane fx:id="panel" layoutX="61.0" layoutY="78.0" prefHeight="245.0" prefWidth="436.0" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prestamo" text="Prestamo" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#prestamo" text="Solicitud" />
       <Button layoutX="117.0" layoutY="14.0" mnemonicParsing="false" onAction="#pagoCuotas" text="Pago cuotas" />
       <Button layoutX="235.0" layoutY="14.0" mnemonicParsing="false" onAction="#pagosRealizados" text="Pagos realizados" />
       <Button layoutX="390.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />

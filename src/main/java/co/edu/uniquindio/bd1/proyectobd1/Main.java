@@ -34,6 +34,8 @@ public class Main implements CommandLineRunner {
     private LoanRequestStatusServiceImp loanRequestStatusService;
     @Autowired
     private PeriodServiceImp periodService;
+    @Autowired
+    private LoanPaymentServiceImp loanPaymentService;
 
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
@@ -53,6 +55,7 @@ public class Main implements CommandLineRunner {
         mfm.setLoanRequestService(loanRequestService);
         mfm.setLoanRequestStatusService(loanRequestStatusService);
         mfm.setPeriodService(periodService);
+        mfm.setLoanPaymentService(loanPaymentService);
         Application.launch(App.class, args);
     }
 

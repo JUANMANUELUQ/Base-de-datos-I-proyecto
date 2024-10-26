@@ -11,34 +11,29 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "payment")
-public class Payment {
+@Table(name = "LoanPayment")
+public class LoanPayment {
 
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "loan_id")
-    private Loan loan;
-
     @Column(name = "payment_number")
-    private Integer paymentNumber; //Aquí irá el número de la cuota, recordar que no es un identificador
+    private Integer paymentNumber; //Aquí irá el número de la cuota de un prestamo, recordar que no es un identificador
     @Column(name = "payment_date")
     private LocalDate paymentDate;
-    @Column(name = "amount")
-    private Double amount;
-    @Column(name = "is_late")
-    private boolean isLate;
+    @Column(name = "value")
+    private float value;
+    @ManyToOne
+    @JoinColumn(name = "loan")
+    private Loan loan;
+
 
     @Builder
-    public Payment(Loan loan, Integer paymentNumber, LocalDate paymentDate, Double amount, boolean isLate) {
-        this.loan = loan;
+    public LoanPayment(Integer paymentNumber, LocalDate paymentDate, float value, Loan loan) {
         this.paymentNumber = paymentNumber;
         this.paymentDate = paymentDate;
-        this.amount = amount;
-        this.isLate = isLate;
+        this.value = value;
+        this.loan = loan;
     }
-
 }

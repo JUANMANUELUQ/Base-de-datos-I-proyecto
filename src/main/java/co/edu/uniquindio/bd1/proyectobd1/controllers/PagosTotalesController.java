@@ -1,59 +1,69 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.LoanDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.PaymentDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.SearchPaymentDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PagosTotalesController {
 
     ModelFactoryController mfm=ModelFactoryController.getInstance();
 
     @FXML
-    private TableView<Object> tablePrestamo;
+    private TableView<LoanDTO> tablePrestamo;
 
     @FXML
-    private TableColumn<Object, String> columnNumeroPrestamoP;
+    private TableColumn<LoanDTO, String> columnNumeroPrestamoP;
 
     @FXML
-    private TableColumn<Object, String> columnFechaSolicitud;
+    private TableColumn<LoanDTO, String> columnFechaSolicitud;
 
     @FXML
-    private TableColumn<Object, String> columnMonto;
+    private TableColumn<LoanDTO, String> columnMonto;
 
     @FXML
-    private TableColumn<Object, String> columnPeriodoMeses;
+    private TableColumn<LoanDTO, String> columnPeriodoMeses;
 
     @FXML
-    private TableColumn<Object, String> columnTasaInteres;
+    private TableColumn<LoanDTO, String> columnTasaInteres;
 
     @FXML
-    private TableView<Object> tablePagos;
+    private TableView<PaymentDTO> tablePagos;
 
     @FXML
-    private TableColumn<Object, String> columnNumeroCoutas;
+    private TableColumn<PaymentDTO, String> columnNumeroCoutas;
 
     @FXML
-    private TableColumn<Object, String> columnFechaPago;
+    private TableColumn<PaymentDTO, String> columnFechaPago;
 
     @FXML
-    private TableColumn<Object, String> columnNumeroPrestamoC;
+    private TableColumn<PaymentDTO, String> columnNumeroPrestamoC;
 
     @FXML
-    private TableColumn<Object, String> columnValor;
+    private TableColumn<PaymentDTO, String> columnValor;
 
 
     @FXML
     void ponerDatosCuotas() {
-        Object objetoDTO=tablePrestamo.getSelectionModel().getSelectedItem();
-        if (objetoDTO != null) {
-            actualizarTablaCuotasPago(new ArrayList<Object>());
+        LoanDTO prestamo=tablePrestamo.getSelectionModel().getSelectedItem();
+        if (prestamo != null) {
+            List<PaymentDTO> prestamos=mfm.obtenerPrestamosEmpleado(new SearchPaymentDTO(
+                    prestamo.employeeCode(),
+                    prestamo.numberLoan()
+            ));
+            actualizarTablaCuotasPago(prestamos,prestamo.numberLoan());
         }
     }
 
@@ -68,9 +78,11 @@ public class PagosTotalesController {
 
     @FXML
     private void verInformacionEmpleado() {
-        Object objetoDTO=tablePrestamo.getSelectionModel().getSelectedItem();
-        if (objetoDTO != null) {
-
+        LoanDTO prestamo=tablePrestamo.getSelectionModel().getSelectedItem();
+            if (prestamo != null) {
+                EmployeeDTO empleado=mfm.obtenerEmpleadoCodigo(prestamo.employeeCode());
+                String msj=organizarInfoEmpleado(empleado);
+                InterfazFXUtil.mostrarMensaje("Datos del empleado",msj, Alert.AlertType.INFORMATION);
         } else {
             InterfazFXUtil.mostrarMensaje("Prestamo no seleccionado",
                     "No ha seleccionado ningun prestamo para ver la informacion del empleado", AlertType.WARNING);
@@ -79,24 +91,42 @@ public class PagosTotalesController {
 
     private void actualizarTablaPresamos() {
         tablePrestamo.getItems().clear();
-        ObservableList<Object> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerPagosTotales());
+        ObservableList<LoanDTO> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerPagosTotales());
         tablePrestamo.setItems(listaPrestamosProperty);
-        columnNumeroPrestamoP.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnFechaSolicitud.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnMonto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnPeriodoMeses.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnValor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnTasaInteres.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnNumeroPrestamoP.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().numberLoan()));
+        columnFechaSolicitud.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().creationDate()));
+        columnMonto.setCellValueFactory(cellData -> new SimpleStringProperty(String.format("%.0f",cellData.getValue().amount())));
+        columnPeriodoMeses.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().periodMonths()));
+        columnTasaInteres.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().interestRate()));
     }
 
-    private void actualizarTablaCuotasPago(ArrayList<Object> listaDTOPrestamos) {
+    private void actualizarTablaCuotasPago(List<PaymentDTO> listaDTOPrestamos,Long numberLoan) {
         tablePagos.getItems().clear();
-        ObservableList<Object> listaPagosProperty= FXCollections.observableList(listaDTOPrestamos);
+        ObservableList<PaymentDTO> listaPagosProperty= FXCollections.observableList(listaDTOPrestamos);
         tablePagos.setItems(listaPagosProperty);
-        columnNumeroPrestamoC.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnValor.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnNumeroCoutas.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
-        columnFechaPago.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()+""));
+        columnNumeroPrestamoC.setCellValueFactory(cellData -> new SimpleStringProperty(numberLoan+""));
+        columnValor.setCellValueFactory(cellData -> new SimpleStringProperty(String.format("%.0f",cellData.getValue().value())));
+        columnNumeroCoutas.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().paymentNumber()+""));
+        columnFechaPago.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().paymentDate()+""));
+    }
+
+    public String organizarInfoEmpleado(EmployeeDTO empleado) {
+        String msj="";
+        msj+="Nombre de usuario: "+empleado.login()+"\n";
+        msj+="Fecha de creacion: "+empleado.creationDate()+"\n";
+        msj+="Nombre: "+empleado.name()+"\n";
+        msj+="Correo: "+empleado.email()+"\n";
+        msj+="Esta en mora: ";
+        if (empleado.arrears()) {
+            msj+="Si\n";
+        } else  {
+            msj+="No\n";
+        }
+        msj+="Cargo: "+empleado.position()+"\n";
+        msj+="Salario: "+empleado.salary()+"\n";
+        msj+="Sucursal: "+empleado.branch()+"\n";
+        msj+="Municipio: "+empleado.municipality()+"\n";
+        return msj;
     }
 
 }
