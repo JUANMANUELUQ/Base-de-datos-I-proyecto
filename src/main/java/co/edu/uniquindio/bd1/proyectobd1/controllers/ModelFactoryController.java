@@ -121,7 +121,7 @@ public class ModelFactoryController {
         }
         EmployeePosition cargoEmpleado = employeePositionService.findByName(empleado.position()).get();
         UserType tipoUsuario = userTypeService.findByEmployeePositionName(cargoEmpleado.getName()).get();
-        Branch sucursal = branchService.finByName(empleado.branch()).get();
+        Branch sucursal = branchService.findByName(empleado.branch()).get();
         User usuario = new User(empleado.login(), empleado.password(), LocalDate.now(), tipoUsuario);
         userService.save(usuario);
         Employee empleadoRegistrar = new Employee(empleado.name(), empleado.email(),
@@ -151,7 +151,7 @@ public class ModelFactoryController {
         }
         EmployeePosition cargoEmpleado = employeePositionService.findByName(empleado.position()).get();
         UserType tipoUsuario = userTypeService.findByEmployeePositionName(cargoEmpleado.getName()).get();
-        Branch sucursal = branchService.finByName(empleado.branch()).get();
+        Branch sucursal = branchService.findByName(empleado.branch()).get();
         User usuario = userService.findByLogin(empleado.oldLogin()).get();
         Employee empleadoRegistrar = employeeService.findByCode(empleado.oldCode()).get();
         employeeService.deleteEmployee(empleadoRegistrar);
@@ -364,6 +364,55 @@ public class ModelFactoryController {
         return false;
     }
 
+    public boolean existeMunicipio(String municipio) {
+        return municipalityService.findByName(municipio).isPresent();
+    }
+
+    public boolean existeSucursalEnMunicipio(MunicipalityBranchDTO municipalityBranchDTO) {
+        List<Branch> sucursales=branchService.findByMunipalityName(municipalityBranchDTO.municipality());
+        for (Branch branch : sucursales) {
+            if (branch.getName().equals(municipalityBranchDTO.municipality())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void guardarMunicipio(String municipio) {
+        Municipality municipioGuardar=new Municipality(municipio);
+        municipalityService.save(municipioGuardar);
+    }
+
+    public void editarMunicipio(MunicipalityEditDTO datosMunicipio) {
+        Municipality municipio=municipalityService.findByName(datosMunicipio.oldMunicipality()).get();
+        municipio.setName(datosMunicipio.newMunicipality());
+        municipalityService.save(municipio);
+    }
+
+    public void eliminarMunicipio(String prestamo) {
+        Municipality municipio=municipalityService.findByName(prestamo).get();
+        municipalityService.delete(municipio);
+    }
+
+    public void guardarSucursal(MunicipalityBranchDTO municipioSucursal) {
+        Municipality municipio=municipalityService.findByName(municipioSucursal.municipality()).get();
+        Branch sucursal=new Branch(municipioSucursal.branch(),municipio);
+        branchService.save(sucursal);
+    }
+
+    public void editarSucursal(BranchEditDTO datos) {
+        Branch sucursal=branchService.findByMunipalityNameAndMunicipality(
+                datos.oldBranch(),datos.municipality()).get();
+        sucursal.setName(datos.newBranch());
+        branchService.save(sucursal);
+    }
+
+    public void eliminarSucursal(MunicipalityBranchDTO datos) {
+        Branch sucursal=branchService.findByMunipalityNameAndMunicipality(
+                datos.branch(),datos.municipality()).get();
+        branchService.delete(sucursal);
+    }
+
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de
      * instancias de ModelFactoryController.
@@ -453,9 +502,9 @@ public class ModelFactoryController {
     }
 
     public void quemarUsuariosEmpleados() {
-        UserType administrador=userTypeService.finByLevel("Administrador").get();
-        UserType parametrico=userTypeService.finByLevel("Param\u00E9trico").get();
-        UserType esporadico=userTypeService.finByLevel("Espor\u00E1dicos").get();
+        UserType administrador=userTypeService.findByLevel("Administrador").get();
+        UserType parametrico=userTypeService.findByLevel("Param\u00E9trico").get();
+        UserType esporadico=userTypeService.findByLevel("Espor\u00E1dicos").get();
         User usuario1=new User("JUANMA","1234",
                 LocalDate.of(2004,5,11),administrador);
         User usuario2=new User("MIGUEL","1234",

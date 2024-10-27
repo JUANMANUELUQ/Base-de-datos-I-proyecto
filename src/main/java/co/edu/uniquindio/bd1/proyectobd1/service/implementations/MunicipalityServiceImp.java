@@ -34,4 +34,8 @@ public class MunicipalityServiceImp implements MunicipalityService {
     public List<Municipality> findAllMunicipalities() {
         return municipalityRepo.findAll();
     }
+
+    public void delete(Municipality municipality) {
+        municipalityRepo.delete(municipality);
+    }
 }

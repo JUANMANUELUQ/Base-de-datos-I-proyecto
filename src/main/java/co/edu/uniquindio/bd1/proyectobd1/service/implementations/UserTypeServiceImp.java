@@ -6,7 +6,6 @@ import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.UserTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,7 +35,7 @@ public class UserTypeServiceImp implements UserTypeService {
         return userType;
     }
 
-    public Optional<UserType> finByLevel(String level) {
+    public Optional<UserType> findByLevel(String level) {
         return userTypeRepo.findByLevel(level);
     }
 }

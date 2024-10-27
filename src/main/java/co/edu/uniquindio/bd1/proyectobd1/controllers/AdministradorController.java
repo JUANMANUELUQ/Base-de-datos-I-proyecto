@@ -51,6 +51,11 @@ public class AdministradorController implements VentanaTabuladora {
         InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Reportes.fxml",panel,getClass());
     }
 
+    @FXML
+    void municipioSucursal() {
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/MinicipiosSucursales.fxml",panel,getClass());
+    }
+
     /**
      * Cierra la sesión del usuario actual y muestra la pantalla de inicio de sesión.
      */
