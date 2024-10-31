@@ -7,8 +7,36 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.TesoreriaController">
    <children>
       <AnchorPane fx:id="panel" layoutX="34.0" layoutY="80.0" prefHeight="200.0" prefWidth="200.0" />
-      <Button layoutX="41.0" layoutY="27.0" mnemonicParsing="false" onAction="#solicitudes" text="Solicitudes" />
-      <Button layoutX="165.0" layoutY="27.0" mnemonicParsing="false" onAction="#pagosTotales" text="Pagos totales" />
-      <Button layoutX="292.0" layoutY="27.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
+      <MenuBar layoutX="15.0" layoutY="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Transacciones">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#solicitudes" text="Solicitudes de prestamos" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Reportes">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#reportes" text="Generar reportes" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Consultas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#pagosTotales" text="Pagos totales" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Utilidades">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#calculadora" text="Calculadora" />
+                  <MenuItem mnemonicParsing="false" onAction="#calendario" text="Calendario" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Ayudas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#ayudas" text="Ayuda\Manual" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" onMenuValidation="#cerrarSesion" style="-fx-border-color: transparent lightGray;" text="Cerrar sesión">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cerrar sesión" />
+               </items></Menu>
+         </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

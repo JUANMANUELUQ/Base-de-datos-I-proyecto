@@ -8,13 +8,45 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.AdministradorController">
    <children>
-      <Button layoutX="512.0" layoutY="14.0" mnemonicParsing="false" onAction="#pagosRealizados" text="Pagos realizados" />
-      <Button layoutX="403.0" layoutY="14.0" mnemonicParsing="false" onAction="#pagoCuotas" text="Pago cuotas" />
-      <Button layoutX="222.0" layoutY="14.0" mnemonicParsing="false" onAction="#prestamo" text="Solicitud" />
       <AnchorPane fx:id="panel" layoutX="28.0" layoutY="61.0" prefHeight="302.0" prefWidth="587.0" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gestionEmpleado" text="Gestion empleado" />
-      <Button layoutX="306.0" layoutY="14.0" mnemonicParsing="false" onAction="#reportes" text="Reportes" />
-      <Button layoutX="649.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesion" />
-      <Button layoutX="168.0" layoutY="14.0" mnemonicParsing="false" onAction="#municipioSucursal" text="m/s" />
+      <MenuBar layoutX="5.0" layoutY="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Entidades">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#gestionEmpleado" text="Gestión empleado" />
+                  <MenuItem mnemonicParsing="false" onAction="#municipioSucursal" text="Municipios/Sucursales" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Transacciones">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#prestamo" text="Solicitud de prestamo" />
+                  <MenuItem mnemonicParsing="false" onAction="#pagoCuotas" text="Pago cuotas" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" onAction="#reportes" style="-fx-border-color: transparent lightGray;" text="Reportes">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#reportes" text="Generar reportes" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" onAction="#pagosRealizados" style="-fx-border-color: transparent lightGray;" text="Consultas">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#pagosRealizados" text="Pagos realizados" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Utilidades">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#calculadora" text="Calculadora" />
+                  <MenuItem mnemonicParsing="false" onAction="#calendario" text="Calendario" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Ayudas">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#ayudas" text="Ayuda\Manual" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" onMenuValidation="#cerrarSesion" style="-fx-border-color: transparent lightGray;" text="Cerrar sesión">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Cerrar sesión" />
+               </items></Menu>
+        </menus>
+      </MenuBar>
    </children>
 </AnchorPane>

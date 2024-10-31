@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.CalculadoraController">
    <children>
       <TextField layoutX="81.0" layoutY="23.0" />
       <GridPane alignment="CENTER" layoutX="59.0" layoutY="75.0" prefHeight="225.0" prefWidth="232.0">

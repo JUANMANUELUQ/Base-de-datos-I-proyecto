@@ -2,6 +2,7 @@ package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
 import co.edu.uniquindio.bd1.proyectobd1.application.App;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 
@@ -31,6 +32,11 @@ public class EmpleadoController implements VentanaTabuladora {
     }
 
     @FXML
+    void reportes() {
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Reportes.fxml",panel,getClass());
+    }
+
+    @FXML
     void pagoCuotas() {
         InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/InformacionPrestamo.fxml",panel,getClass());
     }
@@ -40,11 +46,30 @@ public class EmpleadoController implements VentanaTabuladora {
         InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Pagos.fxml",panel,getClass());
     }
 
+    @FXML
+    void calculadora() {
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Calculadora.fxml",panel,getClass());
+    }
+
+    @FXML
+    void calendario() {
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Calendario.fxml",panel,getClass());
+    }
+
+    @FXML
+    void ayudas() {
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Ayudas.fxml",panel,getClass());
+    }
+
     /**
      * Cierra la sesión del usuario actual y muestra la pantalla de inicio de sesión.
      */
     @FXML
     void cerrarSesion() {
+        Platform.runLater(this::cerrarSesionDespues);
+    }
+
+    void cerrarSesionDespues() {
         aplicacion.mostrarLogin();
         mfm.cerrarSesion();
     }
