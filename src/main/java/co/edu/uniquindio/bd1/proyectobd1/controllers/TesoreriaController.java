@@ -33,7 +33,7 @@ public class TesoreriaController implements VentanaTabuladora {
 
     @FXML
     void reportes() {
-        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Reportes.fxml",panel,getClass());
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/ReportesTesoreria.fxml",panel,getClass());
     }
 
     @FXML

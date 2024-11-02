@@ -4,10 +4,7 @@ import co.edu.uniquindio.bd1.proyectobd1.application.App;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 public class AdministradorController implements VentanaTabuladora {
 
@@ -51,7 +48,7 @@ public class AdministradorController implements VentanaTabuladora {
 
     @FXML
     void reportes() {
-        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/Reportes.fxml",panel,getClass());
+        InterfazFXUtil.cargarVentana("/co/edu/uniquindio/bd1/proyectobd1/fxml/ReportesAdministrador.fxml",panel,getClass());
     }
 
     @FXML
