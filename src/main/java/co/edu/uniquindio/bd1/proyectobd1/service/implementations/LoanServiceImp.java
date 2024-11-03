@@ -72,6 +72,6 @@ public class LoanServiceImp implements LoanService {
     }
 
     public List<Loan> findByBranch(String branch) {
-        loanRepo.findByBranch(branch);
+        return loanRepo.findByBranch(branch);
     }
 }

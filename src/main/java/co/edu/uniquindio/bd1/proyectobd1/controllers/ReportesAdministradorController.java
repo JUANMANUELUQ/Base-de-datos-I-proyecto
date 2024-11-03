@@ -107,22 +107,46 @@ public class ReportesAdministradorController {
 
     String generarCodigoReporteMunicipios(List<ReportMunicipalityTotalDTO> datos) {
         String html= "<html>" +
-                "<head><title>Titulo</title></head>" +
+                "<head><title>Total prestado por municipio</title></head>" +
                 "<body>" +
-                "<h1>Reporte</h1>" +
-                "<table style='width:100%'>" +
-                "<tr></tr>" +
-                "</table>" +
+                "<h1 style='text-align:center'>Total prestado por municipio</h1>" +
+                "<table border='1' style='width:100%;border-collapse: collapse;'>" +
+                "<tr>" +
+                "<th style='background-color:#d3d3d3'>Municipio</th>" +
+                "<th style='background-color:#d3d3d3'>Total</th>" +
+                "<th style='background-color:#d3d3d3'>Cantidad de prestamos</th>" +
+                "<th style='background-color:#d3d3d3'>Cantidad de empleados</th>" +
+                "</tr>";
+        for (ReportMunicipalityTotalDTO dto : datos) {
+            html+="<tr><td>"+dto.municipality()+"</td>"+
+                    "<td>"+dto.total()+"</td>"+
+                    "<td>"+dto.loansCuantity()+"</td>"+
+                    "<td>"+dto.employeeCuantity()+"</td></tr>";
+        }
+        html+="</table>" +
                 "</body></html>";
         return html;
     }
 
     String generarCodigoReporteSucursales(List<ReportBranchTotalDTO> datos) {
         String html= "<html>" +
-                "<head><title>Titulo</title></head>" +
+                "<head><title>Total prestado por sucursal</title></head>" +
                 "<body>" +
-                "<h1>Reporte</h1>" +
-                "" +
+                "<h1 style='text-align:center'>Total prestado por sucursal</h1>" +
+                "<table border='1' style='width:100%;border-collapse: collapse;'>" +
+                "<tr>" +
+                "<th style='background-color:#d3d3d3'>Sucursal</th>" +
+                "<th style='background-color:#d3d3d3'>Total</th>" +
+                "<th style='background-color:#d3d3d3'>Cantidad de prestamos</th>" +
+                "<th style='background-color:#d3d3d3'>Cantidad de empleados</th>" +
+                "</tr>";
+        for (ReportBranchTotalDTO dto : datos) {
+            html+="<tr><td>"+dto.branch()+"</td>"+
+                    "<td>"+dto.total()+"</td>"+
+                    "<td>"+dto.loansCuantity()+"</td>"+
+                    "<td>"+dto.employeeCuantity()+"</td></tr>";
+        }
+        html+="</table>" +
                 "</body></html>";
         return html;
     }

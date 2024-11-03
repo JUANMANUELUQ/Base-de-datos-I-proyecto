@@ -1,9 +1,6 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
-import co.edu.uniquindio.bd1.proyectobd1.dto.LoanDTO;
-import co.edu.uniquindio.bd1.proyectobd1.dto.ReportBranchTotalDTO;
-import co.edu.uniquindio.bd1.proyectobd1.dto.ReportCalculatedPaymentsDTO;
-import co.edu.uniquindio.bd1.proyectobd1.dto.ReportLoanRequestDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.*;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import co.edu.uniquindio.bd1.proyectobd1.utils.PDF_Util;
 import javafx.beans.property.SimpleStringProperty;
@@ -87,20 +84,40 @@ public class ReportesEmpleadoController {
 
     String generarCodigoReporteCuotasCalculadas(List<ReportCalculatedPaymentsDTO> datos) {
         String html= "<html>" +
-                "<head><title>Titulo</title></head>" +
+                "<head><title>Cuotas de prestamo</title></head>" +
                 "<body>" +
-                "<h1>Reporte</h1>" +
-                "" +
+                "<h1 style='text-align:center'>Cuotas de prestamo</h1>" +
+                "<table border='1' style='width:100%;border-collapse: collapse;'>" +
+                "<tr>" +
+                "<th style='background-color:#d3d3d3'>Numero de pago</th>" +
+                "<th style='background-color:#d3d3d3'>Valor</th>" +
+                "</tr>";
+        for (ReportCalculatedPaymentsDTO dto : datos) {
+            html+="<tr><td>"+dto.numberPayment()+"</td>"+
+                    "<td>"+dto.value()+"</td></tr>";
+        }
+        html+="</table>" +
                 "</body></html>";
         return html;
     }
 
     String generarCodigoReporteSolicitudesRealizadas(List<ReportLoanRequestDTO> datos) {
         String html= "<html>" +
-                "<head><title>Titulo</title></head>" +
+                "<head><title>Solicitudes realizadas</title></head>" +
                 "<body>" +
-                "<h1>Reporte</h1>" +
-                "" +
+                "<h1 style='text-align:center'>Solicitudes realizadas</h1>" +
+                "<table border='1' style='width:100%;border-collapse: collapse;'>" +
+                "<tr>" +
+                "<th style='background-color:#d3d3d3'>Fecha de solicitud</th>" +
+                "<th style='background-color:#d3d3d3'>Estado</th>" +
+                "<th style='background-color:#d3d3d3'>Valor solicitado</th>" +
+                "</tr>";
+        for (ReportLoanRequestDTO dto : datos) {
+            html+="<tr><td>"+dto.date()+"</td>"+
+                    "<td>"+dto.status()+"</td>"+
+                    "<td>"+dto.amount()+"</td></tr>";
+        }
+        html+="</table>" +
                 "</body></html>";
         return html;
     }

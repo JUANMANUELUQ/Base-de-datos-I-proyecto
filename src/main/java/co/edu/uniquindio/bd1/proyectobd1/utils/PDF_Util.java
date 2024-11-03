@@ -8,7 +8,7 @@ public class PDF_Util {
 
     public static void generarPDF(String html,String ruta,String nombre) {
         // Generar el PDF
-        ruta+="/"+nombre;
+        ruta+="/"+nombre+".pdf";
         try (FileOutputStream fos = new FileOutputStream(ruta)) {
             PdfRendererBuilder builder = new PdfRendererBuilder();
             builder.withHtmlContent(html, null); // Agregar el contenido HTML
