@@ -22,4 +22,10 @@ public interface LoanRepository extends JpaRepository<Loan, Long> {
     @Query("SELECT l FROM Loan l WHERE l.code = :code")
     Optional<Loan> findByCode(@Param("code") Long code);
 
+    @Query("SELECT l FROM Loan l WHERE l.employee.branch.municipality.name = :municipality")
+    List<Loan> findByMunicipality(@Param("municipality") String municipality);
+
+    @Query("SELECT l FROM Loan l WHERE l.employee.branch.name = :branch")
+    List<Loan> findByBranch(@Param("branch") String branch);
+
 }

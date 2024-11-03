@@ -50,6 +50,10 @@ public class EmployeeServiceImp implements EmployeeService {
         return List.of();
     }
 
+    public List<Employee> findByBranch(String branch) {
+        return employeeRepo.findByBranch(branch);
+    }
+
     @Override
     public List<Employee> findDefaulters() {
         return List.of();
@@ -57,7 +61,7 @@ public class EmployeeServiceImp implements EmployeeService {
 
     @Override
     public List<Employee> findByMunicipality(String municipality) {
-        return List.of();
+        return employeeRepo.findByMunicipality(municipality);
     }
 
     public List<Employee> obtainEmployees() {
@@ -74,5 +78,9 @@ public class EmployeeServiceImp implements EmployeeService {
 
     public Optional<Employee> findByEmail(String email) {
         return employeeRepo.findByEmail(email);
+    }
+
+    public List<Employee> findEmployeeArrears() {
+        return employeeRepo.findByArrears(true);
     }
 }

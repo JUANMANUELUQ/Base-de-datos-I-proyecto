@@ -413,6 +413,149 @@ public class ModelFactoryController {
         branchService.delete(sucursal);
     }
 
+    public List<ReportMunicipalityTotalDTO> obtenerDatosTotalPrestamoMunicipios() {
+        List<Municipality> municipios=municipalityService.findAllMunicipalities();
+        List<ReportMunicipalityTotalDTO> datosReporte=new ArrayList<>();
+        for (Municipality municipal : municipios) {
+            List<Loan> prestamos=loanService.findByMunicipality(municipal.getName());
+            datosReporte.add(new ReportMunicipalityTotalDTO(
+                    municipal.getName(),
+                    calcularTotalPrestamos(prestamos),
+                    prestamos.size(),
+                    employeeService.findByMunicipality(municipal.getName()).size()
+            ));
+        }
+        return datosReporte;
+    }
+
+    public float calcularTotalPrestamos(List<Loan> prestamos) {
+        float total=0;
+        for (Loan loan : prestamos) {
+            total+=loan.getAmount();
+        }
+        return total;
+    }
+
+    public List<ReportBranchTotalDTO> obtenerDatosTotalPrestamoSucursales(String municipio) {
+        List<Branch> sucursales=branchService.findByMunipality(municipio);
+        List<ReportBranchTotalDTO> datosReporte=new ArrayList<>();
+        for (Branch sucursal : sucursales) {
+            List<Loan> prestamos=loanService.findByBranch(sucursal.getName());
+            datosReporte.add(new ReportBranchTotalDTO(
+                    sucursal.getName(),
+                    calcularTotalPrestamos(prestamos),
+                    prestamos.size(),
+                    employeeService.findByBranch(sucursal.getName()).size()
+            ));
+        }
+        return datosReporte;
+    }
+
+    public List<EmployeeTotalDTO> obtenerDatosTotalEmpleados() {
+        List<Employee> employees=employeeService.findAll();
+        List<EmployeeTotalDTO> datosReporte=new ArrayList<>();
+        for (Employee employee : employees) {
+            List<Loan> prestamos=loanService.findByEmployee(employee.getCode());
+            datosReporte.add(new EmployeeTotalDTO(
+                    employee.getCode(),
+                    employee.getName(),
+                    employee.getEmail(),
+                    calcularTotalPrestamos(prestamos),
+                    prestamos.size()
+            ));
+        }
+        return datosReporte;
+    }
+
+    public List<ReportEmployeeArrearstDTO> obtenerDatosEmpleadosMororsos() {
+        List<Employee> empleadosMorosos=employeeService.findEmployeeArrears();
+        List<ReportEmployeeArrearstDTO> datosReporte=new ArrayList<>();
+        for (Employee empleado : empleadosMorosos) {
+            datosReporte.add(new ReportEmployeeArrearstDTO(
+                    empleado.getCode(),
+                    empleado.getName(),
+                    empleado.getEmail(),
+                    calcularDeuda(empleado)
+            ));
+        }
+        return datosReporte;
+    }
+
+    public float calcularDeuda(Employee empleado) {
+        float deuda=0;
+        List<Loan> prestamos=loanService.findByEmployee(empleado.getCode());
+        for (Loan prestamo : prestamos) {
+            List<LoanPayment> pagos=loanPaymentService.findByLoanCode(prestamo.getCode());
+            if (estaEnMora(prestamo,pagos)) {
+                int cantidadPrestamosDeduda=obtenerPrestamosRestantes(prestamo,pagos);
+                deuda+=cantidadPrestamosDeduda+(prestamo.getAmount()
+                        * (1+prestamo.getPeriod().getInterestRate()));
+            }
+        }
+        return deuda;
+    }
+
+    public int obtenerPrestamosRestantes(Loan prestamo,List<LoanPayment> pagosPrestamos) {
+        int pagos=pagosPrestamos.size();
+        LocalDate fechaInicioPlazo=prestamo.getCreationDate().plusMonths(pagos-1);
+        LocalDate siguienteMes=fechaInicioPlazo.plusMonths(1);
+        LocalDate fechaFinalPlazo=LocalDate.of(siguienteMes.getYear(),siguienteMes.getMonth(),10);
+        fechaFinalPlazo=fechaFinalPlazo.plusDays(1);
+        LocalDate fechaActual=LocalDate.now();
+        int cont=0;
+        while (!fechaFinalPlazo.isBefore(fechaActual)) {
+            cont++;
+            fechaActual.plusMonths(-1);
+        }
+        if (pagos<cont) {
+            return prestamo.getPeriod().getPeriodMonths()-pagos;
+        } else {
+            return cont;
+        }
+    }
+
+    /*
+    public boolean estaEnMora(Loan prestamo,List<LoanPayment> pagosPrestamos) {
+        boolean estaEnMora=true;
+        int pagos=pagosPrestamos.size();
+        LocalDate fechaInicioPlazo=prestamo.getCreationDate().plusMonths(pagos-1);
+        LocalDate siguienteMes=fechaInicioPlazo.plusMonths(1);
+        LocalDate fechaFinalPlazo=LocalDate.of(siguienteMes.getYear(),siguienteMes.getMonth(),10);
+        if (fechaFinalPlazo.plusDays(1).isBefore(LocalDate.now())) {
+            estaEnMora=false;
+        }
+        return estaEnMora;
+    }
+     */
+
+    public List<ReportLoanRequestDTO> obtenerDatosSolicitudesRealizadas() {
+        List<LoanRequest> solicitudPrestamo=loanRequestService.findByEmployee(this.empleadoSesion.getCode());
+        List<ReportLoanRequestDTO> datosReporte=new ArrayList<>();
+        for (LoanRequest solicitud : solicitudPrestamo) {
+            datosReporte.add(new ReportLoanRequestDTO(
+                    solicitud.getRequestDate(),
+                    solicitud.getLoanStatus().getName(),
+                    solicitud.getRequestedAmount()
+            ));
+        }
+        return datosReporte;
+    }
+
+    public List<ReportCalculatedPaymentsDTO> obtenerDatosPagosCalculados(Long numeroPrestamo) {
+        Loan prestamo=loanService.findByCode(numeroPrestamo).get();
+        List<ReportCalculatedPaymentsDTO> datosReporte=new ArrayList<>();
+        float valorIntereses=prestamo.getAmount()*(1+prestamo.getPeriod().getInterestRate());
+        int periodosMeses=prestamo.getPeriod().getPeriodMonths();
+        for (int i=1;i<=periodosMeses;i++) {
+            datosReporte.add(new ReportCalculatedPaymentsDTO(
+                    i,
+                    valorIntereses/periodosMeses
+            ));
+        }
+        return datosReporte;
+    }
+
+
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de
      * instancias de ModelFactoryController.

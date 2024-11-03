@@ -66,4 +66,12 @@ public class LoanServiceImp implements LoanService {
     public Optional<Loan> findByCode(Long code) {
         return loanRepo.findByCode(code);
     }
+
+    public List<Loan> findByMunicipality(String municipality) {
+        return loanRepo.findByMunicipality(municipality);
+    }
+
+    public List<Loan> findByBranch(String branch) {
+        loanRepo.findByBranch(branch);
+    }
 }

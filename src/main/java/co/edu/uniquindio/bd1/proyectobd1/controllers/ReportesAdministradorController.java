@@ -1,6 +1,9 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.dto.ReportBranchTotalDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.ReportMunicipalityTotalDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
+import co.edu.uniquindio.bd1.proyectobd1.utils.PDF_Util;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +12,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ReportesAdministradorController {
 
@@ -64,21 +72,28 @@ public class ReportesAdministradorController {
 
     @FXML
     void totalMunicipio() {
-        if (!lblMunicipio.getText().equals("")) {
-
-        } else {
-            InterfazFXUtil.mostrarMensaje("Municipio no seleccionado",
-                    "No ha seleccionado ningun municipio", Alert.AlertType.WARNING);
+        File ruta=InterfazFXUtil.seleccionarCarpeta();
+        if (ruta!=null) {
+            List<ReportMunicipalityTotalDTO> datos=mfm.obtenerDatosTotalPrestamoMunicipios();
+            String fecha=obtenerFechaFormateada(LocalDateTime.now());
+            String reporte= generarCodigoReporteMunicipios(datos);
+            PDF_Util.generarPDF(reporte,ruta.getAbsolutePath(),"TotalMunicipios"+fecha);
         }
     }
 
     @FXML
     void totalSucursal() {
-        if (!lblSucursal.getText().equals("")) {
-
+        if (!lblMunicipio.getText().equals("")) {
+            File ruta=InterfazFXUtil.seleccionarCarpeta();
+            if (ruta!=null) {
+                List<ReportBranchTotalDTO> datos=mfm.obtenerDatosTotalPrestamoSucursales(lblMunicipio.getText());
+                String fecha=obtenerFechaFormateada(LocalDateTime.now());
+                String reporte=generarCodigoReporteSucursales(datos);
+                PDF_Util.generarPDF(reporte,ruta.getAbsolutePath(),"TotalSucursales"+fecha);
+            }
         } else {
-            InterfazFXUtil.mostrarMensaje("Sucursal no seleccionada",
-                    "No ha seleccionado ninguna sucursal", Alert.AlertType.WARNING);
+            InterfazFXUtil.mostrarMensaje("Municipio no seleccionado",
+                    "No ha seleccionado ningun municipio", Alert.AlertType.WARNING);
         }
     }
 
@@ -88,6 +103,33 @@ public class ReportesAdministradorController {
                 FXCollections.observableList(mfm.obtenerSucursales(municipio));
         tableSucursales.setItems(listaSucursalesProperty);
         columnSucursalNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+    }
+
+    String generarCodigoReporteMunicipios(List<ReportMunicipalityTotalDTO> datos) {
+        String html= "<html>" +
+                "<head><title>Titulo</title></head>" +
+                "<body>" +
+                "<h1>Reporte</h1>" +
+                "<table style='width:100%'>" +
+                "<tr></tr>" +
+                "</table>" +
+                "</body></html>";
+        return html;
+    }
+
+    String generarCodigoReporteSucursales(List<ReportBranchTotalDTO> datos) {
+        String html= "<html>" +
+                "<head><title>Titulo</title></head>" +
+                "<body>" +
+                "<h1>Reporte</h1>" +
+                "" +
+                "</body></html>";
+        return html;
+    }
+
+    String obtenerFechaFormateada(LocalDateTime fecha) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH-mm-ss");
+        return formatter.format(fecha);
     }
 	
 

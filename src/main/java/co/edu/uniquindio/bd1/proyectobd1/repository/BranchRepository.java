@@ -19,6 +19,9 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
     @Query("SELECT b FROM Branch b WHERE b.municipality.code=:municipalityCode")
     List<Branch> findByMunicipalityCode(@Param("municipalityCode") Long municipalityCode);
 
+    @Query("SELECT b FROM Branch b WHERE b.municipality.name=:municipalityName")
+    List<Branch> findByMunicipalityCode(@Param("municipalityName") String municipalityName);
+
     @Query("SELECT b FROM Branch b WHERE b.municipality.name=:name")
     List<Branch> findByMunipalityName(@Param("name") String name);
 

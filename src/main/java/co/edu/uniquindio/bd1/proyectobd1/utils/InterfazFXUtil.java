@@ -1,10 +1,9 @@
 package co.edu.uniquindio.bd1.proyectobd1.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-import aj.org.objectweb.asm.commons.TryCatchBlockSorter;
-import co.edu.uniquindio.bd1.proyectobd1.controllers.EmpleadoController;
 import co.edu.uniquindio.bd1.proyectobd1.controllers.VentanaTabuladora;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 public class InterfazFXUtil {
@@ -246,6 +246,13 @@ public class InterfazFXUtil {
 			e.printStackTrace();
 			// Manejar la excepción adecuadamente
 		}
+	}
+
+	public static File seleccionarCarpeta() {
+		DirectoryChooser directoryChooser = new DirectoryChooser();
+		directoryChooser.setTitle("Seleccionar Carpeta");
+		File selectedDirectory = directoryChooser.showDialog(null);
+		return selectedDirectory;
 	}
 
 }

@@ -27,6 +27,10 @@ public class BranchServiceImp implements BranchService {
         return branchRepo.findByMunicipalityCode(code);
     }
 
+    public List<Branch> findByMunipality(String name) {
+        return branchRepo.findByMunicipalityCode(name);
+    }
+
     public Optional<Branch> findByName(String name) {
         return branchRepo.findByName(name);
     }
