@@ -19,44 +19,12 @@ public class LoanServiceImp implements LoanService {
 
     }
 
-    @Override
-    public Loan findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public Loan createLoan(Loan loan) {
-        return null;
-    }
-
-    @Override
-    public Loan updateLoan(Loan loan) {
-        return null;
-    }
-
-    @Override
-    public void deleteLoan(Loan loan) {
-
-    }
-
-    @Override
     public List<Loan> findAll() {
         return loanRepo.findAll();
     }
 
-    @Override
     public List<Loan> findByEmployee(Long code) {
         return loanRepo.findByEmployee(code);
-    }
-
-    @Override
-    public List<Loan> findByStatus(String status) {
-        return List.of();
-    }
-
-    @Override
-    public void disburseLoan(Loan loan) {
-
     }
 
     public void save(Loan loan) {
@@ -85,4 +53,5 @@ public class LoanServiceImp implements LoanService {
     public List<Loan> findByBranch(String branch) {
         return loanRepo.findByBranch(branch);
     }
+
 }

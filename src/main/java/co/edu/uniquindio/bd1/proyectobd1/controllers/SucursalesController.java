@@ -2,6 +2,7 @@ package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
 import co.edu.uniquindio.bd1.proyectobd1.dto.BranchEditDTO;
 import co.edu.uniquindio.bd1.proyectobd1.dto.MunicipalityBranchDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.MunicipalityInfoDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -12,10 +13,13 @@ import javafx.scene.control.*;
 public class SucursalesController {
 
     @FXML
-    private TableView<String> tableMunicipio;
+    private TableView<MunicipalityInfoDTO> tableMunicipio;
 
     @FXML
-    private TableColumn<String, String> columnMunicipioNombre;
+    private TableColumn<MunicipalityInfoDTO, String> columnMunicipioNombre;
+
+    @FXML
+    private TableColumn<MunicipalityInfoDTO, String> columnPoblacion;
 
     @FXML
     private TableView<String> tableSucursales;
@@ -29,6 +33,9 @@ public class SucursalesController {
     @FXML
     private Label lblMunicipio;
 
+    @FXML
+    private TextArea txtDescripcion;
+
     ModelFactoryController mfm=ModelFactoryController.getInstance();
 
     @FXML
@@ -37,17 +44,19 @@ public class SucursalesController {
     }
 
     private void actualizarTablaMunicios() {
-        ObservableList<String> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerMunicipios());
+        ObservableList<MunicipalityInfoDTO> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerMunicipios());
         tableMunicipio.setItems(listaPrestamosProperty);
-        columnMunicipioNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+        columnMunicipioNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
+        columnPoblacion.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().population()));
     }
 
     @FXML
     void seleccionarMunicipio() {
-        String prestamo=tableMunicipio.getSelectionModel().getSelectedItem();
+        MunicipalityInfoDTO prestamo=tableMunicipio.getSelectionModel().getSelectedItem();
         if (prestamo != null) {
-            lblMunicipio.setText(prestamo);
-            actualizarTablaSucursales(prestamo);
+            lblMunicipio.setText(prestamo.name());
+            txtDescripcion.setText(prestamo.description());
+            actualizarTablaSucursales(prestamo.name());
         }
     }
 

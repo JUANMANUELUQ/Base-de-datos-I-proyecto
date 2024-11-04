@@ -4,23 +4,23 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="803.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.PagosController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.PagosController">
    <children>
-      <TableView fx:id="tablePagos" layoutX="27.0" layoutY="263.0" prefHeight="200.0" prefWidth="764.0">
+      <TableView fx:id="tablePagos" layoutX="14.0" layoutY="258.0" prefHeight="200.0" prefWidth="691.0">
         <columns>
             <TableColumn fx:id="columnNumeroPrestamoC" prefWidth="180.0" text="Numero de prestamo" />
-            <TableColumn fx:id="columnNumeroCoutas" prefWidth="216.0" text="Numero de cuota" />
-            <TableColumn fx:id="columnFechaPago" minWidth="0.0" prefWidth="184.0" text="Fecha de pago" />
-            <TableColumn fx:id="columnValor" prefWidth="189.0" text="Valor" />
+            <TableColumn fx:id="columnNumeroCoutas" prefWidth="164.0" text="Numero de cuota" />
+            <TableColumn fx:id="columnFechaPago" minWidth="0.0" prefWidth="175.0" text="Fecha de pago" />
+            <TableColumn fx:id="columnValor" prefWidth="171.0" text="Valor" />
         </columns>
       </TableView>
-      <TableView fx:id="tablePrestamo" layoutX="27.0" layoutY="29.0" onMouseClicked="#ponerDatosCuotas" prefHeight="200.0" prefWidth="764.0">
+      <TableView fx:id="tablePrestamo" layoutX="14.0" layoutY="30.0" onMouseClicked="#ponerDatosCuotas" prefHeight="200.0" prefWidth="684.0">
         <columns>
           <TableColumn fx:id="columnNumeroPrestamoP" prefWidth="163.0" text="Numero de prestamo" />
           <TableColumn fx:id="columnFechaSolicitud" prefWidth="149.0" text="Fecha de solicitud" />
-            <TableColumn fx:id="columnMonto" prefWidth="146.0" text="Monto" />
-            <TableColumn fx:id="columnPeriodoMeses" prefWidth="137.0" text="Periodo de meses" />
-            <TableColumn fx:id="columnTasaInteres" prefWidth="168.0" text="Tasa de interes" />
+            <TableColumn fx:id="columnMonto" prefWidth="118.0" text="Monto" />
+            <TableColumn fx:id="columnPeriodoMeses" prefWidth="134.0" text="Periodo de meses" />
+            <TableColumn fx:id="columnTasaInteres" prefWidth="119.0" text="Tasa de interes" />
         </columns>
       </TableView>
    </children>

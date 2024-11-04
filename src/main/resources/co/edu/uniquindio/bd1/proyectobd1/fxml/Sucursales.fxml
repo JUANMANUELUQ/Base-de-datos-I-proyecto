@@ -9,9 +9,10 @@
 
 <AnchorPane prefHeight="706.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.SucursalesController">
    <children>
-      <TableView fx:id="tableMunicipio" layoutX="39.0" layoutY="59.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="527.0">
+      <TableView fx:id="tableMunicipio" layoutX="23.0" layoutY="62.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="349.0">
         <columns>
-          <TableColumn fx:id="columnMunicipioNombre" prefWidth="526.0" text="Municipios" />
+          <TableColumn fx:id="columnMunicipioNombre" prefWidth="156.0" text="Municipios" />
+            <TableColumn fx:id="columnPoblacion" prefWidth="192.0" text="Poblacion" />
         </columns>
       </TableView>
       <Separator layoutX="23.0" layoutY="281.0" prefHeight="0.0" prefWidth="560.0" />
@@ -38,5 +39,6 @@
       <Button layoutX="252.0" layoutY="624.0" mnemonicParsing="false" onAction="#guardarSucursal" text="Guardar" />
       <Label layoutX="286.0" layoutY="417.0" text="Municipio:" />
       <Label fx:id="lblMunicipio" layoutX="373.0" layoutY="417.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="383.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
    </children>
 </AnchorPane>

@@ -20,49 +20,12 @@ public class LoanRequestServiceImp implements LoanRequestService {
 
     }
 
-    @Override
-    public LoanRequest findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public LoanRequest createLoanRequest(LoanRequest loanRequest) {
-        return null;
-    }
-
-    @Override
-    public LoanRequest updateLoanRequest(LoanRequest loanRequest) {
-        return null;
-    }
-
-    @Override
-    public void deleteLoanRequest(Long id) {
-
-    }
-
-    @Override
     public List<LoanRequest> findAll() {
         return loanRequestRepo.findAll();
     }
 
-    @Override
     public List<LoanRequest> findByEmployee(Long employeeId) {
         return loanRequestRepo.findByEmployee(employeeId);
-    }
-
-    @Override
-    public List<LoanRequest> findByStatus(String status) {
-        return List.of();
-    }
-
-    @Override
-    public boolean approveLoanRequest(LoanRequest loanRequest) {
-        return false;
-    }
-
-    @Override
-    public boolean rejectLoanRequest(LoanRequest loanRequest) {
-        return false;
     }
 
     public void save(LoanRequest loanRequest) {

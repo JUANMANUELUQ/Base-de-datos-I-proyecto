@@ -16,7 +16,7 @@ public class Period {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
-    @Column(name = "interestRate")
+    @Column(name = "interestRate", nullable = false)
     private float interestRate;
     @Column(name = "periodMonths", nullable = false, unique = true)
     private int periodMonths;

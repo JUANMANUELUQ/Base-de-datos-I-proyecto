@@ -16,6 +16,7 @@ module co.edu.uniquindio.bd1.proyectobd1 {
     requires spring.data.commons;
     requires org.aspectj.weaver;
     requires openhtmltopdf.pdfbox;
+    requires spring.tx;
 
     // Abre paquetes a Spring y Hibernate para la reflexión
     opens co.edu.uniquindio.bd1.proyectobd1.model.entities to org.hibernate.orm.core, spring.core, spring.beans,spring.data.jpa;

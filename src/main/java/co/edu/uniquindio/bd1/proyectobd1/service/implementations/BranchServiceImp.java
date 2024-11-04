@@ -62,4 +62,12 @@ public class BranchServiceImp implements BranchService {
         branchRepo.delete(branch);
     }
 
+    public void updateBranch(String branchName,String municipalityName) {
+        branchRepo.updateBranch(branchName,municipalityName);
+    }
+
+    public void deleteBranchByMunicipality(String municipalityName) {
+        branchRepo.deleteBranchByMunicipality(municipalityName);
+    }
+
 }

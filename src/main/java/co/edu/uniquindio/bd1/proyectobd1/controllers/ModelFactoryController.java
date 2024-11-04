@@ -84,11 +84,15 @@ public class ModelFactoryController {
         return prestamosInfo;
     }
 
-    public List<String> obtenerMunicipios() {
+    public List<MunicipalityInfoDTO> obtenerMunicipios() {
         List<Municipality> municipios = municipalityService.findAllMunicipalities();
-        List<String> nombresMunicipios = new ArrayList<String>();
+        List<MunicipalityInfoDTO> nombresMunicipios = new ArrayList<MunicipalityInfoDTO>();
         for (Municipality municipio : municipios) {
-            nombresMunicipios.add(municipio.getName());
+            nombresMunicipios.add(new MunicipalityInfoDTO(
+                    municipio.getName(),
+                    municipio.getPopulation(),
+                    municipio.getDescription()
+            ));
         }
         return nombresMunicipios;
     }
@@ -361,8 +365,13 @@ public class ModelFactoryController {
         return false;
     }
 
-    public boolean existeMunicipio(String municipio) {
-        return municipalityService.findByName(municipio).isPresent();
+    public boolean existeOtroMunicipio(String municipioBuscar,String municipioActual) {
+        Optional<Municipality> municipio =municipalityService.findByName(municipioBuscar);
+        if (municipio.isEmpty() || municipio.get().getName().equals(municipioActual)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public boolean existeSucursalEnMunicipio(MunicipalityBranchDTO municipalityBranchDTO) {
@@ -375,14 +384,17 @@ public class ModelFactoryController {
         return false;
     }
 
-    public void guardarMunicipio(String municipio) {
-        Municipality municipioGuardar=new Municipality(municipio);
+    public void guardarMunicipio(MunicipalityInfoDTO municipioDatos) {
+        Municipality municipioGuardar=new Municipality(municipioDatos.name(),municipioDatos.population(),
+                municipioDatos.description());
         municipalityService.save(municipioGuardar);
     }
 
     public void editarMunicipio(MunicipalityEditDTO datosMunicipio) {
         Municipality municipio=municipalityService.findByName(datosMunicipio.oldMunicipality()).get();
         municipio.setName(datosMunicipio.newMunicipality());
+        municipio.setPopulation(datosMunicipio.population());
+        municipio.setDescription(datosMunicipio.description());
         municipalityService.save(municipio);
     }
 
@@ -669,9 +681,13 @@ public class ModelFactoryController {
     }
 
     public void quemarDatosMunicipios() {
-        Municipality municipio1 = new Municipality("Montenegro");
+        Municipality municipio1 = new Municipality("Montenegro",41700L,
+                "Es un pequeño y encantador municipio famoso por su conexión con " +
+                        "la cultura cafetera");
         municipio1.setCode((long) 1);
-        Municipality municipio2 = new Municipality("Armenia");
+        Municipality municipio2 = new Municipality("Armenia",310000L,
+                "La capital del departamento del Quindio, es conocida como \"La " +
+                        "Ciudad Milagro\" y es un centro economico y cultural");
         municipio2.setCode((long) 2);
         municipalityService.save(municipio1);
         municipalityService.save(municipio2);

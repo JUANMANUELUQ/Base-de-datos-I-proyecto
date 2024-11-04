@@ -19,26 +19,9 @@ public class LoanPaymentServiceImp implements LoanPaymentService {
 
     }
 
-
     public Optional<LoanPayment> findById(Long id) {
         return null;
     }
-
-
-    public LoanPayment createPayment(LoanPayment payment) {
-        return null;
-    }
-
-
-    public LoanPayment updatePayment(LoanPayment payment) {
-        return null;
-    }
-
-
-    public void deletePayment(Long id) {
-
-    }
-
 
     public List<LoanPayment> findAll() {
         return List.of();
@@ -46,16 +29,6 @@ public class LoanPaymentServiceImp implements LoanPaymentService {
 
     public List<LoanPayment> findByLoanCode(Long code) {
         return loanPaymentRepo.findByLoanCode(code);
-    }
-
-
-    public List<LoanPayment> findLatePayment(Long id) {
-        return List.of();
-    }
-
-
-    public Double calculateRemainingDebt(Long loanId) {
-        return 0.0;
     }
 
 
@@ -81,4 +54,5 @@ public class LoanPaymentServiceImp implements LoanPaymentService {
     public List<LoanPayment> findByEmployeeAndLoan(Long codeEmployee, Long loanNumber) {
         return loanPaymentRepo.findByEmployeeAndLoan(codeEmployee, loanNumber);
     }
+
 }

@@ -3,6 +3,7 @@ package co.edu.uniquindio.bd1.proyectobd1.controllers;
 import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeDeleteDTO;
 import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeRegisterDTO;
 import co.edu.uniquindio.bd1.proyectobd1.dto.EmployeeUpdateDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.MunicipalityInfoDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -68,9 +69,9 @@ public class GestionEmpleadoController {
 	 */
 	@FXML
 	private void initialize() {
-		List<String> municipios=mfm.obtenerMunicipios();
-		for (String municipio:municipios) {
-			comboMunicipio.getItems().add(municipio);
+		List<MunicipalityInfoDTO> municipios=mfm.obtenerMunicipios();
+		for (MunicipalityInfoDTO municipio:municipios) {
+			comboMunicipio.getItems().add(municipio.name());
 		}
 		List<String> cargosEmpleados=mfm.obtenerCargosEmpleados();
 		for (String cargo:cargosEmpleados) {

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
+import co.edu.uniquindio.bd1.proyectobd1.dto.MunicipalityInfoDTO;
 import co.edu.uniquindio.bd1.proyectobd1.dto.ReportBranchTotalDTO;
 import co.edu.uniquindio.bd1.proyectobd1.dto.ReportMunicipalityTotalDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
@@ -21,7 +22,7 @@ import java.util.List;
 public class ReportesAdministradorController {
 
     @FXML
-    private TableColumn<String, String> columnMunicipioNombre;
+    private TableColumn<MunicipalityInfoDTO, String> columnMunicipioNombre;
 
     @FXML
     private Label lblMunicipio;
@@ -33,7 +34,7 @@ public class ReportesAdministradorController {
     private TableColumn<String, String> columnSucursalNombre;
 
     @FXML
-    private TableView<String> tableMunicipio;
+    private TableView<MunicipalityInfoDTO> tableMunicipio;
 
     @FXML
     private Label lblSucursal;
@@ -57,17 +58,17 @@ public class ReportesAdministradorController {
 
     @FXML
     void seleccionarMunicipio() {
-        String prestamo=tableMunicipio.getSelectionModel().getSelectedItem();
+        MunicipalityInfoDTO prestamo=tableMunicipio.getSelectionModel().getSelectedItem();
         if (prestamo != null) {
-            lblMunicipio.setText(prestamo);
-            actualizarTablaSucursales(prestamo);
+            lblMunicipio.setText(prestamo.name());
+            actualizarTablaSucursales(prestamo.name());
         }
     }
 
     private void actualizarTablaMunicios() {
-        ObservableList<String> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerMunicipios());
+        ObservableList<MunicipalityInfoDTO> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerMunicipios());
         tableMunicipio.setItems(listaPrestamosProperty);
-        columnMunicipioNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+        columnMunicipioNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
     }
 
     @FXML

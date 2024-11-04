@@ -19,7 +19,7 @@ public class EmployeePosition {
     private String name;
     @Column(name = "salary")
     private float salary;
-    @Column(name = "cap")
+    @Column(name = "cap", nullable = false)
     private float cap;
 
     @Builder

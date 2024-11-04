@@ -19,12 +19,12 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private float amount;
-    @Column(name = "creationDate")
+    @Column(name = "creationDate", nullable = false)
     private LocalDate creationDate;
     @OneToOne
-    @JoinColumn(name = "request")
+    @JoinColumn(name = "request", nullable = false)
     private LoanRequest request;
     @ManyToOne
     @JoinColumn(name = "period")

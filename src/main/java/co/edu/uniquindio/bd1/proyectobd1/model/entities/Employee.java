@@ -22,13 +22,13 @@ public class Employee{
     private String name;
     @Column(name = "email", nullable = false, unique = true)
     private String email; // Operario, Administrativo, Ejecutivo, Otros
-    @Column(name = "arrears")
+    @Column(name = "arrears", nullable = false)
     private boolean arrears;
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     @ManyToOne
-    @JoinColumn(name = "branch")
+    @JoinColumn(name = "branch", nullable = false)
     private Branch branch;
     @ManyToOne
     @JoinColumn(name = "employeePosition", nullable = false)

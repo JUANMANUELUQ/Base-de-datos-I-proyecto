@@ -1,6 +1,7 @@
 package co.edu.uniquindio.bd1.proyectobd1.controllers;
 
 import co.edu.uniquindio.bd1.proyectobd1.dto.MunicipalityEditDTO;
+import co.edu.uniquindio.bd1.proyectobd1.dto.MunicipalityInfoDTO;
 import co.edu.uniquindio.bd1.proyectobd1.utils.InterfazFXUtil;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -11,13 +12,22 @@ import javafx.scene.control.*;
 public class MunicipiosController {
 
     @FXML
-    private TableColumn<String, String> columnMunicipioNombre;
+    private TableColumn<MunicipalityInfoDTO, String> columnMunicipioNombre;
 
     @FXML
-    private TableView<String> tableMunicipio;
+    private TableView<MunicipalityInfoDTO> tableMunicipio;
 
     @FXML
     private TextField txtNombreMunicipio;
+
+    @FXML
+    private TableColumn<MunicipalityInfoDTO, String> columnPoblacion;
+
+    @FXML
+    private TextField txtPoblacion;
+
+    @FXML
+    private TextArea txtDescripcion;
 
     ModelFactoryController mfm=ModelFactoryController.getInstance();
 
@@ -27,32 +37,40 @@ public class MunicipiosController {
     }
 
     private void actualizarTablaMunicios() {
-        ObservableList<String> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerMunicipios());
+        ObservableList<MunicipalityInfoDTO> listaPrestamosProperty= FXCollections.observableList(mfm.obtenerMunicipios());
         tableMunicipio.setItems(listaPrestamosProperty);
-        columnMunicipioNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+        columnMunicipioNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().name()));
+        columnPoblacion.setCellValueFactory(cellData -> new SimpleStringProperty(""+cellData.getValue().population()));
     }
 
     @FXML
     void seleccionarMunicipio() {
-        String municipio=tableMunicipio.getSelectionModel().getSelectedItem();
+        MunicipalityInfoDTO municipio=tableMunicipio.getSelectionModel().getSelectedItem();
         if (municipio != null) {
-            txtNombreMunicipio.setText(municipio);
+            txtNombreMunicipio.setText(municipio.name());
+            txtPoblacion.setText(""+municipio.population());
+            txtDescripcion.setText(municipio.description());
         }
     }
 
     @FXML
     void guardarMunicipio() {
-        if (verificarDatosMunicipio()) {
-            mfm.guardarMunicipio(txtNombreMunicipio.getText());
+        if (verificarDatosMunicipio("")) {
+            mfm.guardarMunicipio(new MunicipalityInfoDTO(
+                    txtNombreMunicipio.getText(),
+                    Long.parseLong(txtPoblacion.getText()),
+                    txtDescripcion.getText()
+            ));
             actualizarTablaMunicios();
         }
     }
 
-    boolean verificarDatosMunicipio() {
+    boolean verificarDatosMunicipio(String nombreActual) {
         boolean sonValidos=true;
         String msj="";
         msj+= InterfazFXUtil.verificarDato(txtNombreMunicipio,"","municipio");
-        if (msj.equals("") && mfm.existeMunicipio(txtNombreMunicipio.getText())) {
+        msj+= InterfazFXUtil.verificarDatoNumericoEntero(txtPoblacion,"poblacion",true);
+        if (msj.equals("") && mfm.existeOtroMunicipio(txtNombreMunicipio.getText(),nombreActual)) {
             msj+="Ya existe un municipio con ese nombre";
         }
         if (!msj.equals("")) {
@@ -64,12 +82,14 @@ public class MunicipiosController {
 
     @FXML
     void editarMunicipio() {
-        String municipio=tableMunicipio.getSelectionModel().getSelectedItem();
+        MunicipalityInfoDTO municipio=tableMunicipio.getSelectionModel().getSelectedItem();
         if (municipio != null) {
-            if (verificarDatosMunicipio()) {
+            if (verificarDatosMunicipio(municipio.name())) {
                 mfm.editarMunicipio(new MunicipalityEditDTO(
-                        municipio,
-                        txtNombreMunicipio.getText()
+                        municipio.name(),
+                        txtNombreMunicipio.getText(),
+                        Long.parseLong(txtPoblacion.getText()),
+                        txtDescripcion.getText()
                 ));
                 actualizarTablaMunicios();
             }
@@ -81,9 +101,9 @@ public class MunicipiosController {
 
     @FXML
     void eliminarMunicipio() {
-        String prestamo=tableMunicipio.getSelectionModel().getSelectedItem();
+        MunicipalityInfoDTO prestamo=tableMunicipio.getSelectionModel().getSelectedItem();
         if (prestamo != null) {
-            mfm.eliminarMunicipio(prestamo);
+            mfm.eliminarMunicipio(prestamo.name());
             actualizarTablaMunicios();
         } else {
             InterfazFXUtil.mostrarMensaje("Municipio no seleccionado",

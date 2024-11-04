@@ -18,14 +18,14 @@ public class LoanPayment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "payment_number")
+    @Column(name = "payment_number", nullable = false)
     private Integer paymentNumber; //Aquí irá el número de la cuota de un prestamo, recordar que no es un identificador
-    @Column(name = "payment_date")
+    @Column(name = "payment_date", nullable = false)
     private LocalDate paymentDate;
-    @Column(name = "value")
+    @Column(name = "value", nullable = false)
     private float value;
     @ManyToOne
-    @JoinColumn(name = "loan")
+    @JoinColumn(name = "loan", nullable = false)
     private Loan loan;
 
 

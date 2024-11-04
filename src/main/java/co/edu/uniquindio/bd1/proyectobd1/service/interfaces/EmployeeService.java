@@ -5,14 +5,27 @@ import co.edu.uniquindio.bd1.proyectobd1.model.entities.Employee;
 import co.edu.uniquindio.bd1.proyectobd1.model.entities.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
-    Employee findById(Long id);
-    List<Employee> findAll();
-    Employee createEmployee(Employee employee);
-    Employee updateEmployee(Employee employee);
-    void deleteEmployee(Employee employee);
-    List<Employee> findByBranch(Branch branch);
-    List<Employee> findDefaulters();//Esto retornará todos los morosos
-    List<Employee> findByMunicipality(String municipality);
+
+    public List<Employee> findAll();
+
+    public void deleteEmployee(Employee employee);
+
+    public List<Employee> findByBranch(String branch);
+
+
+    public List<Employee> findByMunicipality(String municipality);
+
+    public List<Employee> obtainEmployees();
+
+    public Optional<Employee> findByCode(Long code);
+
+    public void save(Employee employee);
+
+    public Optional<Employee> findByEmail(String email);
+
+    public List<Employee> findEmployeeArrears();
+
 }

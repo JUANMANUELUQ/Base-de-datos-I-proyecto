@@ -18,18 +18,18 @@ public class LoanRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long loanNumber;
-    @Column(name = "requestDate")
+    @Column(name = "requestDate", nullable = false)
     private LocalDate requestDate;
-    @Column(name = "requestedAmount")
+    @Column(name = "requestedAmount", nullable = false)
     private float requestedAmount;
     @ManyToOne
-    @JoinColumn(name = "employee")
+    @JoinColumn(name = "employee", nullable = false)
     private Employee employee;
     @ManyToOne
-    @JoinColumn(name = "loanStatus")
+    @JoinColumn(name = "loanStatus", nullable = false)
     private LoanRequestStatus loanStatus;
     @ManyToOne
-    @JoinColumn(name = "period")
+    @JoinColumn(name = "period", nullable = false)
     private Period period;
 
     @Builder

@@ -20,46 +20,19 @@ public class EmployeeServiceImp implements EmployeeService {
 
     }
 
-    @Override
-    public Employee findById(Long id) {
-        return null;
-    }
-
-    @Override
     public List<Employee> findAll() {
         return employeeRepo.findAll();
     }
 
-    @Override
-    public Employee createEmployee(Employee employee) {
-        return null;
-    }
-
-    @Override
-    public Employee updateEmployee(Employee employee) {
-        return null;
-    }
-
-    @Override
     public void deleteEmployee(Employee employee) {
         employeeRepo.delete(employee);
-    }
-
-    @Override
-    public List<Employee> findByBranch(Branch branch) {
-        return List.of();
     }
 
     public List<Employee> findByBranch(String branch) {
         return employeeRepo.findByBranch(branch);
     }
 
-    @Override
-    public List<Employee> findDefaulters() {
-        return List.of();
-    }
 
-    @Override
     public List<Employee> findByMunicipality(String municipality) {
         return employeeRepo.findByMunicipality(municipality);
     }
@@ -83,4 +56,18 @@ public class EmployeeServiceImp implements EmployeeService {
     public List<Employee> findEmployeeArrears() {
         return employeeRepo.findByArrears(true);
     }
+
+    public Optional<Employee> findByEmailAndLogin(String email,String user) {
+        return  employeeRepo.findByEmailAndLogin(email,user);
+    }
+
+    public void updateEmployeeCode(Long code,String user) {
+        employeeRepo.updateEmployeeCode(user,code);
+    }
+
+    public void deleteEmployee(String user) {
+        employeeRepo.deleteEmployee(user);
+    }
+
+
 }

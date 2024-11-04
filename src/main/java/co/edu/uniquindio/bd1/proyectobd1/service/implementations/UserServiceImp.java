@@ -19,46 +19,6 @@ public class UserServiceImp implements UserService {
 
     }
 
-    @Override
-    public User findById(Long id) {
-        return null;
-    }
-
-    @Override
-    public User findByEmail(String email) {
-        return null;
-    }
-
-    @Override
-    public User createUser(User user) {
-        return null;
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return null;
-    }
-
-    @Override
-    public void deleteUser(Long id) {
-
-    }
-
-    @Override
-    public boolean checkCredentials(String email, String password) {
-        return false;
-    }
-
-    @Override
-    public List<User> findAll() {
-        return List.of();
-    }
-
-    @Override
-    public void changePassword(Long id, String newPassword) {
-
-    }
-
     public void save(User user) {
         userRepo.save(user);
     }
