@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.AyudasController">
    <children>
-      <ComboBox layoutX="20.0" layoutY="41.0" prefWidth="150.0" />
-      <TextArea layoutX="20.0" layoutY="86.0" prefHeight="293.0" prefWidth="563.0" />
+      <ComboBox fx:id="comboAyudas" layoutX="20.0" layoutY="41.0" onAction="#seleccionarAyuda" prefHeight="31.0" prefWidth="230.0" />
+      <TextArea fx:id="txtAyuda" layoutX="20.0" layoutY="86.0" prefHeight="293.0" prefWidth="563.0" wrapText="true" />
    </children>
 </AnchorPane>

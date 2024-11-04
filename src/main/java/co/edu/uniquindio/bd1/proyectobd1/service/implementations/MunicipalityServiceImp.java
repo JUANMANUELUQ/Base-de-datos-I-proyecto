@@ -20,6 +20,17 @@ public class MunicipalityServiceImp implements MunicipalityService {
     }
 
     public void save(Municipality municipality) {
+        boolean execute=true;
+        if (municipality.getCode()==null) {
+            Long primaryKey=0L;
+            while(execute) {
+                primaryKey=(long)(Math.random()*Long.MAX_VALUE);
+                if (findByCode(primaryKey).isEmpty()) {
+                    execute=false;
+                }
+            }
+            municipality.setCode(primaryKey);
+        }
         municipalityRepo.save(municipality);
     }
 

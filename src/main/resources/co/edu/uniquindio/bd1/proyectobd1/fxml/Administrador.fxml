@@ -8,13 +8,14 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.AdministradorController">
    <children>
-      <AnchorPane fx:id="panel" layoutX="28.0" layoutY="61.0" prefHeight="302.0" prefWidth="587.0" />
+      <AnchorPane fx:id="panel" layoutX="28.0" layoutY="61.0" prefHeight="302.0" prefWidth="587.0" AnchorPane.leftAnchor="0.0" />
       <MenuBar layoutX="5.0" layoutY="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Entidades">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#gestionEmpleado" text="Gestión empleado" />
-                  <MenuItem mnemonicParsing="false" onAction="#municipioSucursal" text="Municipios/Sucursales" />
+                  <MenuItem mnemonicParsing="false" onAction="#sucursal" text="Sucursales" />
+                  <MenuItem mnemonicParsing="false" onAction="#municipio" text="Municipios" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Transacciones">

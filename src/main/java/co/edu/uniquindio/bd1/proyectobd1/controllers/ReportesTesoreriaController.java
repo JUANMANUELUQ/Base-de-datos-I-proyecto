@@ -40,9 +40,9 @@ public class ReportesTesoreriaController {
 
     String generarCodigoReporteMorosos(List<ReportEmployeeArrearstDTO> datos) {
         String html= "<html>" +
-                "<head><title>Empleadoss morosos</title></head>" +
+                "<head><title>Empleados morosos</title></head>" +
                 "<body>" +
-                "<h1 style='text-align:center'>Empleadoss morosos</h1>" +
+                "<h1 style='text-align:center'>Empleados morosos</h1>" +
                 "<table border='1' style='width:100%;border-collapse: collapse;'>" +
                 "<tr>" +
                 "<th style='background-color:#d3d3d3'>Cedula</th>" +

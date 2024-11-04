@@ -57,11 +57,16 @@ public class SolicitudesPrestamoController {
     void aprobar() {
         LoanRequestInfoDTO loanRequestInfoDTO=tablePrestamos.getSelectionModel().getSelectedItem();
         if (loanRequestInfoDTO != null) {
-            mfm.cambiarEstadoSolicitud(new ChangeLoanRequestStateDTO(
-                    loanRequestInfoDTO.loanNumber(),
-                    "aprobada"
-            ));
-            actualizarTabla();
+            if (!loanRequestInfoDTO.status().equals("aprobada")) {
+                mfm.cambiarEstadoSolicitud(new ChangeLoanRequestStateDTO(
+                        loanRequestInfoDTO.loanNumber(),
+                        "aprobada"
+                ));
+                actualizarTabla();
+            } else {
+                InterfazFXUtil.mostrarMensaje("Solicitud ya aceptada",
+                        "No puede volver a aprobar el prestamo", Alert.AlertType.WARNING);
+            }
         } else {
             InterfazFXUtil.mostrarMensaje("Solicitud no seleccionada",
                     "No ha seleccionado ningun prestamo", Alert.AlertType.WARNING);
@@ -72,11 +77,16 @@ public class SolicitudesPrestamoController {
     void rechazar() {
         LoanRequestInfoDTO loanRequestInfoDTO=tablePrestamos.getSelectionModel().getSelectedItem();
         if (loanRequestInfoDTO != null) {
-            mfm.cambiarEstadoSolicitud(new ChangeLoanRequestStateDTO(
-                    loanRequestInfoDTO.loanNumber(),
-                    "reprobada"
-            ));
-            actualizarTabla();
+            if (!loanRequestInfoDTO.status().equals("aprobada")) {
+                mfm.cambiarEstadoSolicitud(new ChangeLoanRequestStateDTO(
+                        loanRequestInfoDTO.loanNumber(),
+                        "reprobada"
+                ));
+                actualizarTabla();
+            } else {
+                InterfazFXUtil.mostrarMensaje("Solicitud ya aceptada",
+                        "No puede rechazar el prestamo", Alert.AlertType.WARNING);
+            }
         } else {
             InterfazFXUtil.mostrarMensaje("Solicitud no seleccionada",
                     "No ha seleccionado ningun prestamo", Alert.AlertType.WARNING);
@@ -87,11 +97,16 @@ public class SolicitudesPrestamoController {
     void ponerEstudio() {
         LoanRequestInfoDTO loanRequestInfoDTO=tablePrestamos.getSelectionModel().getSelectedItem();
         if (loanRequestInfoDTO != null) {
-            mfm.cambiarEstadoSolicitud(new ChangeLoanRequestStateDTO(
-                    loanRequestInfoDTO.loanNumber(),
-                    "en estudio"
-            ));
-            actualizarTabla();
+            if (!loanRequestInfoDTO.status().equals("aprobada")) {
+                mfm.cambiarEstadoSolicitud(new ChangeLoanRequestStateDTO(
+                        loanRequestInfoDTO.loanNumber(),
+                        "en estudio"
+                ));
+                actualizarTabla();
+            } else {
+                InterfazFXUtil.mostrarMensaje("Solicitud ya aceptada",
+                        "No puede poner en estudio el prestamo", Alert.AlertType.WARNING);
+            }
         } else {
             InterfazFXUtil.mostrarMensaje("Solicitud no seleccionada",
                     "No ha seleccionado ningun prestamo", Alert.AlertType.WARNING);

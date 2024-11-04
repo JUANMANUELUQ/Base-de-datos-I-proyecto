@@ -15,6 +15,9 @@ public interface LoanRequestRepository extends JpaRepository<LoanRequest, Long> 
     @Query("SELECT lr FROM LoanRequest lr WHERE lr.loanNumber = :loanNumber")
     List<LoanRequest> findByLoanNumber(@Param("loanNumber") Long loanNumber);
 
+    @Query("SELECT lr FROM LoanRequest lr WHERE lr.employee.code = :codeEmployee")
+    List<LoanRequest> findByEmployee(@Param("codeEmployee") Long codeEmployee);
+
     /*
 
     @Query("SELECT lr FROM LoanRequest lr WHERE lr.status = :status")

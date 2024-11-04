@@ -20,6 +20,17 @@ public class BranchServiceImp implements BranchService {
     }
 
     public void save(Branch branch) {
+        boolean execute=true;
+        if (branch.getCodeBranch()==null) {
+            Long primaryKey=0L;
+            while(execute) {
+                primaryKey=(long)(Math.random()*Long.MAX_VALUE);
+                if (findByCode(primaryKey).isEmpty()) {
+                    execute=false;
+                }
+            }
+            branch.setCodeBranch(primaryKey);
+        }
         branchRepo.save(branch);
     }
 
@@ -50,4 +61,5 @@ public class BranchServiceImp implements BranchService {
     public void delete(Branch branch) {
         branchRepo.delete(branch);
     }
+
 }

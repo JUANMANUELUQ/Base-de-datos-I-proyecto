@@ -7,26 +7,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="706.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.MinicipiosSucursalesController">
+<AnchorPane prefHeight="706.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.SucursalesController">
    <children>
-      <TableView fx:id="tableMunicipio" layoutX="39.0" layoutY="59.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableMunicipio" layoutX="39.0" layoutY="59.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="527.0">
         <columns>
-          <TableColumn fx:id="columnMunicipioNombre" prefWidth="199.0" text="Municipios" />
+          <TableColumn fx:id="columnMunicipioNombre" prefWidth="526.0" text="Municipios" />
         </columns>
       </TableView>
       <Separator layoutX="23.0" layoutY="281.0" prefHeight="0.0" prefWidth="560.0" />
-      <Label layoutX="289.0" layoutY="138.0" text="Nombre:" />
       <Label layoutX="259.0" layoutY="23.0" text="Municipios">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombreMunicipio" layoutX="359.0" layoutY="133.0" />
-      <Button layoutX="252.0" layoutY="228.0" mnemonicParsing="false" onAction="#guardarMunicipio" text="Guardar" />
-      <Button layoutX="344.0" layoutY="228.0" mnemonicParsing="false" onAction="#editarMunicipio" text="Editar" />
-      <Button layoutX="416.0" layoutY="228.0" mnemonicParsing="false" onAction="#eliminarMunicipio" text="Eliminar" />
-      <Button layoutX="502.0" layoutY="228.0" mnemonicParsing="false" onAction="#limpiarMunicipio" text="Limpiar" />
       <TableView fx:id="tableSucursales" layoutX="39.0" layoutY="353.0" onMouseClicked="#seleccionarSucursal" prefHeight="302.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="columnSucursalNombre" prefWidth="199.0" text="Sucursales" />

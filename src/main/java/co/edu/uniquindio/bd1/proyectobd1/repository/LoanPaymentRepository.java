@@ -7,9 +7,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LoanPaymentRepository extends JpaRepository<LoanPayment, Long> {
+
+    @Query("SELECT p FROM LoanPayment p WHERE p.id = :id")
+    Optional<LoanPayment> findById(@Param("id")Long id);
 
     @Query("SELECT p FROM LoanPayment p WHERE p.loan.code = :loanCode")
     List<LoanPayment> findByLoanCode(@Param("loanCode")Long loanCode);

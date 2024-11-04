@@ -9,10 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Getter
 @Setter
@@ -553,6 +550,89 @@ public class ModelFactoryController {
             ));
         }
         return datosReporte;
+    }
+
+    public List<ReportCalculatedPaymentsDTO> obtenerDatosPagosCalculados(CreateLoanRequestDTO prestamo) {
+        Period periodo=periodService.findByPeriodMonths(prestamo.period()).get();
+        List<ReportCalculatedPaymentsDTO> datosReporte=new ArrayList<>();
+        float valorIntereses=prestamo.amount()*(1+periodo.getInterestRate());
+        int periodosMeses=prestamo.period();
+        for (int i=1;i<=periodosMeses;i++) {
+            datosReporte.add(new ReportCalculatedPaymentsDTO(
+                    i,
+                    valorIntereses/periodosMeses
+            ));
+        }
+        return datosReporte;
+    }
+
+    public Map<String,String> obtenerAyudasUsuarioSesion() {
+        Map<String,String> ayudas=new HashMap<>();
+        switch (this.empleadoSesion.getUser().getUserType().getLevel()) {
+            case "Administrador": ayudas=obtenerAyudasAdministrador(); break;
+            case "Param\u00E9trico": ayudas=obtenerAyudasTesoreria(); break;
+            case "Espor\u00E1dicos": ayudas=obtenerAyudasEmpleado(); break;
+        }
+        return ayudas;
+    }
+
+    public Map<String,String> obtenerAyudasAdministrador() {
+        Map<String,String> ayudas=new HashMap<>();
+        ayudas.put("Municipio","Se puede registrar, ver ,editar, eliminar los distintos datos de los " +
+                "municipios");
+        ayudas.put("Sucursal","Se puede registrar, ver ,editar, eliminar los distintos datos de las " +
+                "sucursales de cada municipio, eligiendo el municipio a la que pertenecen");
+        ayudas.put("Gestion empleado","Se puede registrar, ver ,editar, eliminar los distintos datos " +
+                "de los empleados registrados");
+        ayudas.put("Solicitud de prestamo","Permite realizar una solicitud de prestamos indicando el " +
+                "monto a solicitar, junto de en cuantas cuotas se desea pagar");
+        ayudas.put("Pago cuotas","Se ingresa despues de realizar el pago de una cuota en el banco " +
+                "indicando el numero de prestamo de la cuota que se esta pagando, el  numero de " +
+                "cuota la fecha donde se realizo el pago y el valor de la cuota");
+        ayudas.put("Reportes","Permite realizar reportes en archivos pdf, en el directorio indicado. " +
+                "Se puede realizar los reportes del total del dinero prestado en todo los municipios y " +
+                "el  de todas las sucursales del municipio seleccionado");
+        ayudas.put("Pagos realizados","Permite ver los prestamos realizados con la cuenta de la sesion " +
+                "junto con sus respectivos pagos al momento de seleccionar un prestamo");
+        ayudas.put("Calculadora","Permite hacer operaciones matematicas simples");
+        ayudas.put("Calendario","Permite ver un calendario del mes actual, aunque tambien permite " +
+                "los demas meses y años");
+        return ayudas;
+    }
+
+    public Map<String,String> obtenerAyudasTesoreria() {
+        Map<String,String> ayudas=new HashMap<>();
+        ayudas.put("Solicitudes de prestamos","Se pueden ver y poner en estudio, aprobar o rechazar " +
+                "las solicitudes de prestamos realizadas por los empleados, tambien se puede ver " +
+                "la informacion del empleado que realizo la solicitud seleecionada");
+        ayudas.put("Reportes","Permite realizar reportes en archivos pdf, en el directorio indicado. " +
+                "Se pueden realizar los reportes de los empleados morosos y el del total prestado a " +
+                "los todos los empleados");
+        ayudas.put("Pagos totales","Se pueden ver todos los prestamos realizados por todos lo empleados " +
+                "junto con sus pagos realizados y la respectiva informacion del empleado que pidio " +
+                "el prestamo");
+        ayudas.put("Calculadora","Permite hacer operaciones matematicas simples");
+        ayudas.put("Calendario","Permite ver un calendario del mes actual, aunque tambien permite " +
+                "los demas meses y años");
+        return ayudas;
+    }
+
+    public Map<String,String> obtenerAyudasEmpleado() {
+        Map<String,String> ayudas=new HashMap<>();
+        ayudas.put("Solicitud de prestamo","Permite realizar una solicitud de prestamos indicando el " +
+                "monto a solicitar, junto de en cuantas cuotas se desea pagar");
+        ayudas.put("Pago cuotas","Se ingresa despues de realizar el pago de una cuota en el banco " +
+                "indicando el numero de prestamo de la cuota que se esta pagando, el  numero de " +
+                "cuota la fecha donde se realizo el pago y el valor de la cuota");
+        ayudas.put("Reportes","Permite realizar reportes en archivos pdf, en el directorio indicado. " +
+                "Se pueden realizar reportes de como deben ser el pago de las cuotas de los prestamos " +
+                "y el de todas las solicitudes realizadas por el usuario");
+        ayudas.put("Pagos realizados","Permite ver los prestamos realizados con la cuenta de la sesion " +
+                "junto con sus respectivos pagos al momento de seleccionar un prestamo");
+        ayudas.put("Calculadora","Permite hacer operaciones matematicas simples");
+        ayudas.put("Calendario","Permite ver un calendario del mes actual, aunque tambien permite " +
+                "los demas meses y años");
+        return ayudas;
     }
 
 

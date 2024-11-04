@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class LoanPaymentServiceImp implements LoanPaymentService {
@@ -19,7 +20,7 @@ public class LoanPaymentServiceImp implements LoanPaymentService {
     }
 
 
-    public LoanPayment findById(Long id) {
+    public Optional<LoanPayment> findById(Long id) {
         return null;
     }
 
@@ -63,6 +64,17 @@ public class LoanPaymentServiceImp implements LoanPaymentService {
     }
 
     public void save(LoanPayment pago) {
+        boolean execute=true;
+        if (pago.getId()==null) {
+            Long primaryKey=0L;
+            while(execute) {
+                primaryKey=(long)(Math.random()*Long.MAX_VALUE);
+                if (findById(primaryKey).isEmpty()) {
+                    execute=false;
+                }
+            }
+            pago.setId(primaryKey);
+        }
         loanPaymentRepo.save(pago);
     }
 

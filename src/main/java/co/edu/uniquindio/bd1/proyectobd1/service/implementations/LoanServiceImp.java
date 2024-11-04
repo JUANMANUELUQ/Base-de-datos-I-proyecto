@@ -60,6 +60,17 @@ public class LoanServiceImp implements LoanService {
     }
 
     public void save(Loan loan) {
+        boolean execute=true;
+        if (loan.getCode()==null) {
+            Long primaryKey=0L;
+            while(execute) {
+                primaryKey=(long)(Math.random()*Long.MAX_VALUE);
+                if (findByCode(primaryKey).isEmpty()) {
+                    execute=false;
+                }
+            }
+            loan.setCode(primaryKey);
+        }
         loanRepo.save(loan);
     }
 

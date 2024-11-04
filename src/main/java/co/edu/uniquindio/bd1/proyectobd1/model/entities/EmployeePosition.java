@@ -14,7 +14,6 @@ public class EmployeePosition {
 
     @EqualsAndHashCode.Include
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long code;
     @Column(name = "name", nullable = false, unique = true)
     private String name;

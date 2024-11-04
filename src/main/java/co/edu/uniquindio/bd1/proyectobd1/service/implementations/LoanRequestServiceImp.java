@@ -47,7 +47,7 @@ public class LoanRequestServiceImp implements LoanRequestService {
 
     @Override
     public List<LoanRequest> findByEmployee(Long employeeId) {
-        return List.of();
+        return loanRequestRepo.findByEmployee(employeeId);
     }
 
     @Override
