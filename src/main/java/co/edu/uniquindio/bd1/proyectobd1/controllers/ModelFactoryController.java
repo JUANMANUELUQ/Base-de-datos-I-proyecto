@@ -711,15 +711,15 @@ public class ModelFactoryController {
     }
 
     public void quemarCargoEmpleado() {
-        EmployeePosition cargoEmpleado1 = new EmployeePosition("Administrador", 0, 15000000);
+        EmployeePosition cargoEmpleado1 = new EmployeePosition("Administrador", 3500000, 15000000);
         cargoEmpleado1.setCode((long) 1);
-        EmployeePosition cargoEmpleado2 = new EmployeePosition("Tesoreria", 0, 12000000);
+        EmployeePosition cargoEmpleado2 = new EmployeePosition("Tesoreria", 3000000, 12000000);
         cargoEmpleado2.setCode((long) 2);
-        EmployeePosition cargoEmpleado3 = new EmployeePosition("Operario", 0, 10000000);
+        EmployeePosition cargoEmpleado3 = new EmployeePosition("Operario", 1200000, 10000000);
         cargoEmpleado3.setCode((long) 3);
-        EmployeePosition cargoEmpleado4 = new EmployeePosition("Ejecutivo", 0, 20000000);
+        EmployeePosition cargoEmpleado4 = new EmployeePosition("Ejecutivo", 4000000, 20000000);
         cargoEmpleado4.setCode((long) 4);
-        EmployeePosition cargoEmpleado5 = new EmployeePosition("Otros", 0, 12000000);
+        EmployeePosition cargoEmpleado5 = new EmployeePosition("Otros", 1200000, 12000000);
         cargoEmpleado5.setCode((long) 5);
         employeePositionService.save(cargoEmpleado1);
         employeePositionService.save(cargoEmpleado2);
