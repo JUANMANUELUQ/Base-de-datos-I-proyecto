@@ -6,7 +6,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.EmpleadoController">
    <children>
-      <AnchorPane fx:id="panel" layoutX="47.0" layoutY="55.0" prefHeight="245.0" prefWidth="436.0" AnchorPane.leftAnchor="0.0" />
+      <AnchorPane fx:id="panel" layoutX="47.0" layoutY="55.0" prefHeight="245.0" prefWidth="436.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
       <MenuBar layoutX="15.0" layoutY="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <menus>
             <Menu mnemonicParsing="false" style="-fx-border-color: transparent lightGray;" text="Transacciones">

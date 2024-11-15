@@ -6,18 +6,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.ReportesEmpleadoController">
+<AnchorPane prefHeight="400.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.ReportesEmpleadoController">
    <children>
-      <TableView fx:id="tablePrestamo" layoutX="19.0" layoutY="27.0" prefHeight="200.0" prefWidth="764.0">
+      <TableView fx:id="tablePrestamo" layoutX="14.0" layoutY="27.0" prefHeight="200.0" prefWidth="699.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <columns>
-            <TableColumn fx:id="columnNumeroPrestamoP" prefWidth="163.0" text="Numero de prestamo" />
-            <TableColumn fx:id="columnFechaSolicitud" prefWidth="149.0" text="Fecha de solicitud" />
-            <TableColumn fx:id="columnMonto" prefWidth="146.0" text="Monto" />
-            <TableColumn fx:id="columnPeriodoMeses" prefWidth="137.0" text="Periodo de meses" />
-            <TableColumn fx:id="columnTasaInteres" prefWidth="168.0" text="Tasa de interes" />
+            <TableColumn fx:id="columnNumeroPrestamoP" prefWidth="138.0" text="Numero prestamo" />
+            <TableColumn fx:id="columnFechaSolicitud" prefWidth="155.0" text="Fecha de solicitud" />
+            <TableColumn fx:id="columnMonto" prefWidth="152.0" text="Monto" />
+            <TableColumn fx:id="columnPeriodoMeses" prefWidth="112.0" text="Periodo meses" />
+            <TableColumn fx:id="columnTasaInteres" prefWidth="135.0" text="Tasa de interes" />
          </columns>
       </TableView>
-      <Button layoutX="299.0" layoutY="262.0" mnemonicParsing="false" onAction="#cuotasCalculadas" text="Cuotas calculadas" />
-      <Button layoutX="288.0" layoutY="326.0" mnemonicParsing="false" onAction="#solicitudesRealizadas" text="Solicitudes realizadas" />
+      <Button layoutX="294.0" layoutY="260.0" mnemonicParsing="false" onAction="#cuotasCalculadas" text="Cuotas calculadas" />
+      <Button layoutX="283.0" layoutY="324.0" mnemonicParsing="false" onAction="#solicitudesRealizadas" text="Solicitudes realizadas" />
    </children>
 </AnchorPane>

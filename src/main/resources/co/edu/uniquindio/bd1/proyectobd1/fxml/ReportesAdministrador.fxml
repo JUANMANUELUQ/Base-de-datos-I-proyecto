@@ -4,25 +4,25 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.ReportesAdministradorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.ReportesAdministradorController">
    <children>
-      <Label layoutX="245.0" layoutY="35.0" text="Reportes" />
-      <TableView fx:id="tableSucursales" layoutX="49.0" layoutY="363.0" onMouseClicked="#seleccionarSucursal" prefHeight="302.0" prefWidth="200.0">
+      <Label layoutX="313.0" layoutY="37.0" text="Reportes" />
+      <TableView fx:id="tableSucursales" layoutX="122.0" layoutY="328.0" onMouseClicked="#seleccionarSucursal" prefHeight="302.0" prefWidth="200.0">
          <columns>
             <TableColumn fx:id="columnSucursalNombre" prefWidth="199.0" text="Sucursales" />
          </columns>
       </TableView>
-      <Separator layoutX="33.0" layoutY="291.0" prefHeight="0.0" prefWidth="560.0" />
-      <TableView fx:id="tableMunicipio" layoutX="49.0" layoutY="69.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="200.0">
+      <Separator layoutX="33.0" layoutY="291.0" prefHeight="0.0" prefWidth="560.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+      <TableView fx:id="tableMunicipio" layoutX="117.0" layoutY="71.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="200.0">
          <columns>
             <TableColumn fx:id="columnMunicipioNombre" prefWidth="199.0" text="Municipios" />
          </columns>
       </TableView>
-      <Button layoutX="270.0" layoutY="169.0" mnemonicParsing="false" onAction="#totalMunicipio" prefHeight="75.0" prefWidth="286.0" text="Total prestado por municipio del departamento" textAlignment="CENTER" wrapText="true" />
-      <Button layoutX="297.0" layoutY="548.0" mnemonicParsing="false" onAction="#totalSucursal" text="Total prestado por sucursal" />
-      <Label layoutX="278.0" layoutY="97.0" text="Municipio:" />
-      <Label layoutX="300.0" layoutY="441.0" text="Sucursal:" />
-      <Label fx:id="lblMunicipio" layoutX="364.0" layoutY="97.0" text="municipio" />
-      <Label fx:id="lblSucursal" layoutX="370.0" layoutY="441.0" text="sucursal" />
+      <Button layoutX="338.0" layoutY="171.0" mnemonicParsing="false" onAction="#totalMunicipio" prefHeight="75.0" prefWidth="286.0" text="Total prestado por municipio del departamento" textAlignment="CENTER" wrapText="true" />
+      <Button layoutX="370.0" layoutY="513.0" mnemonicParsing="false" onAction="#totalSucursal" text="Total prestado por sucursal" />
+      <Label layoutX="346.0" layoutY="99.0" text="Municipio:" />
+      <Label layoutX="373.0" layoutY="406.0" text="Sucursal:" />
+      <Label fx:id="lblMunicipio" layoutX="432.0" layoutY="99.0" text="municipio" />
+      <Label fx:id="lblSucursal" layoutX="443.0" layoutY="406.0" text="sucursal" />
    </children>
 </AnchorPane>

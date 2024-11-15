@@ -4,14 +4,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.PrestamoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.PrestamoController">
    <children>
-      <Label layoutX="103.0" layoutY="154.0" text="Monto:" />
-      <TextField fx:id="txtMonto" layoutX="225.0" layoutY="149.0" />
-      <Label layoutX="116.0" layoutY="225.0" text="Periodo en meses:" />
-      <ComboBox fx:id="comboPeriodoMeses" layoutX="270.0" layoutY="220.0" prefWidth="150.0" />
-      <Button layoutX="230.0" layoutY="291.0" mnemonicParsing="false" onAction="#solicitarPrestamo" text="Solicitar perstamo" />
-      <Label layoutX="99.0" layoutY="88.0" text="Tope:" />
-      <Label fx:id="lblTope" layoutX="177.0" layoutY="88.0" text="tope" />
+      <Label layoutX="202.0" layoutY="150.0" text="Monto:" />
+      <TextField fx:id="txtMonto" layoutX="336.0" layoutY="145.0" />
+      <Label layoutX="202.0" layoutY="221.0" text="Periodo en meses:" />
+      <ComboBox fx:id="comboPeriodoMeses" layoutX="336.0" layoutY="216.0" prefHeight="31.0" prefWidth="187.0" />
+      <Button layoutX="282.0" layoutY="286.0" mnemonicParsing="false" onAction="#solicitarPrestamo" text="Solicitar perstamo" />
+      <Label layoutX="198.0" layoutY="84.0" text="Tope:" />
+      <Label fx:id="lblTope" layoutX="337.0" layoutY="84.0" text="tope" />
    </children>
 </AnchorPane>

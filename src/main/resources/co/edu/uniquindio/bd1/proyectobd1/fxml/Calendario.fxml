@@ -6,9 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="468.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.CalendarioController">
+<AnchorPane prefHeight="468.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.CalendarioController">
    <children>
-      <GridPane fx:id="gridPane" layoutX="20.0" layoutY="130.0" prefHeight="267.0" prefWidth="566.0">
+      <GridPane fx:id="gridPane" layoutX="20.0" layoutY="130.0" prefHeight="267.0" prefWidth="566.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -28,11 +28,11 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Label layoutX="268.0" layoutY="14.0" text="Calendario" />
+      <Label layoutX="325.0" layoutY="14.0" text="Calendario" />
       <Label layoutX="20.0" layoutY="48.0" text="Año:" />
       <Button layoutX="262.0" layoutY="43.0" mnemonicParsing="false" onAction="#buscarAnio" text="Buscar año" />
-      <Button layoutX="65.0" layoutY="416.0" mnemonicParsing="false" onAction="#mesAnterior" text="Mes anterior" />
-      <Button layoutX="417.0" layoutY="416.0" mnemonicParsing="false" onAction="#mesSiguientes" text="Mes siguiente" />
+      <Button layoutX="107.0" layoutY="416.0" mnemonicParsing="false" onAction="#mesAnterior" text="Mes anterior" />
+      <Button layoutX="465.0" layoutY="416.0" mnemonicParsing="false" onAction="#mesSiguientes" text="Mes siguiente" />
       <TextField fx:id="txtAnio" layoutX="65.0" layoutY="43.0" />
       <Label layoutX="18.0" layoutY="89.0" text="Mes actual:" />
       <Label fx:id="lblMes" layoutX="117.0" layoutY="89.0" text="mes" />

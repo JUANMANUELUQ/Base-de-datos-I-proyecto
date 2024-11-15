@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="706.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.AuditoriasController">
+   <children>
+      <TableView fx:id="tableAuditorias" layoutX="14.0" layoutY="56.0" prefHeight="200.0" prefWidth="691.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="columnFechaEntrada" prefWidth="111.0" text="Fecha entrada" />
+            <TableColumn fx:id="columnHoraEntrada" prefWidth="161.0" text="Hora entrada" />
+          <TableColumn fx:id="columnFechaSalida" prefWidth="114.0" text="Fecha salida" />
+            <TableColumn fx:id="columnHoraSalida" prefWidth="133.0" text="Hora salida" />
+            <TableColumn fx:id="columnUsuario" prefWidth="168.0" text="Usuario" />
+        </columns>
+      </TableView>
+      <Button layoutX="262.0" layoutY="661.0" mnemonicParsing="false" onAction="#verInformacionEmpleado" text="Ver informacion empleado" />
+   </children>
+</AnchorPane>

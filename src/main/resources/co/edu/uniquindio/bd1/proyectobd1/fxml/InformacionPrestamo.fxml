@@ -4,17 +4,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.InformacionPrestamoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.InformacionPrestamoController">
    <children>
-      <Label layoutX="205.0" layoutY="52.0" text="Ingrese los datos de la cuota" />
-      <Label layoutX="46.0" layoutY="137.0" text="Numero de prestamo:" />
-      <Label layoutX="51.0" layoutY="190.0" text="Num. pago cuota:" />
-      <Label layoutX="60.0" layoutY="230.0" text="Fecha de pago:" />
-      <Label layoutX="60.0" layoutY="286.0" text="Valor:" />
-      <TextField fx:id="txtNumPrestamo" layoutX="219.0" layoutY="132.0" />
-      <TextField fx:id="txtNumCouta" layoutX="219.0" layoutY="185.0" />
-      <TextField fx:id="txtValor" layoutX="219.0" layoutY="286.0" />
-      <Button layoutX="249.0" layoutY="338.0" mnemonicParsing="false" onAction="#enviarDatos" text="Enviar datos" />
-      <DatePicker fx:id="fechaPago" layoutX="219.0" layoutY="230.0" prefHeight="31.0" prefWidth="187.0" />
+      <Label layoutX="248.0" layoutY="60.0" text="Ingrese los datos de la cuota" />
+      <Label layoutX="170.0" layoutY="139.0" text="Numero de prestamo:" />
+      <Label layoutX="170.0" layoutY="192.0" text="Num. pago cuota:" />
+      <Label layoutX="172.0" layoutY="237.0" text="Fecha de pago:" />
+      <Label layoutX="172.0" layoutY="288.0" text="Valor:" />
+      <TextField fx:id="txtNumPrestamo" layoutX="343.0" layoutY="134.0" />
+      <TextField fx:id="txtNumCouta" layoutX="343.0" layoutY="187.0" />
+      <TextField fx:id="txtValor" layoutX="343.0" layoutY="288.0" />
+      <Button layoutX="310.0" layoutY="338.0" mnemonicParsing="false" onAction="#enviarDatos" text="Enviar datos" />
+      <DatePicker fx:id="fechaPago" layoutX="343.0" layoutY="232.0" prefHeight="31.0" prefWidth="187.0" />
    </children>
 </AnchorPane>

@@ -647,6 +647,37 @@ public class ModelFactoryController {
         return ayudas;
     }
 
+    public List<AuditInfoDTO> obtenerAuditoriasInfo() {
+
+        List<Audit> auditorias=auditService.findAll();
+        List<AuditInfoDTO> auditoriasInfo=new ArrayList<>();
+        for (Audit auditoria: auditorias) {
+            auditoriasInfo.add(new AuditInfoDTO(
+                    auditoria.getEntryDate(),
+                    auditoria.getEntryTime(),
+                    auditoria.getOutputDate(),
+                    auditoria.getOutputTime(),
+                    auditoria.getLogin().getLogin()
+            ));
+        }
+        return auditoriasInfo;
+    }
+
+    public EmployeeDTO obtenerEmpleadoUsuario(String usuario) {
+        Employee empleado=employeeService.findByUser(usuario).get();
+        return new EmployeeDTO(
+                empleado.getUser().getLogin(),
+                empleado.getUser().getCreationDate(),
+                empleado.getName(),
+                empleado.getEmail(),
+                empleado.isArrears(),
+                empleado.getEmployeePosition().getName(),
+                empleado.getEmployeePosition().getSalary(),
+                empleado.getBranch().getName(),
+                empleado.getBranch().getMunicipality().getName()
+        );
+    }
+
 
     /**
      * Clase que implementa el patrón Singleton para controlar la creación de

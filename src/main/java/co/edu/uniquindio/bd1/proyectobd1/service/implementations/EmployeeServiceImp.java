@@ -70,4 +70,7 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
 
+    public Optional<Employee> findByUser(String user) {
+        return employeeRepo.findByUser(user);
+    }
 }

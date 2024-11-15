@@ -7,28 +7,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="706.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.MunicipiosController">
+<AnchorPane prefHeight="706.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.MunicipiosController">
    <children>
-      <TableView fx:id="tableMunicipio" layoutX="13.0" layoutY="315.0" onMouseClicked="#seleccionarMunicipio" prefHeight="367.0" prefWidth="570.0">
+      <TableView fx:id="tableMunicipio" layoutX="13.0" layoutY="315.0" onMouseClicked="#seleccionarMunicipio" prefHeight="367.0" prefWidth="570.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0">
         <columns>
-          <TableColumn fx:id="columnMunicipioNombre" prefWidth="288.0" text="Municipio" />
-            <TableColumn fx:id="columnPoblacion" prefWidth="281.0" text="Poblacion" />
+          <TableColumn fx:id="columnMunicipioNombre" prefWidth="347.0" text="Municipio" />
+            <TableColumn fx:id="columnPoblacion" prefWidth="342.0" text="Poblacion" />
         </columns>
       </TableView>
-      <Label layoutX="28.0" layoutY="126.0" text="Nombre:" />
-      <Label layoutX="259.0" layoutY="23.0" text="Municipios">
+      <Label layoutX="94.0" layoutY="126.0" text="Nombre:" />
+      <Label layoutX="325.0" layoutY="23.0" text="Municipios">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNombreMunicipio" layoutX="104.0" layoutY="119.0" />
-      <Button layoutX="141.0" layoutY="254.0" mnemonicParsing="false" onAction="#guardarMunicipio" text="Guardar" />
-      <Button layoutX="233.0" layoutY="254.0" mnemonicParsing="false" onAction="#editarMunicipio" text="Editar" />
-      <Button layoutX="305.0" layoutY="254.0" mnemonicParsing="false" onAction="#eliminarMunicipio" text="Eliminar" />
-      <Button layoutX="391.0" layoutY="254.0" mnemonicParsing="false" onAction="#limpiarMunicipio" text="Limpiar" />
-      <TextField fx:id="txtPoblacion" layoutX="104.0" layoutY="163.0" />
-      <Label layoutX="28.0" layoutY="170.0" text="Población:" />
+      <TextField fx:id="txtNombreMunicipio" layoutX="170.0" layoutY="119.0" />
+      <Button layoutX="207.0" layoutY="254.0" mnemonicParsing="false" onAction="#guardarMunicipio" text="Guardar" />
+      <Button layoutX="299.0" layoutY="254.0" mnemonicParsing="false" onAction="#editarMunicipio" text="Editar" />
+      <Button layoutX="371.0" layoutY="254.0" mnemonicParsing="false" onAction="#eliminarMunicipio" text="Eliminar" />
+      <Button layoutX="457.0" layoutY="254.0" mnemonicParsing="false" onAction="#limpiarMunicipio" text="Limpiar" />
+      <TextField fx:id="txtPoblacion" layoutX="170.0" layoutY="163.0" />
+      <Label layoutX="94.0" layoutY="170.0" text="Población:" />
       <Label layoutX="420.0" layoutY="87.0" text="Descripción:" />
-      <TextArea fx:id="txtDescripcion" layoutX="360.0" layoutY="119.0" prefHeight="82.0" prefWidth="200.0" wrapText="true" />
+      <TextArea fx:id="txtDescripcion" layoutX="426.0" layoutY="119.0" prefHeight="82.0" prefWidth="200.0" wrapText="true" />
    </children>
 </AnchorPane>

@@ -4,35 +4,35 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.GestionEmpleadoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.GestionEmpleadoController">
    <children>
-      <Label layoutX="134.0" layoutY="194.0" text="Correo:" />
-      <TextField fx:id="txtCorreo" layoutX="250.0" layoutY="189.0" prefWidth="187.0" />
-      <Label layoutX="134.0" layoutY="233.0" text="Cargo:" />
-      <ComboBox fx:id="comboCargo" layoutX="250.0" layoutY="228.0" prefHeight="31.0" prefWidth="187.0" />
-      <Label layoutX="134.0" layoutY="315.0" text="Sucursal:" />
-      <Label layoutX="134.0" layoutY="274.0" text="Municipio:" />
-      <Button layoutX="204.0" layoutY="372.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
-      <TableView fx:id="tableEmpleados" layoutX="28.0" layoutY="424.0" onMouseClicked="#ponerDatos" prefHeight="264.0" prefWidth="519.0">
+      <Label layoutX="207.0" layoutY="196.0" text="Correo:" />
+      <TextField fx:id="txtCorreo" layoutX="323.0" layoutY="191.0" prefWidth="187.0" />
+      <Label layoutX="207.0" layoutY="235.0" text="Cargo:" />
+      <ComboBox fx:id="comboCargo" layoutX="323.0" layoutY="230.0" prefHeight="31.0" prefWidth="187.0" />
+      <Label layoutX="207.0" layoutY="317.0" text="Sucursal:" />
+      <Label layoutX="207.0" layoutY="276.0" text="Municipio:" />
+      <Button layoutX="277.0" layoutY="374.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <TableView fx:id="tableEmpleados" layoutX="28.0" layoutY="424.0" onMouseClicked="#ponerDatos" prefHeight="264.0" prefWidth="519.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0">
         <columns>
-          <TableColumn fx:id="columnCorreo" prefWidth="138.0" text="Correo" />
-            <TableColumn fx:id="columnCargo" prefWidth="117.0" text="Cargo" />
-          <TableColumn fx:id="columnSucursal" prefWidth="116.0" text="Sucursal" />
-            <TableColumn fx:id="columnMunicipio" prefWidth="147.0" text="Municipio" />
+          <TableColumn fx:id="columnCorreo" prefWidth="226.0" text="Correo" />
+            <TableColumn fx:id="columnCargo" prefWidth="134.0" text="Cargo" />
+          <TableColumn fx:id="columnSucursal" prefWidth="147.0" text="Sucursal" />
+            <TableColumn fx:id="columnMunicipio" prefWidth="162.0" text="Municipio" />
         </columns>
       </TableView>
-      <Button layoutX="297.0" layoutY="372.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
-      <Button layoutX="109.0" layoutY="372.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
-      <Button layoutX="393.0" layoutY="372.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
-      <ComboBox fx:id="comboMunicipio" layoutX="250.0" layoutY="269.0" onAction="#obtenerSucursales" prefHeight="31.0" prefWidth="187.0" />
-      <ComboBox fx:id="comboSucursal" layoutX="250.0" layoutY="310.0" prefHeight="31.0" prefWidth="187.0" />
-      <TextField fx:id="txtNombre" layoutX="250.0" layoutY="150.0" prefWidth="187.0" />
-      <Label layoutX="134.0" layoutY="155.0" text="Nombre:" />
-      <TextField fx:id="txtCodigo" layoutX="250.0" layoutY="109.0" prefWidth="187.0" />
-      <Label layoutX="134.0" layoutY="114.0" text="Codigo:" />
-      <Label layoutX="134.0" layoutY="33.0" text="Login:" />
-      <TextField fx:id="txtLogin" layoutX="250.0" layoutY="28.0" prefWidth="187.0" />
-      <Label layoutX="134.0" layoutY="74.0" text="Contrasena:" />
-      <TextField fx:id="txtContrasena" layoutX="250.0" layoutY="69.0" prefWidth="187.0" />
+      <Button layoutX="370.0" layoutY="374.0" mnemonicParsing="false" onAction="#limpiar" text="Limpiar" />
+      <Button layoutX="182.0" layoutY="374.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+      <Button layoutX="466.0" layoutY="374.0" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" />
+      <ComboBox fx:id="comboMunicipio" layoutX="323.0" layoutY="271.0" onAction="#obtenerSucursales" prefHeight="31.0" prefWidth="187.0" />
+      <ComboBox fx:id="comboSucursal" layoutX="323.0" layoutY="312.0" prefHeight="31.0" prefWidth="187.0" />
+      <TextField fx:id="txtNombre" layoutX="323.0" layoutY="152.0" prefWidth="187.0" />
+      <Label layoutX="207.0" layoutY="157.0" text="Nombre:" />
+      <TextField fx:id="txtCodigo" layoutX="323.0" layoutY="111.0" prefWidth="187.0" />
+      <Label layoutX="207.0" layoutY="116.0" text="Codigo:" />
+      <Label layoutX="207.0" layoutY="35.0" text="Login:" />
+      <TextField fx:id="txtLogin" layoutX="323.0" layoutY="30.0" prefWidth="187.0" />
+      <Label layoutX="207.0" layoutY="76.0" text="Contrasena:" />
+      <TextField fx:id="txtContrasena" layoutX="323.0" layoutY="71.0" prefWidth="187.0" />
    </children>
 </AnchorPane>

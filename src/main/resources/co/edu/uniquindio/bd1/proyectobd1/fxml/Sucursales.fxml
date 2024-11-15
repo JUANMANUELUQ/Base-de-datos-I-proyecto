@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="706.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.SucursalesController">
+<AnchorPane prefHeight="706.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.bd1.proyectobd1.controllers.SucursalesController">
    <children>
       <TableView fx:id="tableMunicipio" layoutX="23.0" layoutY="62.0" onMouseClicked="#seleccionarMunicipio" prefHeight="200.0" prefWidth="349.0">
         <columns>
@@ -15,30 +15,30 @@
             <TableColumn fx:id="columnPoblacion" prefWidth="192.0" text="Poblacion" />
         </columns>
       </TableView>
-      <Separator layoutX="23.0" layoutY="281.0" prefHeight="0.0" prefWidth="560.0" />
-      <Label layoutX="259.0" layoutY="23.0" text="Municipios">
+      <Separator layoutX="23.0" layoutY="281.0" prefHeight="0.0" prefWidth="560.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <Label layoutX="321.0" layoutY="22.0" text="Municipios">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="tableSucursales" layoutX="39.0" layoutY="353.0" onMouseClicked="#seleccionarSucursal" prefHeight="302.0" prefWidth="200.0">
+      <TableView fx:id="tableSucursales" layoutX="39.0" layoutY="353.0" onMouseClicked="#seleccionarSucursal" prefHeight="302.0" prefWidth="255.0">
         <columns>
-          <TableColumn fx:id="columnSucursalNombre" prefWidth="199.0" text="Sucursales" />
+          <TableColumn fx:id="columnSucursalNombre" prefWidth="254.0" text="Sucursales" />
         </columns>
       </TableView>
-      <Label layoutX="252.0" layoutY="303.0" text="Sucursales">
+      <Label layoutX="319.0" layoutY="299.0" text="Sucursales">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="286.0" layoutY="509.0" text="Nombre:" />
-      <TextField fx:id="txtNombreSucursal" layoutX="359.0" layoutY="504.0" />
-      <Button layoutX="502.0" layoutY="624.0" mnemonicParsing="false" onAction="#limpiarSucursal" text="Limpiar" />
-      <Button layoutX="416.0" layoutY="624.0" mnemonicParsing="false" onAction="#eliminarSucursal" text="Eliminar" />
-      <Button layoutX="344.0" layoutY="624.0" mnemonicParsing="false" onAction="#editarSucursal" text="Editar" />
-      <Button layoutX="252.0" layoutY="624.0" mnemonicParsing="false" onAction="#guardarSucursal" text="Guardar" />
-      <Label layoutX="286.0" layoutY="417.0" text="Municipio:" />
-      <Label fx:id="lblMunicipio" layoutX="373.0" layoutY="417.0" />
-      <TextArea fx:id="txtDescripcion" layoutX="383.0" layoutY="62.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+      <Label layoutX="370.0" layoutY="509.0" text="Nombre:" />
+      <TextField fx:id="txtNombreSucursal" layoutX="443.0" layoutY="504.0" />
+      <Button layoutX="586.0" layoutY="624.0" mnemonicParsing="false" onAction="#limpiarSucursal" text="Limpiar" />
+      <Button layoutX="500.0" layoutY="624.0" mnemonicParsing="false" onAction="#eliminarSucursal" text="Eliminar" />
+      <Button layoutX="428.0" layoutY="624.0" mnemonicParsing="false" onAction="#editarSucursal" text="Editar" />
+      <Button layoutX="336.0" layoutY="624.0" mnemonicParsing="false" onAction="#guardarSucursal" text="Guardar" />
+      <Label layoutX="370.0" layoutY="417.0" text="Municipio:" />
+      <Label fx:id="lblMunicipio" layoutX="457.0" layoutY="417.0" />
+      <TextArea fx:id="txtDescripcion" layoutX="383.0" layoutY="62.0" prefHeight="200.0" prefWidth="314.0" wrapText="true" />
    </children>
 </AnchorPane>
