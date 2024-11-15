@@ -30,6 +30,12 @@ public interface BranchRepository extends JpaRepository<Branch, Long> {
     @Query("SELECT b FROM Branch b WHERE b.name=:name AND b.municipality.name=:municipality")
     Optional<Branch> findByMunipalityNameAndMunicipality(@Param("name") String name,@Param("municipality") String municipality);
 
+    @Query("UPDATE Branch b SET b.name = :name WHERE b.name=:oldName AND b.municipality.name=:municipality")
+    int updateByNameAndMunicipality(@Param("oldName") String oldName,@Param("name") String name,@Param("municipality") String municipality);
+
+    @Query("DELETE FROM  Branch b WHERE b.name=:name AND b.municipality.name=:municipality")
+    int deleteByNameAndMunicipality(@Param("name") String name,@Param("municipality") String municipality);
+
     @Modifying
     @Query("UPDATE Branch b SET b.name = :name WHERE b.municipality.name=:municipality")
     int updateBranch(@Param("name") String name,@Param("municipality") String municipality);

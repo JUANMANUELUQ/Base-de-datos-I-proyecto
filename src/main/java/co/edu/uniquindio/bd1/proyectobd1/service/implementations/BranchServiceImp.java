@@ -4,6 +4,7 @@ import co.edu.uniquindio.bd1.proyectobd1.model.entities.Branch;
 import co.edu.uniquindio.bd1.proyectobd1.repository.BranchRepository;
 import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.BranchService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,6 +69,14 @@ public class BranchServiceImp implements BranchService {
 
     public void deleteBranchByMunicipality(String municipalityName) {
         branchRepo.deleteBranchByMunicipality(municipalityName);
+    }
+
+    public void updateByNameAndMunicipality(String oldName,String name,String municipality) {
+        branchRepo.updateByNameAndMunicipality(oldName,name,municipality);
+    }
+
+    public void deleteByNameAndMunicipality(String name,String municipality) {
+        branchRepo.deleteByNameAndMunicipality(name,municipality);
     }
 
 }

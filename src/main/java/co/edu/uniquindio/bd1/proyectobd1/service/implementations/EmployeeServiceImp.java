@@ -5,6 +5,7 @@ import co.edu.uniquindio.bd1.proyectobd1.model.entities.Employee;
 import co.edu.uniquindio.bd1.proyectobd1.repository.EmployeeRepository;
 import co.edu.uniquindio.bd1.proyectobd1.service.interfaces.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -72,5 +73,9 @@ public class EmployeeServiceImp implements EmployeeService {
 
     public Optional<Employee> findByUser(String user) {
         return employeeRepo.findByUser(user);
+    }
+
+    public void updateByEmailAndLogin(Long oldCode,Long code,String login) {
+        employeeRepo.updateByEmailAndLogin(oldCode,code,login);
     }
 }

@@ -119,7 +119,9 @@ public class CalculadoraController {
     @FXML
     void del() {
         int tam=txtPantalla.getText().length();
-        txtPantalla.deleteText(tam-1,tam);
+        if (!txtPantalla.getText().equals("")) {
+            txtPantalla.deleteText(tam-1,tam);
+        }
     }
 
     @FXML
